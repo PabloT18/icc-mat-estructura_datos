@@ -1,0 +1,162 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2.3-python · Recursividad · Estructura de Datos</title><link rel="stylesheet" href="../../../assets/css/styles.css"></head><body><a class="skip" href="#contenido">Ir al material</a><main class="page" id="contenido"><nav class="article-nav" aria-label="Recursos del contenido"><a href="../../../index.html" target="_top">Índice del curso</a><a href="material.md" download>Descargar MD</a><a href="../presentacion.pptx" download>Descargar PPTX</a><a href="../../2.2-search/python/index.html">Anterior</a><a href="../../../03-data-structures/3.1.1-stacks/python/index.html">Siguiente</a></nav><h1>Estructura de Datos</h1>
+<h2>2.3 Recursividad · Python</h2>
+<p><strong>Ing. Pablo Torres, Mgtr.</strong> · Universidad Politécnica Salesiana · Computación · Cuenca<br>Unidad 2: Ordenamiento, búsqueda y recursividad</p>
+<p><a href="../../../index.html">Índice del curso</a> · <a href="../presentacion.pptx">Presentación Java</a> · <a href="../evaluaciones/tema.xml">Evaluación Moodle</a></p>
+<p><a id="conceptos"></a></p>
+<h2>1. Conceptos y ejemplos</h2>
+<p><strong>Prerrequisitos:</strong> variables, condiciones, bucles, funciones y arreglos. El contenido desarrolla los conceptos adicionales que utiliza.</p>
+<p><a id="concepto-1"></a></p>
+<h3>1.1 Definición y contrato</h3>
+<p>Una función recursiva expresa un resultado usando llamadas a sí misma sobre problemas menores. Su contrato debe indicar un dominio donde la disminución llegue a un caso base. Para factorial se acepta n entero entre 0 y 20. La restricción común permite representar exactamente el resultado en long de Java y BigInt de JavaScript. Python usa enteros de precisión arbitraria, pero mantiene el mismo dominio para comparar los casos.</p>
+<p><a id="concepto-2"></a></p>
+<h3>1.2 Caso base y terminación</h3>
+<p>factorial(0)=1 y factorial(n)=n·factorial(n-1) para n&gt;0. La medida n es un entero no negativo que disminuye estrictamente. Esa combinación justifica la terminación. Comprobar solo n==0 sin rechazar negativos no basta: -1,-2,… nunca llega al caso base. La validación ocurre antes de llamar al núcleo recursivo.</p>
+<p><a id="concepto-3"></a></p>
+<h3>1.3 Pila de llamadas y retorno</h3>
+<p>Cada llamada conserva sus parámetros y el trabajo que falta. Para factorial(3), las llamadas descienden 3,2,1,0 y los retornos ascienden 1,1,2,6. La multiplicación se realiza después del retorno de la llamada menor. El número de llamadas es n+1 y la profundidad también n+1. La pila ocupa Θ(n), aunque cada activación individual tenga tamaño constante.</p>
+<p><a id="concepto-4"></a></p>
+<h3>1.4 Comparación con iteración</h3>
+<p>Un acumulador iterativo realiza n multiplicaciones y usa Θ(1) espacio auxiliar bajo palabra fija. La versión recursiva también realiza Θ(n) trabajo pero añade la pila. Recursividad no implica automáticamente ineficiencia: resulta natural en estructuras jerárquicas y divide y vencerás. Tampoco se debe asumir eliminación de llamadas de cola en estos entornos. Con entradas profundas puede agotarse la pila.</p>
+<p><a id="concepto-5"></a></p>
+<h3>1.5 Recursión ramificada</h3>
+<p>Fibonacci ingenuo calcula dos ramas y repite estados. Su tiempo es Θ(φⁿ), con O(2ⁿ) como cota superior simple, y su profundidad es Θ(n). La cantidad total de llamadas difiere de la profundidad simultánea. En programación dinámica guardaremos estados para evitar repetición. Una función con dos llamadas no siempre es exponencial: Merge Sort divide el tamaño y tiene otro árbol de trabajo.</p>
+<p><a id="traza"></a></p>
+<h3>Traza de referencia</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Llamada</th>
+<th>Trabajo pendiente</th>
+<th>Retorno</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>f(3)</td>
+<td>3·f(2)</td>
+<td>6</td>
+</tr>
+<tr>
+<td>f(2)</td>
+<td>2·f(1)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>f(1)</td>
+<td>1·f(0)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>f(0)</td>
+<td>caso base</td>
+<td>1</td>
+</tr>
+</tbody></table></div>
+<p>La tabla muestra estados o conteos concretos. Reproduce cada transición y comprueba qué propiedad permanece verdadera. Una traza finita ayuda a encontrar errores; la justificación del algoritmo también exige explicar por qué progresa y por qué la condición final satisface el contrato.</p>
+<p><img src="../assets/guia-visual.svg" alt="Síntesis del tema 2.3"></p>
+<h3>Particularidades de Python</h3>
+<p>Python usa indentación para delimitar bloques y enteros de precisión arbitraria. // realiza división entera para índices no negativos. list.copy() crea una copia superficial; las listas y diccionarios mutables pueden compartirse mediante referencias. Las funciones de esta demostración reciben los tipos descritos en el contrato. Los assert son comprobaciones de desarrollo y deben ejecutarse sin la opción -O. No se requieren paquetes externos.</p>
+<p><a id="demostracion"></a></p>
+<h2>2. Demostración guiada</h2>
+<p><strong>Problema y contrato:</strong> n entero entre 0 y 20 inclusive. Devuelve factorial exacto. Rechaza negativos y n&gt;20 antes de recursar. En JavaScript usa BigInt para evitar pérdida de precisión.</p>
+<ol>
+<li>Lee el contrato y predice la salida del caso principal antes de ejecutar.</li>
+<li>Identifica las variables que representan el estado y vincúlalas con la traza de la sección anterior.</li>
+<li>Ejecuta el archivo completo. Las comprobaciones internas detienen el programa si una condición esperada falla.</li>
+<li>Cambia una entrada del bloque de ejecución, predice el resultado y contrástalo. Conserva el núcleo de la demostración como referencia.</li>
+</ol>
+<h3>Código completo</h3>
+<p>Este bloque se genera desde <code>ejemplos/demo.py</code> mediante <code>scripts/sync-code.py</code>; ese archivo es la fuente del código. La PC tiene otro objetivo y sus casos de aceptación aparecen en la sección 3.</p>
+<!-- DEMO:START -->
+<pre><code class="language-python">def validate(n):
+    if not isinstance(n, int) or not 0 &lt;= n &lt;= 20:
+        raise ValueError(&quot;n debe estar entre 0 y 20&quot;)
+
+def factorial(n):
+    validate(n)
+    def recursive(k):
+        return 1 if k == 0 else k * recursive(k-1)
+    return recursive(n)
+
+def iterative(n):
+    validate(n)
+    value = 1
+    for i in range(1,n+1):
+        value *= i
+    return value
+
+if __name__ == &quot;__main__&quot;:
+    for n in (0,3,5,20):
+        assert factorial(n) == iterative(n)
+        print(f&quot;{n}:{factorial(n)}&quot;)
+    for n in (-1,21):
+        try:
+            factorial(n)
+            raise AssertionError(&quot;Dominio&quot;)
+        except ValueError:
+            pass
+</code></pre>
+<!-- DEMO:END -->
+
+<h3>Ejecución</h3>
+<p>Desde esta carpeta <code>02-searching-and-sorting-algorithms/2.3-recursion/python</code>:</p>
+<pre><code class="language-bash">python3 ejemplos/demo.py
+</code></pre>
+<h3>Salida esperada de la demostración</h3>
+<pre><code class="language-text">0:1
+3:6
+5:120
+20:2432902008176640000
+</code></pre>
+<p>La salida procede de los datos fijos del bloque de ejecución. Las verificaciones internas también cubren los casos adicionales que se leen en el código. El registro de ejecuciones realizadas se conserva en <a href="../../../docs/verificacion.md">verificación</a>, separado de estas expectativas.</p>
+<p><a id="pc"></a></p>
+<h2>3. PC — 2.3: Recursividad</h2>
+<p>Implementa suma de dígitos para un entero no negativo mediante recursividad, su versión iterativa y una traza de llamadas y retornos. Define el contrato para cero y rechaza negativos. Justifica costo respecto del número de dígitos.</p>
+<h3>Requisitos de la entrega</h3>
+<ul>
+<li>Implementa la actividad en <strong>una versión</strong>, a tu elección entre Java, Python y JavaScript. Las PL se entregan exclusivamente en Java.</li>
+<li>Separa la lógica del procesamiento de la entrada y la impresión. Documenta tipos, dominio válido, salida y comportamiento de error.</li>
+<li>Conserva los casos de aceptación siguientes y agrega al menos un caso que compruebe el invariante del tema.</li>
+<li>No copies como solución el bloque de demostración: resuelve la ampliación pedida. No se suministra una solución completa de esta PC.</li>
+</ul>
+<h3>Casos de aceptación de la PC</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entrada o escenario</th>
+<th>Resultado exigido</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1234</td>
+<td>10</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>9001</td>
+<td>10</td>
+</tr>
+<tr>
+<td>-12</td>
+<td>error controlado</td>
+</tr>
+</tbody></table></div>
+<h3>Ejecución y evidencia</h3>
+<p>Desde la carpeta de tu entrega, ejecuta el programa con <code>python3 main.py</code>. Si divides Java en paquetes, utiliza los comandos de la plantilla del estudiante. Registra entrada, resultado esperado, resultado real y explicación de cualquier diferencia en <code>evidencias/PC2.3.md</code> de tu repositorio personal.</p>
+<p>Crea commits pequeños: <code>feat(pc2.3): implementar contrato</code>, <code>test(pc2.3): cubrir casos limite</code> y <code>docs(pc2.3): explicar costos</code>. Sustituye los mensajes por descripciones del cambio real. Obtén el hash con <code>git rev-parse HEAD</code> y revisa una etapa con <code>git show HASH</code>. La actividad no necesita continuar un proyecto acumulativo.</p>
+<p><a id="esencial"></a></p>
+<h2>Lo esencial</h2>
+<ul>
+<li>Una función recursiva expresa un resultado usando llamadas a sí misma sobre problemas menores.</li>
+<li>Fibonacci ingenuo calcula dos ramas y repite estados.</li>
+<li>Explica el contrato, traza una entrada y justifica tiempo y memoria con las condiciones descritas.</li>
+</ul>
+<h2>Referencias</h2>
+<ul>
+<li>Programa analítico y referencias del docente: correspondencia en el documento docente de este contenido.</li>
+<li><a href="https://docs.python.org/3.14/">Referencia técnica de Python</a>.</li>
+<li><a href="../../../docs/analisis-referencias.md">Bibliografía y análisis de fuentes</a>.</li>
+</ul>
+<nav class="article-nav" aria-label="Recursos del contenido"><a href="../../../index.html" target="_top">Índice del curso</a><a href="material.md" download>Descargar MD</a><a href="../presentacion.pptx" download>Descargar PPTX</a><a href="../../2.2-search/python/index.html">Anterior</a><a href="../../../03-data-structures/3.1.1-stacks/python/index.html">Siguiente</a></nav></main></body></html>

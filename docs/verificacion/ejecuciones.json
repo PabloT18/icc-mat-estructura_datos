@@ -1,0 +1,657 @@
+{
+  "versions": {
+    "java": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)\nOpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)",
+    "python": "Python 3.12.14",
+    "node": "v24.19.0"
+  },
+  "results": [
+    {
+      "id": "1.1-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0\n4:4\n8:8\n",
+      "stderr": "",
+      "expected": "0:0\n4:4\n8:8\n",
+      "passed": true
+    },
+    {
+      "id": "1.1-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0\n4:4\n8:8\n",
+      "stderr": "",
+      "expected": "0:0\n4:4\n8:8\n",
+      "passed": true
+    },
+    {
+      "id": "1.1-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0\n4:4\n8:8\n",
+      "stderr": "",
+      "expected": "0:0\n4:4\n8:8\n",
+      "passed": true
+    },
+    {
+      "id": "1.2-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "4:6\n8:28\n16:120\n",
+      "stderr": "",
+      "expected": "4:6\n8:28\n16:120\n",
+      "passed": true
+    },
+    {
+      "id": "1.2-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "4:6\n8:28\n16:120\n",
+      "stderr": "",
+      "expected": "4:6\n8:28\n16:120\n",
+      "passed": true
+    },
+    {
+      "id": "1.2-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "4:6\n8:28\n16:120\n",
+      "stderr": "",
+      "expected": "4:6\n8:28\n16:120\n",
+      "passed": true
+    },
+    {
+      "id": "1.3-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0\n5:15\n10:55\n1000:500500\n",
+      "stderr": "",
+      "expected": "0:0\n5:15\n10:55\n1000:500500\n",
+      "passed": true
+    },
+    {
+      "id": "1.3-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0\n5:15\n10:55\n1000:500500\n",
+      "stderr": "",
+      "expected": "0:0\n5:15\n10:55\n1000:500500\n",
+      "passed": true
+    },
+    {
+      "id": "1.3-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0\n5:15\n10:55\n1000:500500\n",
+      "stderr": "",
+      "expected": "0:0\n5:15\n10:55\n1000:500500\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.1-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.1-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.1-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.2-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.2-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.2-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.3-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.3-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.3-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.4-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.4-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.1.4-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 2, 3, 4, 5]\n",
+      "stderr": "",
+      "expected": "[1, 2, 3, 4, 5]\n",
+      "passed": true
+    },
+    {
+      "id": "2.2-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "3:1\n8:-1\n1:0\n9:4\n",
+      "stderr": "",
+      "expected": "3:1\n8:-1\n1:0\n9:4\n",
+      "passed": true
+    },
+    {
+      "id": "2.2-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "3:1\n8:-1\n1:0\n9:4\n",
+      "stderr": "",
+      "expected": "3:1\n8:-1\n1:0\n9:4\n",
+      "passed": true
+    },
+    {
+      "id": "2.2-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "3:1\n8:-1\n1:0\n9:4\n",
+      "stderr": "",
+      "expected": "3:1\n8:-1\n1:0\n9:4\n",
+      "passed": true
+    },
+    {
+      "id": "2.3-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "0:1\n3:6\n5:120\n20:2432902008176640000\n",
+      "stderr": "",
+      "expected": "0:1\n3:6\n5:120\n20:2432902008176640000\n",
+      "passed": true
+    },
+    {
+      "id": "2.3-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "0:1\n3:6\n5:120\n20:2432902008176640000\n",
+      "stderr": "",
+      "expected": "0:1\n3:6\n5:120\n20:2432902008176640000\n",
+      "passed": true
+    },
+    {
+      "id": "2.3-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "0:1\n3:6\n5:120\n20:2432902008176640000\n",
+      "stderr": "",
+      "expected": "0:1\n3:6\n5:120\n20:2432902008176640000\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.1-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "valido\ninvalido\nvalido\ninvalido\n",
+      "stderr": "",
+      "expected": "valido\ninvalido\nvalido\ninvalido\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.1-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "valido\ninvalido\nvalido\ninvalido\n",
+      "stderr": "",
+      "expected": "valido\ninvalido\nvalido\ninvalido\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.1-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "valido\ninvalido\nvalido\ninvalido\n",
+      "stderr": "",
+      "expected": "valido\ninvalido\nvalido\ninvalido\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.2-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "10\n20\n30\n40\n",
+      "stderr": "",
+      "expected": "10\n20\n30\n40\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.2-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "10\n20\n30\n40\n",
+      "stderr": "",
+      "expected": "10\n20\n30\n40\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.2-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "10\n20\n30\n40\n",
+      "stderr": "",
+      "expected": "10\n20\n30\n40\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.3-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "[10, 30]\n0\n",
+      "stderr": "",
+      "expected": "[10, 30]\n0\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.3-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "[10, 30]\n0\n",
+      "stderr": "",
+      "expected": "[10, 30]\n0\n",
+      "passed": true
+    },
+    {
+      "id": "3.1.3-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "[10, 30]\n0\n",
+      "stderr": "",
+      "expected": "[10, 30]\n0\n",
+      "passed": true
+    },
+    {
+      "id": "3.2.1-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "B,A,C\n",
+      "stderr": "",
+      "expected": "B,A,C\n",
+      "passed": true
+    },
+    {
+      "id": "3.2.1-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "B,A,C\n",
+      "stderr": "",
+      "expected": "B,A,C\n",
+      "passed": true
+    },
+    {
+      "id": "3.2.1-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "B,A,C\n",
+      "stderr": "",
+      "expected": "B,A,C\n",
+      "passed": true
+    },
+    {
+      "id": "3.2.2-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "luna:1\nsol:2\n",
+      "stderr": "",
+      "expected": "luna:1\nsol:2\n",
+      "passed": true
+    },
+    {
+      "id": "3.2.2-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "luna:1\nsol:2\n",
+      "stderr": "",
+      "expected": "luna:1\nsol:2\n",
+      "passed": true
+    },
+    {
+      "id": "3.2.2-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "luna:1\nsol:2\n",
+      "stderr": "",
+      "expected": "luna:1\nsol:2\n",
+      "passed": true
+    },
+    {
+      "id": "3.3.1-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 3, 6, 8, 10]\n",
+      "stderr": "",
+      "expected": "[1, 3, 6, 8, 10]\n",
+      "passed": true
+    },
+    {
+      "id": "3.3.1-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 3, 6, 8, 10]\n",
+      "stderr": "",
+      "expected": "[1, 3, 6, 8, 10]\n",
+      "passed": true
+    },
+    {
+      "id": "3.3.1-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "[1, 3, 6, 8, 10]\n",
+      "stderr": "",
+      "expected": "[1, 3, 6, 8, 10]\n",
+      "passed": true
+    },
+    {
+      "id": "3.3.2-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "A:0\nB:1\nC:1\nD:2\nE:-1\n",
+      "stderr": "",
+      "expected": "A:0\nB:1\nC:1\nD:2\nE:-1\n",
+      "passed": true
+    },
+    {
+      "id": "3.3.2-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "A:0\nB:1\nC:1\nD:2\nE:-1\n",
+      "stderr": "",
+      "expected": "A:0\nB:1\nC:1\nD:2\nE:-1\n",
+      "passed": true
+    },
+    {
+      "id": "3.3.2-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "A:0\nB:1\nC:1\nD:2\nE:-1\n",
+      "stderr": "",
+      "expected": "A:0\nB:1\nC:1\nD:2\nE:-1\n",
+      "passed": true
+    },
+    {
+      "id": "4.1-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0:1\n1:1:1\n5:5:15\n10:55:177\n",
+      "stderr": "",
+      "expected": "0:0:1\n1:1:1\n5:5:15\n10:55:177\n",
+      "passed": true
+    },
+    {
+      "id": "4.1-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0:1\n1:1:1\n5:5:15\n10:55:177\n",
+      "stderr": "",
+      "expected": "0:0:1\n1:1:1\n5:5:15\n10:55:177\n",
+      "passed": true
+    },
+    {
+      "id": "4.1-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "0:0:1\n1:1:1\n5:5:15\n10:55:177\n",
+      "stderr": "",
+      "expected": "0:0:1\n1:1:1\n5:5:15\n10:55:177\n",
+      "passed": true
+    },
+    {
+      "id": "4.2-java",
+      "command": [
+        "java",
+        "ejemplos/Demo.java"
+      ],
+      "exit_code": 0,
+      "stdout": "10:55:11\n10:55:11\n5:5:11\n",
+      "stderr": "",
+      "expected": "10:55:11\n10:55:11\n5:5:11\n",
+      "passed": true
+    },
+    {
+      "id": "4.2-python",
+      "command": [
+        "python3",
+        "ejemplos/demo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "10:55:11\n10:55:11\n5:5:11\n",
+      "stderr": "",
+      "expected": "10:55:11\n10:55:11\n5:5:11\n",
+      "passed": true
+    },
+    {
+      "id": "4.2-js",
+      "command": [
+        "node",
+        "ejemplos/demo.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "10:55:11\n10:55:11\n5:5:11\n",
+      "stderr": "",
+      "expected": "10:55:11\n10:55:11\n5:5:11\n",
+      "passed": true
+    }
+  ]
+}

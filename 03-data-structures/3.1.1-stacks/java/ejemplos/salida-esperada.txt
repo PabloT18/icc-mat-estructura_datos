@@ -1,0 +1,4 @@
+valido
+invalido
+valido
+invalido

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 3/3.1.2 Colas</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.1.2-01 Colas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué diferencia FIFO de LIFO?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;FIFO preserva orden de llegada.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.2_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Retira el primer elemento ingresado</text>
+      <feedback format="html">
+        <text>FIFO preserva orden de llegada.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Retira siempre el mayor</text>
+      <feedback format="html">
+        <text>FIFO preserva orden de llegada.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Retira el último ingresado</text>
+      <feedback format="html">
+        <text>FIFO preserva orden de llegada.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.1.2-02 Colas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Dónde se inserta en la cola circular descrita?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El módulo permite reutilizar posiciones liberadas.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.2_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>(head+size) mod C</text>
+      <feedback format="html">
+        <text>El módulo permite reutilizar posiciones liberadas.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Siempre en head</text>
+      <feedback format="html">
+        <text>El módulo permite reutilizar posiciones liberadas.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Siempre en C-1</text>
+      <feedback format="html">
+        <text>El módulo permite reutilizar posiciones liberadas.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.1.2-03 Colas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Retirar de un arreglo circular requiere mover todos sus elementos.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se avanza head con módulo.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.2_3</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Se avanza head con módulo.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Se avanza head con módulo.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.1.2-04 Colas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;size distingue vacío y lleno aunque head coincida.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;size=0 y size=C representan estados diferentes.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.2_4</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>size=0 y size=C representan estados diferentes.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>size=0 y size=C representan estados diferentes.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>3.1.2-05 Colas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Con C=3, head=2 y size=1, ¿en qué índice se inserta?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 0. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.2_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>0</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>3.1.2-06 Colas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.2_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

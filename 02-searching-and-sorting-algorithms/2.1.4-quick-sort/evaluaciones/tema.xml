@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 2/2.1.4 Quick Sort</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>2.1.4-01 Quick Sort</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Con pivote final y datos ordenados, ¿cuál es el peor costo?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Las particiones pueden reducirse de una en una.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.4_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Θ(n²)</text>
+      <feedback format="html">
+        <text>Las particiones pueden reducirse de una en una.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Θ(log n)</text>
+      <feedback format="html">
+        <text>Las particiones pueden reducirse de una en una.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Θ(n)</text>
+      <feedback format="html">
+        <text>Las particiones pueden reducirse de una en una.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>2.1.4-02 Quick Sort</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué índice se excluye de las llamadas posteriores?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Excluir el pivote permite trabajar sobre problemas menores.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.4_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>El del pivote ya colocado</text>
+      <feedback format="html">
+        <text>Excluir el pivote permite trabajar sobre problemas menores.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Siempre el primer índice</text>
+      <feedback format="html">
+        <text>Excluir el pivote permite trabajar sobre problemas menores.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Ninguno</text>
+      <feedback format="html">
+        <text>Excluir el pivote permite trabajar sobre problemas menores.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>2.1.4-03 Quick Sort</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Una partición ordena completamente ambos lados.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Los lados requieren llamadas posteriores.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.4_3</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Los lados requieren llamadas posteriores.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Los lados requieren llamadas posteriores.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>2.1.4-04 Quick Sort</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Quick Sort con pivote final puede degradarse con claves iguales.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Lomuto puede generar particiones de tamaños n-1 y 0.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.4_4</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Lomuto puede generar particiones de tamaños n-1 y 0.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Lomuto puede generar particiones de tamaños n-1 y 0.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>2.1.4-05 Quick Sort</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿En qué índice queda el pivote 2 al particionar [5,3,4,1,2] con Lomuto?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 1. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.4_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>1</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>2.1.4-06 Quick Sort</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.4_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

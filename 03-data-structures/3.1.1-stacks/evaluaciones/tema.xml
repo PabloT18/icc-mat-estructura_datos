@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 3/3.1.1 Pilas</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.1.1-01 Pilas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Después de push A, push B, pop, ¿qué sale?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;LIFO retira el último insertado.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.1_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>B</text>
+      <feedback format="html">
+        <text>LIFO retira el último insertado.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>A</text>
+      <feedback format="html">
+        <text>LIFO retira el último insertado.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Ambos</text>
+      <feedback format="html">
+        <text>LIFO retira el último insertado.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.1.1-02 Pilas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué hace peek?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El tamaño no cambia.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.1_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Consulta sin eliminar</text>
+      <feedback format="html">
+        <text>El tamaño no cambia.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Elimina el fondo</text>
+      <feedback format="html">
+        <text>El tamaño no cambia.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Vacía la pila</text>
+      <feedback format="html">
+        <text>El tamaño no cambia.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.1.1-03 Pilas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;La cadena ([)] está correctamente anidada.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El primer cierre no coincide con el tope.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.1_3</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>El primer cierre no coincide con el tope.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>El primer cierre no coincide con el tope.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.1.1-04 Pilas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Consultar el tope debe mantener el tamaño.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;peek no extrae el dato.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.1_4</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>peek no extrae el dato.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>peek no extrae el dato.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>3.1.1-05 Pilas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Tras push A, push B y peek, ¿cuál es el tamaño?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 2. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.1_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>2</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>3.1.1-06 Pilas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.1_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

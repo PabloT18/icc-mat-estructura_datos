@@ -1,0 +1,150 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2.1.3-java · Merge Sort · Estructura de Datos</title><link rel="stylesheet" href="../../../assets/css/styles.css"></head><body><a class="skip" href="#contenido">Ir al material</a><main class="page" id="contenido"><nav class="article-nav" aria-label="Recursos del contenido"><a href="../../../index.html" target="_top">Índice del curso</a><a href="material.md" download>Descargar MD</a><a href="../presentacion.pptx" download>Descargar PPTX</a><a href="../../2.1.2-shell-sort/java/index.html">Anterior</a><a href="../../2.1.4-quick-sort/java/index.html">Siguiente</a></nav><h1>Estructura de Datos</h1>
+<h2>2.1.3 Merge Sort · Java</h2>
+<p><strong>Ing. Pablo Torres, Mgtr.</strong> · Universidad Politécnica Salesiana · Computación · Cuenca<br>Unidad 2: Ordenamiento, búsqueda y recursividad</p>
+<p><a href="../../../index.html">Índice del curso</a> · <a href="../presentacion.pptx">Presentación Java</a> · <a href="../evaluaciones/tema.xml">Evaluación Moodle</a></p>
+<p><a id="conceptos"></a></p>
+<h2>1. Conceptos y ejemplos</h2>
+<p><strong>Prerrequisitos:</strong> variables, condiciones, bucles, funciones y arreglos. El contenido desarrolla los conceptos adicionales que utiliza.</p>
+<p><a id="concepto-1"></a></p>
+<h3>1.1 Dividir y combinar</h3>
+<p>Merge Sort divide un intervalo en dos mitades, ordena cada mitad y las combina. Trabajaremos con intervalos semiabiertos [lo,hi), cuyo tamaño es hi-lo. El caso base es tamaño ≤1. El punto medio lo+(hi-lo)/2 separa intervalos que cubren exactamente la entrada y no se solapan. Para seguir el ejemplo basta reconocer la llamada al mismo procedimiento sobre un intervalo menor; la Unidad 2.3 desarrolla formalmente la recursividad.</p>
+<p><a id="concepto-2"></a></p>
+<h3>1.2 Mezcla de dos secuencias ordenadas</h3>
+<p>Dos índices señalan el siguiente elemento disponible de cada mitad. Se copia el menor al buffer y se avanza solo su índice. Al agotarse una mitad se copia el resto de la otra. El prefijo del buffer siempre contiene los menores elementos ya vistos en orden. En igualdad se elige la mitad izquierda para conservar estabilidad. Sin esa decisión, el algoritmo puede ordenar correctamente y aun así perder estabilidad.</p>
+<p><a id="concepto-3"></a></p>
+<h3>1.3 Recurrencia y memoria</h3>
+<p>Cada nivel mezcla Θ(n) elementos y hay Θ(log n) niveles. La recurrencia T(n)=2T(n/2)+Θ(n) da Θ(n log n) en esta variante, incluso con datos ya ordenados. Un buffer compartido usa Θ(n) memoria auxiliar y la pila ocupa Θ(log n). Evitar copias de subarreglos en cada llamada facilita identificar esa memoria. El buffer se reserva una vez y se reutiliza.</p>
+<p><a id="concepto-4"></a></p>
+<h3>1.4 Casos de borde</h3>
+<p>Los arreglos vacíos y unitarios terminan directamente. Los tamaños impares producen mitades que difieren en un elemento, lo que no afecta la corrección. Debe copiarse de regreso todo el intervalo mezclado, no el arreglo entero. Una confusión entre extremo inclusivo y exclusivo suele omitir el último elemento o repetirlo.</p>
+<p><a id="traza"></a></p>
+<h3>Traza de referencia</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dividir [5,3,4,1]</td>
+<td>[5,3] y [4,1]</td>
+</tr>
+<tr>
+<td>Ordenar mitades</td>
+<td>[3,5] y [1,4]</td>
+</tr>
+<tr>
+<td>Mezclar</td>
+<td>[1,3,4,5]</td>
+</tr>
+</tbody></table></div>
+<p>La tabla muestra estados o conteos concretos. Reproduce cada transición y comprueba qué propiedad permanece verdadera. Una traza finita ayuda a encontrar errores; la justificación del algoritmo también exige explicar por qué progresa y por qué la condición final satisface el contrato.</p>
+<p><img src="../assets/guia-visual.svg" alt="Síntesis del tema 2.1.3"></p>
+<h3>Particularidades de Java</h3>
+<p>Java usa tipos estáticos y comprobación de tipos en compilación. int y long tienen rango fijo; los cálculos deben promoverse antes de una multiplicación que pudiera desbordar. Las referencias permiten compartir objetos y la copia de un arreglo de objetos es superficial. Las excepciones de los contratos se comprueban explícitamente. No se necesita Maven ni Gradle: el modo de archivo fuente ejecuta Demo.java con un JDK instalado.</p>
+<p><a id="demostracion"></a></p>
+<h2>2. Demostración guiada</h2>
+<p><strong>Problema y contrato:</strong> Arreglo de enteros válidos. Modifica la entrada en orden ascendente y conserva repeticiones. Acepta vacío y un elemento. La biblioteca de ordenación se usa únicamente como oráculo de verificación, no dentro del algoritmo.</p>
+<ol>
+<li>Lee el contrato y predice la salida del caso principal antes de ejecutar.</li>
+<li>Identifica las variables que representan el estado y vincúlalas con la traza de la sección anterior.</li>
+<li>Ejecuta el archivo completo. Las comprobaciones internas detienen el programa si una condición esperada falla.</li>
+<li>Cambia una entrada del bloque de ejecución, predice el resultado y contrástalo. Conserva el núcleo de la demostración como referencia.</li>
+</ol>
+<h3>Código completo</h3>
+<p>Este bloque se genera desde <code>ejemplos/Demo.java</code> mediante <code>scripts/sync-code.py</code>; ese archivo es la fuente del código. La PC tiene otro objetivo y sus casos de aceptación aparecen en la sección 3.</p>
+<!-- DEMO:START -->
+<pre><code class="language-java">import java.util.*;
+
+public class Demo {
+    static void check(boolean ok) {
+        if (!ok) throw new AssertionError(&quot;Verificación fallida&quot;);
+    }
+static void swap(int[] a, int i, int j) {
+        int tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+
+    static void sort(int[] a) { mergeSort(a, new int[a.length], 0, a.length); }
+    static void mergeSort(int[] a, int[] buffer, int lo, int hi) {
+        if (hi - lo &lt;= 1) return;
+        int mid = lo + (hi - lo) / 2;
+        mergeSort(a,buffer,lo,mid); mergeSort(a,buffer,mid,hi);
+        int i = lo, j = mid, k = lo;
+        while (i &lt; mid &amp;&amp; j &lt; hi)
+            buffer[k++] = a[i] &lt;= a[j] ? a[i++] : a[j++];
+        while (i &lt; mid) buffer[k++] = a[i++];
+        while (j &lt; hi) buffer[k++] = a[j++];
+        for (k = lo; k &lt; hi; k++) a[k] = buffer[k];
+    }
+
+    public static void main(String[] args) {
+        int[][] cases = {{5,3,4,1,2}, {}, {1}, {2,2,1}, {-1,5,0}, {1,2,3}, {3,2,1}};
+        for (int[] input : cases) {
+            int[] expected = input.clone(); Arrays.sort(expected);
+            int[] actual = input.clone(); sort(actual);
+            check(Arrays.equals(actual, expected));
+        }
+        int[] a = {5,3,4,1,2}; sort(a);
+        System.out.println(Arrays.toString(a));
+    }
+}
+</code></pre>
+<!-- DEMO:END -->
+
+<h3>Ejecución</h3>
+<p>Desde esta carpeta <code>02-searching-and-sorting-algorithms/2.1.3-merge-sort/java</code>:</p>
+<pre><code class="language-bash">java ejemplos/Demo.java
+</code></pre>
+<h3>Salida esperada de la demostración</h3>
+<pre><code class="language-text">[1, 2, 3, 4, 5]
+</code></pre>
+<p>La salida procede de los datos fijos del bloque de ejecución. Las verificaciones internas también cubren los casos adicionales que se leen en el código. El registro de ejecuciones realizadas se conserva en <a href="../../../docs/verificacion.md">verificación</a>, separado de estas expectativas.</p>
+<p><a id="pc"></a></p>
+<h2>3. PC — 2.1.3: Merge Sort</h2>
+<p>Implementa mezcla estable de registros por fecha y añade un contador de comparaciones entre claves. Usa un buffer compartido. Explica el tamaño máximo simultáneo de la pila y compara con la cantidad total de llamadas.</p>
+<h3>Requisitos de la entrega</h3>
+<ul>
+<li>Implementa la actividad en <strong>una versión</strong>, a tu elección entre Java, Python y JavaScript. Las PL se entregan exclusivamente en Java.</li>
+<li>Separa la lógica del procesamiento de la entrada y la impresión. Documenta tipos, dominio válido, salida y comportamiento de error.</li>
+<li>Conserva los casos de aceptación siguientes y agrega al menos un caso que compruebe el invariante del tema.</li>
+<li>No copies como solución el bloque de demostración: resuelve la ampliación pedida. No se suministra una solución completa de esta PC.</li>
+</ul>
+<h3>Casos de aceptación de la PC</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entrada o escenario</th>
+<th>Resultado exigido</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[(A,2),(B,1),(C,2)]</td>
+<td>B,A,C</td>
+</tr>
+<tr>
+<td>[7]</td>
+<td>[7]</td>
+</tr>
+<tr>
+<td>[5,1,4,2,3]</td>
+<td>[1,2,3,4,5]</td>
+</tr>
+</tbody></table></div>
+<h3>Ejecución y evidencia</h3>
+<p>Desde la carpeta de tu entrega, ejecuta el programa con <code>java Main.java</code>. Si divides Java en paquetes, utiliza los comandos de la plantilla del estudiante. Registra entrada, resultado esperado, resultado real y explicación de cualquier diferencia en <code>evidencias/PC2.1.3.md</code> de tu repositorio personal.</p>
+<p>Crea commits pequeños: <code>feat(pc2.1.3): implementar contrato</code>, <code>test(pc2.1.3): cubrir casos limite</code> y <code>docs(pc2.1.3): explicar costos</code>. Sustituye los mensajes por descripciones del cambio real. Obtén el hash con <code>git rev-parse HEAD</code> y revisa una etapa con <code>git show HASH</code>. La actividad no necesita continuar un proyecto acumulativo.</p>
+<p><a id="esencial"></a></p>
+<h2>Lo esencial</h2>
+<ul>
+<li>Merge Sort divide un intervalo en dos mitades, ordena cada mitad y las combina.</li>
+<li>Los arreglos vacíos y unitarios terminan directamente.</li>
+<li>Explica el contrato, traza una entrada y justifica tiempo y memoria con las condiciones descritas.</li>
+</ul>
+<h2>Referencias</h2>
+<ul>
+<li>Programa analítico y referencias del docente: correspondencia en el documento docente de este contenido.</li>
+<li><a href="https://docs.oracle.com/en/java/javase/27/docs/api/">Referencia técnica de Java</a>.</li>
+<li><a href="../../../docs/analisis-referencias.md">Bibliografía y análisis de fuentes</a>.</li>
+</ul>
+<nav class="article-nav" aria-label="Recursos del contenido"><a href="../../../index.html" target="_top">Índice del curso</a><a href="material.md" download>Descargar MD</a><a href="../presentacion.pptx" download>Descargar PPTX</a><a href="../../2.1.2-shell-sort/java/index.html">Anterior</a><a href="../../2.1.4-quick-sort/java/index.html">Siguiente</a></nav></main></body></html>

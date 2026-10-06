@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 2/2.1.1 Ordenamiento directo</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>2.1.1-01 Ordenamiento directo</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué conserva un ordenamiento estable?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Las etiquetas permiten comprobar el orden de los empates.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.1_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>El orden relativo de claves iguales</text>
+      <feedback format="html">
+        <text>Las etiquetas permiten comprobar el orden de los empates.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>El arreglo original completo</text>
+      <feedback format="html">
+        <text>Las etiquetas permiten comprobar el orden de los empates.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>El número de posiciones del bucle</text>
+      <feedback format="html">
+        <text>Las etiquetas permiten comprobar el orden de los empates.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>2.1.1-02 Ordenamiento directo</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuántas comparaciones hace selección estándar para n=5?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;5·4/2=10 sin depender del orden inicial.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.1_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>10</text>
+      <feedback format="html">
+        <text>5·4/2=10 sin depender del orden inicial.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>5</text>
+      <feedback format="html">
+        <text>5·4/2=10 sin depender del orden inicial.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>25</text>
+      <feedback format="html">
+        <text>5·4/2=10 sin depender del orden inicial.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>2.1.1-03 Ordenamiento directo</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Selección estándar es estable en todos los casos.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Un intercambio distante puede invertir registros iguales.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.1_3</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Un intercambio distante puede invertir registros iguales.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Un intercambio distante puede invertir registros iguales.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>2.1.1-04 Ordenamiento directo</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Inserción con desplazamiento estricto &amp;gt; es estable.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Los iguales no se desplazan delante de la clave nueva.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.1_4</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Los iguales no se desplazan delante de la clave nueva.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Los iguales no se desplazan delante de la clave nueva.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>2.1.1-05 Ordenamiento directo</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuántas comparaciones hace selección estándar con 5 elementos?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 10. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.1_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>10</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>2.1.1-06 Ordenamiento directo</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.1.1_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

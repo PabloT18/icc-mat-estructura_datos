@@ -1,0 +1,133 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>1.1-python · Notación asintótica · Estructura de Datos</title><link rel="stylesheet" href="../../../assets/css/styles.css"></head><body><a class="skip" href="#contenido">Ir al material</a><main class="page" id="contenido"><nav class="article-nav" aria-label="Recursos del contenido"><a href="../../../index.html" target="_top">Índice del curso</a><a href="material.md" download>Descargar MD</a><a href="../presentacion.pptx" download>Descargar PPTX</a><a href="../../1.2-growth/python/index.html">Siguiente</a></nav><h1>Estructura de Datos</h1>
+<h2>1.1 Notación asintótica · Python</h2>
+<p><strong>Ing. Pablo Torres, Mgtr.</strong> · Universidad Politécnica Salesiana · Computación · Cuenca<br>Unidad 1: Teoría de la Complejidad</p>
+<p><a href="../../../index.html">Índice del curso</a> · <a href="../presentacion.pptx">Presentación Java</a> · <a href="../evaluaciones/tema.xml">Evaluación Moodle</a></p>
+<p><a id="conceptos"></a></p>
+<h2>1. Conceptos y ejemplos</h2>
+<p><strong>Prerrequisitos:</strong> variables, condiciones, bucles, funciones y arreglos. El contenido desarrolla los conceptos adicionales que utiliza.</p>
+<p><a id="concepto-1"></a></p>
+<h3>1.1 Modelo de costo y tamaño de entrada</h3>
+<p>La complejidad expresa cómo crece el trabajo al aumentar la entrada. Antes de contar, define n y una operación básica. Para buscar un código en un arreglo, n es el número de códigos y una comparación de claves es la operación. El tiempo del reloj también depende de la máquina, la carga y el entorno. Un conteo de operaciones permite comparar el crecimiento sin confundirlo con esas condiciones. Se asume acceso por índice y aritmética de enteros de tamaño fijo de costo constante.</p>
+<p><a id="concepto-2"></a></p>
+<h3>1.2 Cotas O, Ω y Θ</h3>
+<p>T(n) pertenece a O(g(n)) si existen c &gt; 0 y n₀ tales que T(n) ≤ c·g(n) para todo n ≥ n₀. Ω expresa una cota inferior y Θ ambas cotas simultáneamente. Para T(n)=3n+2, con n≥1 se cumple 3n ≤ T(n) ≤ 5n, por lo tanto T(n)∈Θ(n). También pertenece a O(n²), pero esa cota informa menos. O no significa por sí sola peor caso: se puede acotar una función de mejor caso, promedio o peor caso.</p>
+<p><a id="concepto-3"></a></p>
+<h3>1.3 Conteo exacto y términos dominantes</h3>
+<p>Una búsqueda que visita todos los elementos realiza n comparaciones, incluso si el arreglo está vacío y n=0. Dos recorridos consecutivos cuestan n+n=2n, que pertenece a Θ(n). Un recorrido dentro de otro, ambos de n pasos independientes, cuesta n². Primero se obtiene el conteo que corresponde al código; después se simplifica. Eliminar constantes antes de identificar qué se cuenta puede ocultar errores.</p>
+<p><a id="concepto-4"></a></p>
+<h3>1.4 Espacio auxiliar</h3>
+<p>Separa la memoria de la entrada de la memoria adicional. Un acumulador requiere Θ(1) espacio auxiliar. Copiar el arreglo requiere Θ(n). Las llamadas recursivas también ocupan memoria aunque el código no cree un arreglo explícito. El tamaño de un entero arbitrariamente grande no es constante: ese análisis queda fuera del modelo de palabra fija usado en los primeros ejemplos.</p>
+<p><a id="traza"></a></p>
+<h3>Traza de referencia</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>n</th>
+<th>Comparaciones de recorrido</th>
+<th>3n+2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>14</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8</td>
+<td>26</td>
+</tr>
+</tbody></table></div>
+<p>La tabla muestra estados o conteos concretos. Reproduce cada transición y comprueba qué propiedad permanece verdadera. Una traza finita ayuda a encontrar errores; la justificación del algoritmo también exige explicar por qué progresa y por qué la condición final satisface el contrato.</p>
+<p><img src="../assets/guia-visual.svg" alt="Síntesis del tema 1.1"></p>
+<h3>Particularidades de Python</h3>
+<p>Python usa indentación para delimitar bloques y enteros de precisión arbitraria. // realiza división entera para índices no negativos. list.copy() crea una copia superficial; las listas y diccionarios mutables pueden compartirse mediante referencias. Las funciones de esta demostración reciben los tipos descritos en el contrato. Los assert son comprobaciones de desarrollo y deben ejecutarse sin la opción -O. No se requieren paquetes externos.</p>
+<p><a id="demostracion"></a></p>
+<h2>2. Demostración guiada</h2>
+<p><strong>Problema y contrato:</strong> Recibe una secuencia válida y cuenta elementos visitados sin modificarla. La entrada vacía produce cero. No mide segundos.</p>
+<ol>
+<li>Lee el contrato y predice la salida del caso principal antes de ejecutar.</li>
+<li>Identifica las variables que representan el estado y vincúlalas con la traza de la sección anterior.</li>
+<li>Ejecuta el archivo completo. Las comprobaciones internas detienen el programa si una condición esperada falla.</li>
+<li>Cambia una entrada del bloque de ejecución, predice el resultado y contrástalo. Conserva el núcleo de la demostración como referencia.</li>
+</ol>
+<h3>Código completo</h3>
+<p>Este bloque se genera desde <code>ejemplos/demo.py</code> mediante <code>scripts/sync-code.py</code>; ese archivo es la fuente del código. La PC tiene otro objetivo y sus casos de aceptación aparecen en la sección 3.</p>
+<!-- DEMO:START -->
+<pre><code class="language-python">def visits(values):
+    count = 0
+    for value in values:
+        count += 1
+    return count
+
+if __name__ == &quot;__main__&quot;:
+    assert visits([]) == 0
+    for n in (0, 4, 8):
+        assert visits([0] * n) == n
+        print(f&quot;{n}:{visits([0] * n)}&quot;)
+</code></pre>
+<!-- DEMO:END -->
+
+<h3>Ejecución</h3>
+<p>Desde esta carpeta <code>01-complexity-analysis/1.1-notation/python</code>:</p>
+<pre><code class="language-bash">python3 ejemplos/demo.py
+</code></pre>
+<h3>Salida esperada de la demostración</h3>
+<pre><code class="language-text">0:0
+4:4
+8:8
+</code></pre>
+<p>La salida procede de los datos fijos del bloque de ejecución. Las verificaciones internas también cubren los casos adicionales que se leen en el código. El registro de ejecuciones realizadas se conserva en <a href="../../../docs/verificacion.md">verificación</a>, separado de estas expectativas.</p>
+<p><a id="pc"></a></p>
+<h2>3. PC — 1.1: Notación asintótica</h2>
+<p>Implementa un contador de comparaciones para encontrar el primer índice de un valor. Devuelve -1 si no existe. Separa el contador del resultado y justifica mejor y peor caso sin usar tiempos como prueba de una cota.</p>
+<h3>Requisitos de la entrega</h3>
+<ul>
+<li>Implementa la actividad en <strong>una versión</strong>, a tu elección entre Java, Python y JavaScript. Las PL se entregan exclusivamente en Java.</li>
+<li>Separa la lógica del procesamiento de la entrada y la impresión. Documenta tipos, dominio válido, salida y comportamiento de error.</li>
+<li>Conserva los casos de aceptación siguientes y agrega al menos un caso que compruebe el invariante del tema.</li>
+<li>No copies como solución el bloque de demostración: resuelve la ampliación pedida. No se suministra una solución completa de esta PC.</li>
+</ul>
+<h3>Casos de aceptación de la PC</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entrada o escenario</th>
+<th>Resultado exigido</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[4,8,2], objetivo 4</td>
+<td>índice 0; 1 comparación</td>
+</tr>
+<tr>
+<td>[4,8,2], objetivo 9</td>
+<td>-1; 3 comparaciones</td>
+</tr>
+<tr>
+<td>[], objetivo 4</td>
+<td>-1; 0 comparaciones</td>
+</tr>
+</tbody></table></div>
+<h3>Ejecución y evidencia</h3>
+<p>Desde la carpeta de tu entrega, ejecuta el programa con <code>python3 main.py</code>. Si divides Java en paquetes, utiliza los comandos de la plantilla del estudiante. Registra entrada, resultado esperado, resultado real y explicación de cualquier diferencia en <code>evidencias/PC1.1.md</code> de tu repositorio personal.</p>
+<p>Crea commits pequeños: <code>feat(pc1.1): implementar contrato</code>, <code>test(pc1.1): cubrir casos limite</code> y <code>docs(pc1.1): explicar costos</code>. Sustituye los mensajes por descripciones del cambio real. Obtén el hash con <code>git rev-parse HEAD</code> y revisa una etapa con <code>git show HASH</code>. La actividad no necesita continuar un proyecto acumulativo.</p>
+<p><a id="esencial"></a></p>
+<h2>Lo esencial</h2>
+<ul>
+<li>La complejidad expresa cómo crece el trabajo al aumentar la entrada.</li>
+<li>Separa la memoria de la entrada de la memoria adicional.</li>
+<li>Explica el contrato, traza una entrada y justifica tiempo y memoria con las condiciones descritas.</li>
+</ul>
+<h2>Referencias</h2>
+<ul>
+<li>Programa analítico y referencias del docente: correspondencia en el documento docente de este contenido.</li>
+<li><a href="https://docs.python.org/3.14/">Referencia técnica de Python</a>.</li>
+<li><a href="../../../docs/analisis-referencias.md">Bibliografía y análisis de fuentes</a>.</li>
+</ul>
+<nav class="article-nav" aria-label="Recursos del contenido"><a href="../../../index.html" target="_top">Índice del curso</a><a href="material.md" download>Descargar MD</a><a href="../presentacion.pptx" download>Descargar PPTX</a><a href="../../1.2-growth/python/index.html">Siguiente</a></nav></main></body></html>

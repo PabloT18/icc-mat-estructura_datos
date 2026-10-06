@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 4/4.1 Programación dinámica frente a recursión</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>4.1-01 Programación dinámica frente a recursión</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué evita la programación dinámica?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;La reutilización elimina trabajo repetido.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.1_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Recalcular los mismos estados</text>
+      <feedback format="html">
+        <text>La reutilización elimina trabajo repetido.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Todas las decisiones del algoritmo</text>
+      <feedback format="html">
+        <text>La reutilización elimina trabajo repetido.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>La necesidad de casos base</text>
+      <feedback format="html">
+        <text>La reutilización elimina trabajo repetido.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>4.1-02 Programación dinámica frente a recursión</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué deben contener dp[i-1] y dp[i-2] al calcular dp[i]?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El orden respeta las dependencias.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.1_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Resultados ya calculados</text>
+      <feedback format="html">
+        <text>El orden respeta las dependencias.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Valores aleatorios</text>
+      <feedback format="html">
+        <text>El orden respeta las dependencias.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Datos de otra entrada</text>
+      <feedback format="html">
+        <text>El orden respeta las dependencias.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>4.1-03 Programación dinámica frente a recursión</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Tabular Fibonacci calcula cada estado una vez.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El recorrido ascendente evita recalcular estados.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.1_3</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>El recorrido ascendente evita recalcular estados.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>El recorrido ascendente evita recalcular estados.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>4.1-04 Programación dinámica frente a recursión</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Programación dinámica siempre elimina la necesidad de reconstruir decisiones.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;La salida puede requerir recuperar la selección.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.1_4</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>La salida puede requerir recuperar la selección.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>La salida puede requerir recuperar la selección.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>4.1-05 Programación dinámica frente a recursión</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuántas llamadas hace el Fibonacci ingenuo del material para n=10?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 177. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.1_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>177</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>4.1-06 Programación dinámica frente a recursión</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.1_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

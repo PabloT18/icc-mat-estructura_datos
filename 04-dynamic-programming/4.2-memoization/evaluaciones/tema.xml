@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 4/4.2 Caché y memoización</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>4.2-01 Caché y memoización</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué debe incluir la clave de memoización?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Estados distintos no deben compartir una clave incompleta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.2_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Todo dato que determine el estado</text>
+      <feedback format="html">
+        <text>Estados distintos no deben compartir una clave incompleta.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Solo el nombre de la función</text>
+      <feedback format="html">
+        <text>Estados distintos no deben compartir una clave incompleta.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Un valor aleatorio</text>
+      <feedback format="html">
+        <text>Estados distintos no deben compartir una clave incompleta.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>4.2-02 Caché y memoización</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué ocurre al recrear el mapa en cada llamada?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Las llamadas necesitan compartir los resultados guardados.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.2_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Se pierde la reutilización entre llamadas</text>
+      <feedback format="html">
+        <text>Las llamadas necesitan compartir los resultados guardados.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Se acelera siempre</text>
+      <feedback format="html">
+        <text>Las llamadas necesitan compartir los resultados guardados.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Se obtiene espacio constante garantizado</text>
+      <feedback format="html">
+        <text>Las llamadas necesitan compartir los resultados guardados.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>4.2-03 Caché y memoización</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Una clave de memoización incompleta puede producir respuestas incorrectas.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Confunde estados que necesitan resultados distintos.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.2_3</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Confunde estados que necesitan resultados distintos.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Confunde estados que necesitan resultados distintos.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>4.2-04 Caché y memoización</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Consultar una caché caliente equivale a medir el cálculo desde cero.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El acierto evita el trabajo que sí existe con caché vacía.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.2_4</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>El acierto evita el trabajo que sí existe con caché vacía.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>El acierto evita el trabajo que sí existe con caché vacía.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>4.2-05 Caché y memoización</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Tras memoizar F(10) incluyendo casos base, ¿cuántos estados se guardan?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 11. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.2_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>11</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>4.2-06 Caché y memoización</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_4.2_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

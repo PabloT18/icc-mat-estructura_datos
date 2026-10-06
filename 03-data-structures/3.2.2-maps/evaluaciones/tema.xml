@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 3/3.2.2 Diccionarios y hashing</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.2.2-01 Diccionarios y hashing</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Una colisión implica que dos claves son iguales?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El hash no reemplaza la prueba de igualdad.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.2_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>No</text>
+      <feedback format="html">
+        <text>El hash no reemplaza la prueba de igualdad.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Sí</text>
+      <feedback format="html">
+        <text>El hash no reemplaza la prueba de igualdad.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Solo con texto</text>
+      <feedback format="html">
+        <text>El hash no reemplaza la prueba de igualdad.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.2.2-02 Diccionarios y hashing</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Asignar otra vez una clave existente produce…&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Cada clave mantiene una asociación.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.2_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Actualización del valor</text>
+      <feedback format="html">
+        <text>Cada clave mantiene una asociación.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Una segunda clave idéntica</text>
+      <feedback format="html">
+        <text>Cada clave mantiene una asociación.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Borrado de todo el mapa</text>
+      <feedback format="html">
+        <text>Cada clave mantiene una asociación.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.2.2-03 Diccionarios y hashing</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Cero puede representar una frecuencia válida en un contrato.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Debe distinguirse de la ausencia si el contrato lo permite.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.2_3</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Debe distinguirse de la ausencia si el contrato lo permite.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Debe distinguirse de la ausencia si el contrato lo permite.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.2.2-04 Diccionarios y hashing</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Mutar una clave de Java que afecta su hash es siempre seguro.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Puede impedir encontrar la entrada almacenada.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.2_4</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Puede impedir encontrar la entrada almacenada.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Puede impedir encontrar la entrada almacenada.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>3.2.2-05 Diccionarios y hashing</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuál es la frecuencia de sol en [sol,luna,sol]?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 2. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.2_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>2</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>3.2.2-06 Diccionarios y hashing</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.2_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

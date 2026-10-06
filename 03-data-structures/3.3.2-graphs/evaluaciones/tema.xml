@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 3/3.3.2 Grafos y recorridos</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.3.2-01 Grafos y recorridos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuándo BFS da distancia mínima en número de aristas?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;BFS explora por capas de aristas.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.3.2_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>En un grafo sin pesos</text>
+      <feedback format="html">
+        <text>BFS explora por capas de aristas.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Con cualquier peso negativo</text>
+      <feedback format="html">
+        <text>BFS explora por capas de aristas.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Solo si es un árbol</text>
+      <feedback format="html">
+        <text>BFS explora por capas de aristas.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.3.2-02 Grafos y recorridos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuándo se marca un vértice en BFS?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Así se evita encolarlo repetidamente.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.3.2_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Al encolarlo</text>
+      <feedback format="html">
+        <text>Así se evita encolarlo repetidamente.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Solo al acabar todo el grafo</text>
+      <feedback format="html">
+        <text>Así se evita encolarlo repetidamente.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Nunca en grafos no dirigidos</text>
+      <feedback format="html">
+        <text>Así se evita encolarlo repetidamente.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.3.2-03 Grafos y recorridos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;BFS desde un origen siempre visita un vértice aislado distinto.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Solo visita la componente alcanzable.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.3.2_3</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Solo visita la componente alcanzable.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Solo visita la componente alcanzable.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.3.2-04 Grafos y recorridos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Una lista de adyacencia ocupa Θ(V+E).&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Almacena vértices y sus incidencias.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.3.2_4</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Almacena vértices y sus incidencias.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Almacena vértices y sus incidencias.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>3.3.2-05 Grafos y recorridos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;En A-B, B-C, ¿cuál es la distancia de A a C?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 2. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.3.2_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>2</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>3.3.2-06 Grafos y recorridos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.3.2_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

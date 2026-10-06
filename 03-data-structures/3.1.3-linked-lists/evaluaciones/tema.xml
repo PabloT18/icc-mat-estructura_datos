@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 3/3.1.3 Listas enlazadas</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.1.3-01 Listas enlazadas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuánto cuesta buscar un valor en una lista simple?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Puede ser necesario recorrer todos los nodos.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.3_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Θ(n) en el peor caso</text>
+      <feedback format="html">
+        <text>Puede ser necesario recorrer todos los nodos.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Siempre Θ(1)</text>
+      <feedback format="html">
+        <text>Puede ser necesario recorrer todos los nodos.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Θ(log n) sin condiciones</text>
+      <feedback format="html">
+        <text>Puede ser necesario recorrer todos los nodos.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.1.3-02 Listas enlazadas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Al borrar el único nodo, ¿qué sucede?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;La representación vacía exige consistencia de ambos extremos.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.3_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>head y tail quedan nulos</text>
+      <feedback format="html">
+        <text>La representación vacía exige consistencia de ambos extremos.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Solo cambia head</text>
+      <feedback format="html">
+        <text>La representación vacía exige consistencia de ambos extremos.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>size permanece en 1</text>
+      <feedback format="html">
+        <text>La representación vacía exige consistencia de ambos extremos.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.1.3-03 Listas enlazadas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Insertar al final es Θ(1) si se conserva tail.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se enlaza directamente desde el último nodo.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.3_3</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Se enlaza directamente desde el último nodo.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Se enlaza directamente desde el último nodo.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.1.3-04 Listas enlazadas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Acceder al índice i de una lista simple es siempre Θ(1).&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Hace falta recorrer los enlaces anteriores.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.3_4</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Hace falta recorrer los enlaces anteriores.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Hace falta recorrer los enlaces anteriores.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>3.1.3-05 Listas enlazadas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Al eliminar el único nodo, ¿cuánto vale size?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 0. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.3_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>0</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>3.1.3-06 Listas enlazadas</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.1.3_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

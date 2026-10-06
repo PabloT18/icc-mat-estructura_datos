@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 3/3.2.1 Colecciones y conjuntos</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.2.1-01 Colecciones y conjuntos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué estructura expresa pertenencia sin duplicados?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Un conjunto representa elementos únicos según su igualdad.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.1_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Conjunto</text>
+      <feedback format="html">
+        <text>Un conjunto representa elementos únicos según su igualdad.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Pila</text>
+      <feedback format="html">
+        <text>Un conjunto representa elementos únicos según su igualdad.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Cola</text>
+      <feedback format="html">
+        <text>Un conjunto representa elementos únicos según su igualdad.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>3.2.1-02 Colecciones y conjuntos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿HashSet garantiza orden de inserción?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Para ese contrato se elige otra representación como LinkedHashSet.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.1_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>No</text>
+      <feedback format="html">
+        <text>Para ese contrato se elige otra representación como LinkedHashSet.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Siempre</text>
+      <feedback format="html">
+        <text>Para ese contrato se elige otra representación como LinkedHashSet.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Solo si tiene números</text>
+      <feedback format="html">
+        <text>Para ese contrato se elige otra representación como LinkedHashSet.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.2.1-03 Colecciones y conjuntos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Dos objetos distintos con iguales campos son una sola entrada en Set de JavaScript.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Los objetos se comparan por identidad.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.1_3</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Los objetos se comparan por identidad.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Los objetos se comparan por identidad.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>3.2.1-04 Colecciones y conjuntos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Un conjunto elimina duplicados según su criterio de igualdad.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;La igualdad define qué elementos son equivalentes.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.1_4</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>La igualdad define qué elementos son equivalentes.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>La igualdad define qué elementos son equivalentes.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>3.2.1-05 Colecciones y conjuntos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuántos valores únicos hay en [B,A,B,C,A]?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 3. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.1_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>3</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>3.2.1-06 Colecciones y conjuntos</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_3.2.1_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

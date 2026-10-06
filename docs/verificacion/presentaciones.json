@@ -1,0 +1,232 @@
+{
+  "decks": [
+    {
+      "file": "01-complexity-analysis/1.1-notation/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "01-complexity-analysis/1.2-growth/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "01-complexity-analysis/1.3-analysis/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "01-complexity-analysis/PLs/PL1.1.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/2.2-search/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/2.3-recursion/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/PLs/PL2.1.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "02-searching-and-sorting-algorithms/PLs/PL2.2.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/3.1.1-stacks/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/3.1.2-queues/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/3.1.3-linked-lists/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/3.2.1-collections/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/3.2.2-maps/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/3.3.1-trees/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/3.3.2-graphs/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/PLs/PL3.1.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/PLs/PL3.2.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "03-data-structures/PLs/PL3.3.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "04-dynamic-programming/4.1-dynamic-programming/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "04-dynamic-programming/4.2-memoization/presentacion.pptx",
+      "slides": 10,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    },
+    {
+      "file": "04-dynamic-programming/PLs/PL4.1.pptx",
+      "slides": 11,
+      "native_tables": 2,
+      "integrity": true,
+      "geometry": true,
+      "font": true,
+      "import_verified": true
+    }
+  ],
+  "total_slides": 251,
+  "native_tables": 50,
+  "errors": []
+}

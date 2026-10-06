@@ -1,0 +1,1514 @@
+{
+  "schemaVersion": 2,
+  "units": {
+    "1": [
+      "Teoría de la Complejidad",
+      15,
+      "UNIDAD 4 - Teoría de la Complejidad"
+    ],
+    "2": [
+      "Ordenamiento, búsqueda y recursividad",
+      40,
+      "UNIDAD 1 - Ordenamiento y búsqueda"
+    ],
+    "3": [
+      "Estructura de Datos y Grafos",
+      50,
+      "UNIDAD 2 - Estructura de Datos y Grafos"
+    ],
+    "4": [
+      "Programación Dinámica",
+      15,
+      "UNIDAD 3 - Programación Dinámica"
+    ]
+  },
+  "topics": [
+    {
+      "unit": 1,
+      "id": "1.1-java",
+      "code": "1.1",
+      "official": "4.1",
+      "language": "java",
+      "path": "01-complexity-analysis/1.1-notation/java",
+      "title": "Notación asintótica",
+      "deck": "01-complexity-analysis/1.1-notation/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.1-notation/doc.md",
+      "quiz": "01-complexity-analysis/1.1-notation/evaluaciones/tema.xml",
+      "prev": null,
+      "next": "01-complexity-analysis/1.2-growth/java"
+    },
+    {
+      "unit": 1,
+      "id": "1.1-python",
+      "code": "1.1",
+      "official": "4.1",
+      "language": "python",
+      "path": "01-complexity-analysis/1.1-notation/python",
+      "title": "Notación asintótica",
+      "deck": "01-complexity-analysis/1.1-notation/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.1-notation/doc.md",
+      "quiz": "01-complexity-analysis/1.1-notation/evaluaciones/tema.xml",
+      "prev": null,
+      "next": "01-complexity-analysis/1.2-growth/python"
+    },
+    {
+      "unit": 1,
+      "id": "1.1-js",
+      "code": "1.1",
+      "official": "4.1",
+      "language": "js",
+      "path": "01-complexity-analysis/1.1-notation/js",
+      "title": "Notación asintótica",
+      "deck": "01-complexity-analysis/1.1-notation/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.1-notation/doc.md",
+      "quiz": "01-complexity-analysis/1.1-notation/evaluaciones/tema.xml",
+      "prev": null,
+      "next": "01-complexity-analysis/1.2-growth/js"
+    },
+    {
+      "unit": 1,
+      "id": "1.2-java",
+      "code": "1.2",
+      "official": "4.2",
+      "language": "java",
+      "path": "01-complexity-analysis/1.2-growth/java",
+      "title": "Clases de complejidad",
+      "deck": "01-complexity-analysis/1.2-growth/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.2-growth/doc.md",
+      "quiz": "01-complexity-analysis/1.2-growth/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.1-notation/java",
+      "next": "01-complexity-analysis/1.3-analysis/java"
+    },
+    {
+      "unit": 1,
+      "id": "1.2-python",
+      "code": "1.2",
+      "official": "4.2",
+      "language": "python",
+      "path": "01-complexity-analysis/1.2-growth/python",
+      "title": "Clases de complejidad",
+      "deck": "01-complexity-analysis/1.2-growth/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.2-growth/doc.md",
+      "quiz": "01-complexity-analysis/1.2-growth/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.1-notation/python",
+      "next": "01-complexity-analysis/1.3-analysis/python"
+    },
+    {
+      "unit": 1,
+      "id": "1.2-js",
+      "code": "1.2",
+      "official": "4.2",
+      "language": "js",
+      "path": "01-complexity-analysis/1.2-growth/js",
+      "title": "Clases de complejidad",
+      "deck": "01-complexity-analysis/1.2-growth/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.2-growth/doc.md",
+      "quiz": "01-complexity-analysis/1.2-growth/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.1-notation/js",
+      "next": "01-complexity-analysis/1.3-analysis/js"
+    },
+    {
+      "unit": 1,
+      "id": "1.3-java",
+      "code": "1.3",
+      "official": "4.3",
+      "language": "java",
+      "path": "01-complexity-analysis/1.3-analysis/java",
+      "title": "Análisis y experimentación",
+      "deck": "01-complexity-analysis/1.3-analysis/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.3-analysis/doc.md",
+      "quiz": "01-complexity-analysis/1.3-analysis/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.2-growth/java",
+      "next": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/java"
+    },
+    {
+      "unit": 1,
+      "id": "1.3-python",
+      "code": "1.3",
+      "official": "4.3",
+      "language": "python",
+      "path": "01-complexity-analysis/1.3-analysis/python",
+      "title": "Análisis y experimentación",
+      "deck": "01-complexity-analysis/1.3-analysis/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.3-analysis/doc.md",
+      "quiz": "01-complexity-analysis/1.3-analysis/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.2-growth/python",
+      "next": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/python"
+    },
+    {
+      "unit": 1,
+      "id": "1.3-js",
+      "code": "1.3",
+      "official": "4.3",
+      "language": "js",
+      "path": "01-complexity-analysis/1.3-analysis/js",
+      "title": "Análisis y experimentación",
+      "deck": "01-complexity-analysis/1.3-analysis/presentacion.pptx",
+      "doc": "01-complexity-analysis/1.3-analysis/doc.md",
+      "quiz": "01-complexity-analysis/1.3-analysis/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.2-growth/js",
+      "next": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/js"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.1-java",
+      "code": "2.1.1",
+      "official": "1.1.1–1.1.3",
+      "language": "java",
+      "path": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/java",
+      "title": "Ordenamiento directo",
+      "deck": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.3-analysis/java",
+      "next": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/java"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.1-python",
+      "code": "2.1.1",
+      "official": "1.1.1–1.1.3",
+      "language": "python",
+      "path": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/python",
+      "title": "Ordenamiento directo",
+      "deck": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.3-analysis/python",
+      "next": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/python"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.1-js",
+      "code": "2.1.1",
+      "official": "1.1.1–1.1.3",
+      "language": "js",
+      "path": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/js",
+      "title": "Ordenamiento directo",
+      "deck": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/evaluaciones/tema.xml",
+      "prev": "01-complexity-analysis/1.3-analysis/js",
+      "next": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/js"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.2-java",
+      "code": "2.1.2",
+      "official": "1.1.4",
+      "language": "java",
+      "path": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/java",
+      "title": "Ordenamiento Shell",
+      "deck": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/java",
+      "next": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/java"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.2-python",
+      "code": "2.1.2",
+      "official": "1.1.4",
+      "language": "python",
+      "path": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/python",
+      "title": "Ordenamiento Shell",
+      "deck": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/python",
+      "next": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/python"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.2-js",
+      "code": "2.1.2",
+      "official": "1.1.4",
+      "language": "js",
+      "path": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/js",
+      "title": "Ordenamiento Shell",
+      "deck": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/js",
+      "next": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/js"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.3-java",
+      "code": "2.1.3",
+      "official": "1.1.5",
+      "language": "java",
+      "path": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/java",
+      "title": "Merge Sort",
+      "deck": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/java",
+      "next": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/java"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.3-python",
+      "code": "2.1.3",
+      "official": "1.1.5",
+      "language": "python",
+      "path": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/python",
+      "title": "Merge Sort",
+      "deck": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/python",
+      "next": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/python"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.3-js",
+      "code": "2.1.3",
+      "official": "1.1.5",
+      "language": "js",
+      "path": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/js",
+      "title": "Merge Sort",
+      "deck": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/js",
+      "next": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/js"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.4-java",
+      "code": "2.1.4",
+      "official": "1.1.6",
+      "language": "java",
+      "path": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/java",
+      "title": "Quick Sort",
+      "deck": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/java",
+      "next": "02-searching-and-sorting-algorithms/2.2-search/java"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.4-python",
+      "code": "2.1.4",
+      "official": "1.1.6",
+      "language": "python",
+      "path": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/python",
+      "title": "Quick Sort",
+      "deck": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/python",
+      "next": "02-searching-and-sorting-algorithms/2.2-search/python"
+    },
+    {
+      "unit": 2,
+      "id": "2.1.4-js",
+      "code": "2.1.4",
+      "official": "1.1.6",
+      "language": "js",
+      "path": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/js",
+      "title": "Quick Sort",
+      "deck": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/js",
+      "next": "02-searching-and-sorting-algorithms/2.2-search/js"
+    },
+    {
+      "unit": 2,
+      "id": "2.2-java",
+      "code": "2.2",
+      "official": "1.2.1–1.2.2",
+      "language": "java",
+      "path": "02-searching-and-sorting-algorithms/2.2-search/java",
+      "title": "Búsqueda secuencial y binaria",
+      "deck": "02-searching-and-sorting-algorithms/2.2-search/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.2-search/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.2-search/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/java",
+      "next": "02-searching-and-sorting-algorithms/2.3-recursion/java"
+    },
+    {
+      "unit": 2,
+      "id": "2.2-python",
+      "code": "2.2",
+      "official": "1.2.1–1.2.2",
+      "language": "python",
+      "path": "02-searching-and-sorting-algorithms/2.2-search/python",
+      "title": "Búsqueda secuencial y binaria",
+      "deck": "02-searching-and-sorting-algorithms/2.2-search/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.2-search/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.2-search/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/python",
+      "next": "02-searching-and-sorting-algorithms/2.3-recursion/python"
+    },
+    {
+      "unit": 2,
+      "id": "2.2-js",
+      "code": "2.2",
+      "official": "1.2.1–1.2.2",
+      "language": "js",
+      "path": "02-searching-and-sorting-algorithms/2.2-search/js",
+      "title": "Búsqueda secuencial y binaria",
+      "deck": "02-searching-and-sorting-algorithms/2.2-search/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.2-search/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.2-search/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/js",
+      "next": "02-searching-and-sorting-algorithms/2.3-recursion/js"
+    },
+    {
+      "unit": 2,
+      "id": "2.3-java",
+      "code": "2.3",
+      "official": "complementario",
+      "language": "java",
+      "path": "02-searching-and-sorting-algorithms/2.3-recursion/java",
+      "title": "Recursividad",
+      "deck": "02-searching-and-sorting-algorithms/2.3-recursion/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.3-recursion/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.3-recursion/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.2-search/java",
+      "next": "03-data-structures/3.1.1-stacks/java"
+    },
+    {
+      "unit": 2,
+      "id": "2.3-python",
+      "code": "2.3",
+      "official": "complementario",
+      "language": "python",
+      "path": "02-searching-and-sorting-algorithms/2.3-recursion/python",
+      "title": "Recursividad",
+      "deck": "02-searching-and-sorting-algorithms/2.3-recursion/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.3-recursion/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.3-recursion/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.2-search/python",
+      "next": "03-data-structures/3.1.1-stacks/python"
+    },
+    {
+      "unit": 2,
+      "id": "2.3-js",
+      "code": "2.3",
+      "official": "complementario",
+      "language": "js",
+      "path": "02-searching-and-sorting-algorithms/2.3-recursion/js",
+      "title": "Recursividad",
+      "deck": "02-searching-and-sorting-algorithms/2.3-recursion/presentacion.pptx",
+      "doc": "02-searching-and-sorting-algorithms/2.3-recursion/doc.md",
+      "quiz": "02-searching-and-sorting-algorithms/2.3-recursion/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.2-search/js",
+      "next": "03-data-structures/3.1.1-stacks/js"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.1-java",
+      "code": "3.1.1",
+      "official": "2.1.1",
+      "language": "java",
+      "path": "03-data-structures/3.1.1-stacks/java",
+      "title": "Pilas",
+      "deck": "03-data-structures/3.1.1-stacks/presentacion.pptx",
+      "doc": "03-data-structures/3.1.1-stacks/doc.md",
+      "quiz": "03-data-structures/3.1.1-stacks/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.3-recursion/java",
+      "next": "03-data-structures/3.1.2-queues/java"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.1-python",
+      "code": "3.1.1",
+      "official": "2.1.1",
+      "language": "python",
+      "path": "03-data-structures/3.1.1-stacks/python",
+      "title": "Pilas",
+      "deck": "03-data-structures/3.1.1-stacks/presentacion.pptx",
+      "doc": "03-data-structures/3.1.1-stacks/doc.md",
+      "quiz": "03-data-structures/3.1.1-stacks/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.3-recursion/python",
+      "next": "03-data-structures/3.1.2-queues/python"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.1-js",
+      "code": "3.1.1",
+      "official": "2.1.1",
+      "language": "js",
+      "path": "03-data-structures/3.1.1-stacks/js",
+      "title": "Pilas",
+      "deck": "03-data-structures/3.1.1-stacks/presentacion.pptx",
+      "doc": "03-data-structures/3.1.1-stacks/doc.md",
+      "quiz": "03-data-structures/3.1.1-stacks/evaluaciones/tema.xml",
+      "prev": "02-searching-and-sorting-algorithms/2.3-recursion/js",
+      "next": "03-data-structures/3.1.2-queues/js"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.2-java",
+      "code": "3.1.2",
+      "official": "2.1.2",
+      "language": "java",
+      "path": "03-data-structures/3.1.2-queues/java",
+      "title": "Colas",
+      "deck": "03-data-structures/3.1.2-queues/presentacion.pptx",
+      "doc": "03-data-structures/3.1.2-queues/doc.md",
+      "quiz": "03-data-structures/3.1.2-queues/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.1-stacks/java",
+      "next": "03-data-structures/3.1.3-linked-lists/java"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.2-python",
+      "code": "3.1.2",
+      "official": "2.1.2",
+      "language": "python",
+      "path": "03-data-structures/3.1.2-queues/python",
+      "title": "Colas",
+      "deck": "03-data-structures/3.1.2-queues/presentacion.pptx",
+      "doc": "03-data-structures/3.1.2-queues/doc.md",
+      "quiz": "03-data-structures/3.1.2-queues/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.1-stacks/python",
+      "next": "03-data-structures/3.1.3-linked-lists/python"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.2-js",
+      "code": "3.1.2",
+      "official": "2.1.2",
+      "language": "js",
+      "path": "03-data-structures/3.1.2-queues/js",
+      "title": "Colas",
+      "deck": "03-data-structures/3.1.2-queues/presentacion.pptx",
+      "doc": "03-data-structures/3.1.2-queues/doc.md",
+      "quiz": "03-data-structures/3.1.2-queues/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.1-stacks/js",
+      "next": "03-data-structures/3.1.3-linked-lists/js"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.3-java",
+      "code": "3.1.3",
+      "official": "2.1.3",
+      "language": "java",
+      "path": "03-data-structures/3.1.3-linked-lists/java",
+      "title": "Listas enlazadas",
+      "deck": "03-data-structures/3.1.3-linked-lists/presentacion.pptx",
+      "doc": "03-data-structures/3.1.3-linked-lists/doc.md",
+      "quiz": "03-data-structures/3.1.3-linked-lists/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.2-queues/java",
+      "next": "03-data-structures/3.2.1-collections/java"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.3-python",
+      "code": "3.1.3",
+      "official": "2.1.3",
+      "language": "python",
+      "path": "03-data-structures/3.1.3-linked-lists/python",
+      "title": "Listas enlazadas",
+      "deck": "03-data-structures/3.1.3-linked-lists/presentacion.pptx",
+      "doc": "03-data-structures/3.1.3-linked-lists/doc.md",
+      "quiz": "03-data-structures/3.1.3-linked-lists/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.2-queues/python",
+      "next": "03-data-structures/3.2.1-collections/python"
+    },
+    {
+      "unit": 3,
+      "id": "3.1.3-js",
+      "code": "3.1.3",
+      "official": "2.1.3",
+      "language": "js",
+      "path": "03-data-structures/3.1.3-linked-lists/js",
+      "title": "Listas enlazadas",
+      "deck": "03-data-structures/3.1.3-linked-lists/presentacion.pptx",
+      "doc": "03-data-structures/3.1.3-linked-lists/doc.md",
+      "quiz": "03-data-structures/3.1.3-linked-lists/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.2-queues/js",
+      "next": "03-data-structures/3.2.1-collections/js"
+    },
+    {
+      "unit": 3,
+      "id": "3.2.1-java",
+      "code": "3.2.1",
+      "official": "2.3.1",
+      "language": "java",
+      "path": "03-data-structures/3.2.1-collections/java",
+      "title": "Colecciones y conjuntos",
+      "deck": "03-data-structures/3.2.1-collections/presentacion.pptx",
+      "doc": "03-data-structures/3.2.1-collections/doc.md",
+      "quiz": "03-data-structures/3.2.1-collections/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.3-linked-lists/java",
+      "next": "03-data-structures/3.2.2-maps/java"
+    },
+    {
+      "unit": 3,
+      "id": "3.2.1-python",
+      "code": "3.2.1",
+      "official": "2.3.1",
+      "language": "python",
+      "path": "03-data-structures/3.2.1-collections/python",
+      "title": "Colecciones y conjuntos",
+      "deck": "03-data-structures/3.2.1-collections/presentacion.pptx",
+      "doc": "03-data-structures/3.2.1-collections/doc.md",
+      "quiz": "03-data-structures/3.2.1-collections/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.3-linked-lists/python",
+      "next": "03-data-structures/3.2.2-maps/python"
+    },
+    {
+      "unit": 3,
+      "id": "3.2.1-js",
+      "code": "3.2.1",
+      "official": "2.3.1",
+      "language": "js",
+      "path": "03-data-structures/3.2.1-collections/js",
+      "title": "Colecciones y conjuntos",
+      "deck": "03-data-structures/3.2.1-collections/presentacion.pptx",
+      "doc": "03-data-structures/3.2.1-collections/doc.md",
+      "quiz": "03-data-structures/3.2.1-collections/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.1.3-linked-lists/js",
+      "next": "03-data-structures/3.2.2-maps/js"
+    },
+    {
+      "unit": 3,
+      "id": "3.2.2-java",
+      "code": "3.2.2",
+      "official": "2.3.2",
+      "language": "java",
+      "path": "03-data-structures/3.2.2-maps/java",
+      "title": "Diccionarios y hashing",
+      "deck": "03-data-structures/3.2.2-maps/presentacion.pptx",
+      "doc": "03-data-structures/3.2.2-maps/doc.md",
+      "quiz": "03-data-structures/3.2.2-maps/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.2.1-collections/java",
+      "next": "03-data-structures/3.3.1-trees/java"
+    },
+    {
+      "unit": 3,
+      "id": "3.2.2-python",
+      "code": "3.2.2",
+      "official": "2.3.2",
+      "language": "python",
+      "path": "03-data-structures/3.2.2-maps/python",
+      "title": "Diccionarios y hashing",
+      "deck": "03-data-structures/3.2.2-maps/presentacion.pptx",
+      "doc": "03-data-structures/3.2.2-maps/doc.md",
+      "quiz": "03-data-structures/3.2.2-maps/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.2.1-collections/python",
+      "next": "03-data-structures/3.3.1-trees/python"
+    },
+    {
+      "unit": 3,
+      "id": "3.2.2-js",
+      "code": "3.2.2",
+      "official": "2.3.2",
+      "language": "js",
+      "path": "03-data-structures/3.2.2-maps/js",
+      "title": "Diccionarios y hashing",
+      "deck": "03-data-structures/3.2.2-maps/presentacion.pptx",
+      "doc": "03-data-structures/3.2.2-maps/doc.md",
+      "quiz": "03-data-structures/3.2.2-maps/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.2.1-collections/js",
+      "next": "03-data-structures/3.3.1-trees/js"
+    },
+    {
+      "unit": 3,
+      "id": "3.3.1-java",
+      "code": "3.3.1",
+      "official": "2.2.1",
+      "language": "java",
+      "path": "03-data-structures/3.3.1-trees/java",
+      "title": "Árboles binarios de búsqueda",
+      "deck": "03-data-structures/3.3.1-trees/presentacion.pptx",
+      "doc": "03-data-structures/3.3.1-trees/doc.md",
+      "quiz": "03-data-structures/3.3.1-trees/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.2.2-maps/java",
+      "next": "03-data-structures/3.3.2-graphs/java"
+    },
+    {
+      "unit": 3,
+      "id": "3.3.1-python",
+      "code": "3.3.1",
+      "official": "2.2.1",
+      "language": "python",
+      "path": "03-data-structures/3.3.1-trees/python",
+      "title": "Árboles binarios de búsqueda",
+      "deck": "03-data-structures/3.3.1-trees/presentacion.pptx",
+      "doc": "03-data-structures/3.3.1-trees/doc.md",
+      "quiz": "03-data-structures/3.3.1-trees/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.2.2-maps/python",
+      "next": "03-data-structures/3.3.2-graphs/python"
+    },
+    {
+      "unit": 3,
+      "id": "3.3.1-js",
+      "code": "3.3.1",
+      "official": "2.2.1",
+      "language": "js",
+      "path": "03-data-structures/3.3.1-trees/js",
+      "title": "Árboles binarios de búsqueda",
+      "deck": "03-data-structures/3.3.1-trees/presentacion.pptx",
+      "doc": "03-data-structures/3.3.1-trees/doc.md",
+      "quiz": "03-data-structures/3.3.1-trees/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.2.2-maps/js",
+      "next": "03-data-structures/3.3.2-graphs/js"
+    },
+    {
+      "unit": 3,
+      "id": "3.3.2-java",
+      "code": "3.3.2",
+      "official": "2.2.2",
+      "language": "java",
+      "path": "03-data-structures/3.3.2-graphs/java",
+      "title": "Grafos y recorridos",
+      "deck": "03-data-structures/3.3.2-graphs/presentacion.pptx",
+      "doc": "03-data-structures/3.3.2-graphs/doc.md",
+      "quiz": "03-data-structures/3.3.2-graphs/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.3.1-trees/java",
+      "next": "04-dynamic-programming/4.1-dynamic-programming/java"
+    },
+    {
+      "unit": 3,
+      "id": "3.3.2-python",
+      "code": "3.3.2",
+      "official": "2.2.2",
+      "language": "python",
+      "path": "03-data-structures/3.3.2-graphs/python",
+      "title": "Grafos y recorridos",
+      "deck": "03-data-structures/3.3.2-graphs/presentacion.pptx",
+      "doc": "03-data-structures/3.3.2-graphs/doc.md",
+      "quiz": "03-data-structures/3.3.2-graphs/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.3.1-trees/python",
+      "next": "04-dynamic-programming/4.1-dynamic-programming/python"
+    },
+    {
+      "unit": 3,
+      "id": "3.3.2-js",
+      "code": "3.3.2",
+      "official": "2.2.2",
+      "language": "js",
+      "path": "03-data-structures/3.3.2-graphs/js",
+      "title": "Grafos y recorridos",
+      "deck": "03-data-structures/3.3.2-graphs/presentacion.pptx",
+      "doc": "03-data-structures/3.3.2-graphs/doc.md",
+      "quiz": "03-data-structures/3.3.2-graphs/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.3.1-trees/js",
+      "next": "04-dynamic-programming/4.1-dynamic-programming/js"
+    },
+    {
+      "unit": 4,
+      "id": "4.1-java",
+      "code": "4.1",
+      "official": "3.2",
+      "language": "java",
+      "path": "04-dynamic-programming/4.1-dynamic-programming/java",
+      "title": "Programación dinámica frente a recursión",
+      "deck": "04-dynamic-programming/4.1-dynamic-programming/presentacion.pptx",
+      "doc": "04-dynamic-programming/4.1-dynamic-programming/doc.md",
+      "quiz": "04-dynamic-programming/4.1-dynamic-programming/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.3.2-graphs/java",
+      "next": "04-dynamic-programming/4.2-memoization/java"
+    },
+    {
+      "unit": 4,
+      "id": "4.1-python",
+      "code": "4.1",
+      "official": "3.2",
+      "language": "python",
+      "path": "04-dynamic-programming/4.1-dynamic-programming/python",
+      "title": "Programación dinámica frente a recursión",
+      "deck": "04-dynamic-programming/4.1-dynamic-programming/presentacion.pptx",
+      "doc": "04-dynamic-programming/4.1-dynamic-programming/doc.md",
+      "quiz": "04-dynamic-programming/4.1-dynamic-programming/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.3.2-graphs/python",
+      "next": "04-dynamic-programming/4.2-memoization/python"
+    },
+    {
+      "unit": 4,
+      "id": "4.1-js",
+      "code": "4.1",
+      "official": "3.2",
+      "language": "js",
+      "path": "04-dynamic-programming/4.1-dynamic-programming/js",
+      "title": "Programación dinámica frente a recursión",
+      "deck": "04-dynamic-programming/4.1-dynamic-programming/presentacion.pptx",
+      "doc": "04-dynamic-programming/4.1-dynamic-programming/doc.md",
+      "quiz": "04-dynamic-programming/4.1-dynamic-programming/evaluaciones/tema.xml",
+      "prev": "03-data-structures/3.3.2-graphs/js",
+      "next": "04-dynamic-programming/4.2-memoization/js"
+    },
+    {
+      "unit": 4,
+      "id": "4.2-java",
+      "code": "4.2",
+      "official": "3.1",
+      "language": "java",
+      "path": "04-dynamic-programming/4.2-memoization/java",
+      "title": "Caché y memoización",
+      "deck": "04-dynamic-programming/4.2-memoization/presentacion.pptx",
+      "doc": "04-dynamic-programming/4.2-memoization/doc.md",
+      "quiz": "04-dynamic-programming/4.2-memoization/evaluaciones/tema.xml",
+      "prev": "04-dynamic-programming/4.1-dynamic-programming/java",
+      "next": null
+    },
+    {
+      "unit": 4,
+      "id": "4.2-python",
+      "code": "4.2",
+      "official": "3.1",
+      "language": "python",
+      "path": "04-dynamic-programming/4.2-memoization/python",
+      "title": "Caché y memoización",
+      "deck": "04-dynamic-programming/4.2-memoization/presentacion.pptx",
+      "doc": "04-dynamic-programming/4.2-memoization/doc.md",
+      "quiz": "04-dynamic-programming/4.2-memoization/evaluaciones/tema.xml",
+      "prev": "04-dynamic-programming/4.1-dynamic-programming/python",
+      "next": null
+    },
+    {
+      "unit": 4,
+      "id": "4.2-js",
+      "code": "4.2",
+      "official": "3.1",
+      "language": "js",
+      "path": "04-dynamic-programming/4.2-memoization/js",
+      "title": "Caché y memoización",
+      "deck": "04-dynamic-programming/4.2-memoization/presentacion.pptx",
+      "doc": "04-dynamic-programming/4.2-memoization/doc.md",
+      "quiz": "04-dynamic-programming/4.2-memoization/evaluaciones/tema.xml",
+      "prev": "04-dynamic-programming/4.1-dynamic-programming/js",
+      "next": null
+    }
+  ],
+  "labs": [
+    {
+      "unit": 1,
+      "id": "PL1.1",
+      "title": "Conteo y contraste experimental",
+      "hours": 4,
+      "problem": "Un sistema debe detectar códigos repetidos en lotes de datos. Se compararán un algoritmo por pares y otro que ordena una copia mediante inserción antes de revisar vecinos. El objetivo es relacionar conteos, corrección y tiempos observados.",
+      "objectives": [
+        "Implementar detección por pares i<j y por inserción seguida de comparación de vecinos.",
+        "Deduce cotas a partir de los bucles y distingue el costo de preparación del costo del algoritmo."
+      ],
+      "requirements": [
+        "Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.",
+        "Implementar detección por pares i<j y por inserción seguida de comparación de vecinos.",
+        "Separar generación, copia, validación e impresión del intervalo de medición. Medir con System.nanoTime().",
+        "Usar n=100,500,1000,2000; semilla fija 2026; entradas sin repetidos y con repetición al principio o al final.",
+        "Realizar 3 calentamientos y 7 repeticiones por escenario. Registrar cada medición y la mediana. No afirmar que la medición demuestra una cota.",
+        "Rechazar tamaños negativos y opciones de menú inválidas. No modificar el lote original."
+      ],
+      "phases": [
+        [
+          "Contrato y oráculo",
+          "Definir comportamiento para vacío, un elemento, repetidos y ausencia. Crear casos pequeños con respuesta conocida."
+        ],
+        [
+          "Implementación y conteo",
+          "Implementar ambos métodos y contar solo comparaciones de claves. Explicar mejor y peor caso."
+        ],
+        [
+          "Experimento",
+          "Ejecutar la matriz de tamaños y escenarios sobre copias idénticas. Registrar entorno, semilla y datos crudos."
+        ],
+        [
+          "Interpretación",
+          "Contrastar conteos con crecimiento esperado, explicar dispersión y señalar límites de las conclusiones."
+        ]
+      ],
+      "tests": [
+        [
+          "[7,2,7]",
+          "true en ambos métodos"
+        ],
+        [
+          "[1,2,3]",
+          "false en ambos métodos"
+        ],
+        [
+          "[]",
+          "false; cero comparaciones de claves"
+        ],
+        [
+          "n negativo",
+          "rechazo antes de reservar memoria"
+        ]
+      ],
+      "rubric": [
+        [
+          "Corrección funcional",
+          4,
+          "Cumple todos los casos obligatorios y conserva los invariantes.",
+          "Cumple los casos normales, pero falla un caso límite o una operación obligatoria.",
+          "No ejecuta el núcleo requerido o no produce resultados válidos."
+        ],
+        [
+          "Análisis y decisiones",
+          2,
+          "Deduce cotas a partir de los bucles y distingue el costo de preparación del costo del algoritmo.",
+          "Justifica parte de las decisiones, pero omite un costo o una comparación requerida.",
+          "No fundamenta decisiones ni analiza costos."
+        ],
+        [
+          "Pruebas y evidencia",
+          2,
+          "Registra entradas, salidas reales y casos de error reproducibles.",
+          "Entrega evidencia reproducible incompleta.",
+          "No aporta ejecuciones verificables."
+        ],
+        [
+          "Organización y Git",
+          1,
+          "Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.",
+          "La organización o el historial está incompleto, pero permite ejecutar.",
+          "No se puede reproducir la entrega desde las instrucciones."
+        ],
+        [
+          "Defensa y conclusiones",
+          1,
+          "Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.",
+          "Explica parcialmente el código o no completa la modificación.",
+          "No puede explicar el comportamiento del código entregado."
+        ]
+      ],
+      "deliverables": [
+        "Fuentes Java organizados por paquetes y README con compilación y ejecución.",
+        "Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.",
+        "Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.",
+        "Repositorio con commits funcionales por fase y hash real de la entrega.",
+        "Exposición breve con demostración de un caso normal y uno límite."
+      ],
+      "defense": "Explica por qué la copia queda fuera del intervalo medido y predice el cambio al duplicar una entrada sin repetidos.",
+      "directory": "01-complexity-analysis/PLs"
+    },
+    {
+      "unit": 2,
+      "id": "PL2.1",
+      "title": "Ordenamiento trazable y comparación situacional",
+      "hours": 8,
+      "problem": "Adaptación de las guías de ordenamiento y comparativa suministradas. Primero se implementan Inserción y Shell con trazas; después se contrastan Inserción y Quick Sort sobre registros Persona con el mismo criterio.",
+      "objectives": [
+        "Implementar Inserción y Shell ascendentes y descendentes sobre [12,-7,25,0,-15,33,19,-22,5,48,-3], siempre sobre copias.",
+        "Justifica estabilidad, espacio auxiliar y diferencias entre caso ordenado y aleatorio."
+      ],
+      "requirements": [
+        "Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.",
+        "Implementar Inserción y Shell ascendentes y descendentes sobre [12,-7,25,0,-15,33,19,-22,5,48,-3], siempre sobre copias.",
+        "Contar comparaciones de claves, desplazamientos o intercambios y pasadas. Definir cada contador; no mezclar escrituras con intercambios.",
+        "Implementar Quick Sort y ordenar Persona por edad y luego nombre con Comparator.comparingInt(...).thenComparing(...), sin Arrays.sort dentro del algoritmo.",
+        "No codificar edad y nombre como edad*100000+sumaDeCaracteres: puede causar colisiones y no representa orden lexicográfico.",
+        "Comparar 1000,5000,10000 registros con semilla 2026 en orden aleatorio y ordenado más una nueva persona. Usar 3 calentamientos y 7 repeticiones. Las muestras de 50000 y 100000 son ampliación opcional con límite de tiempo documentado.",
+        "Mostrar trazas solo en arreglos pequeños. Desactivarlas durante medición. Validar vacíos, repetidos y menú."
+      ],
+      "phases": [
+        [
+          "Orden y trazas",
+          "Definir contrato de comparación y construir las clases de modelo y algoritmos. Mostrar índices y estado después de cada modificación para el arreglo inicial."
+        ],
+        [
+          "Variantes",
+          "Implementar ambos sentidos para Inserción y Shell y agregar Quick Sort. Comprobar preservación de elementos."
+        ],
+        [
+          "Comparación",
+          "Crear entradas idénticas y copias independientes. Registrar datos crudos, medianas, contadores y profundidad de Quick Sort."
+        ],
+        [
+          "Informe",
+          "Explicar el efecto del pivote, el orden previo y los empates. No inventar tiempos ni predecir un ganador universal."
+        ]
+      ],
+      "tests": [
+        [
+          "[3,1,3,-2] ascendente",
+          "[-2,1,3,3]"
+        ],
+        [
+          "[3,1,3,-2] descendente",
+          "[3,3,1,-2]"
+        ],
+        [
+          "[(Ana,20),(Luis,18),(Bea,20)]",
+          "Luis,Ana,Bea"
+        ],
+        [
+          "[]",
+          "sin errores; original intacto"
+        ]
+      ],
+      "rubric": [
+        [
+          "Corrección funcional",
+          4,
+          "Cumple todos los casos obligatorios y conserva los invariantes.",
+          "Cumple los casos normales, pero falla un caso límite o una operación obligatoria.",
+          "No ejecuta el núcleo requerido o no produce resultados válidos."
+        ],
+        [
+          "Análisis y decisiones",
+          2,
+          "Justifica estabilidad, espacio auxiliar y diferencias entre caso ordenado y aleatorio.",
+          "Justifica parte de las decisiones, pero omite un costo o una comparación requerida.",
+          "No fundamenta decisiones ni analiza costos."
+        ],
+        [
+          "Pruebas y evidencia",
+          2,
+          "Registra entradas, salidas reales y casos de error reproducibles.",
+          "Entrega evidencia reproducible incompleta.",
+          "No aporta ejecuciones verificables."
+        ],
+        [
+          "Organización y Git",
+          1,
+          "Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.",
+          "La organización o el historial está incompleto, pero permite ejecutar.",
+          "No se puede reproducir la entrega desde las instrucciones."
+        ],
+        [
+          "Defensa y conclusiones",
+          1,
+          "Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.",
+          "Explica parcialmente el código o no completa la modificación.",
+          "No puede explicar el comportamiento del código entregado."
+        ]
+      ],
+      "deliverables": [
+        "Fuentes Java organizados por paquetes y README con compilación y ejecución.",
+        "Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.",
+        "Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.",
+        "Repositorio con commits funcionales por fase y hash real de la entrega.",
+        "Exposición breve con demostración de un caso normal y uno límite."
+      ],
+      "defense": "Cambia el criterio a edad descendente con nombre ascendente. Explica qué cambia en la comparación y qué permanece igual en el algoritmo.",
+      "directory": "02-searching-and-sorting-algorithms/PLs"
+    },
+    {
+      "unit": 2,
+      "id": "PL2.2",
+      "title": "Consultas sobre un catálogo",
+      "hours": 6,
+      "problem": "Un catálogo de productos debe responder consultas por código. Se comparará búsqueda secuencial y binaria, distinguiendo el costo de preparar el índice del costo de cada consulta.",
+      "objectives": [
+        "Definir Producto con código entero, nombre y precio no negativo. Mantener el catálogo original y una copia ordenada por código.",
+        "Distingue O(n), O(log n) y costo de preparación; justifica el contrato ante duplicados."
+      ],
+      "requirements": [
+        "Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.",
+        "Definir Producto con código entero, nombre y precio no negativo. Mantener el catálogo original y una copia ordenada por código.",
+        "Implementar secuencial y binaria sin métodos de búsqueda de biblioteca. Elegir y documentar política de duplicados: devolver todos mediante intervalo.",
+        "Ordenar el índice mediante uno de los algoritmos implementados en 2.1. Conservar referencias a los registros originales.",
+        "Ejecutar 1,10,100 y 1000 consultas sobre catálogos reproducibles. Separar tiempo de ordenación de tiempo de búsqueda y comparar costo total.",
+        "Rechazar códigos no enteros y precios negativos. No usar búsqueda binaria antes de satisfacer la precondición."
+      ],
+      "phases": [
+        [
+          "Modelo y contrato",
+          "Definir política de duplicados y casos ausentes. Crear lote pequeño con resultados verificables."
+        ],
+        [
+          "Índice y consultas",
+          "Construir copia ordenada y métodos de búsqueda con contadores. Verificar resultados equivalentes."
+        ],
+        [
+          "Experimentos",
+          "Evaluar consultas presentes y ausentes en posiciones diversas. Registrar preparación y consultas por separado."
+        ],
+        [
+          "Decisión",
+          "Estimar cuándo compensa preparar el índice y discutir qué ocurre si se insertan productos entre consultas."
+        ]
+      ],
+      "tests": [
+        [
+          "códigos [10,20,20,40], buscar 20",
+          "dos productos sin perder su identidad"
+        ],
+        [
+          "buscar 30",
+          "sin coincidencias"
+        ],
+        [
+          "catálogo vacío",
+          "sin coincidencias"
+        ],
+        [
+          "consulta no entera",
+          "error controlado"
+        ]
+      ],
+      "rubric": [
+        [
+          "Corrección funcional",
+          4,
+          "Cumple todos los casos obligatorios y conserva los invariantes.",
+          "Cumple los casos normales, pero falla un caso límite o una operación obligatoria.",
+          "No ejecuta el núcleo requerido o no produce resultados válidos."
+        ],
+        [
+          "Análisis y decisiones",
+          2,
+          "Distingue O(n), O(log n) y costo de preparación; justifica el contrato ante duplicados.",
+          "Justifica parte de las decisiones, pero omite un costo o una comparación requerida.",
+          "No fundamenta decisiones ni analiza costos."
+        ],
+        [
+          "Pruebas y evidencia",
+          2,
+          "Registra entradas, salidas reales y casos de error reproducibles.",
+          "Entrega evidencia reproducible incompleta.",
+          "No aporta ejecuciones verificables."
+        ],
+        [
+          "Organización y Git",
+          1,
+          "Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.",
+          "La organización o el historial está incompleto, pero permite ejecutar.",
+          "No se puede reproducir la entrega desde las instrucciones."
+        ],
+        [
+          "Defensa y conclusiones",
+          1,
+          "Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.",
+          "Explica parcialmente el código o no completa la modificación.",
+          "No puede explicar el comportamiento del código entregado."
+        ]
+      ],
+      "deliverables": [
+        "Fuentes Java organizados por paquetes y README con compilación y ejecución.",
+        "Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.",
+        "Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.",
+        "Repositorio con commits funcionales por fase y hash real de la entrega.",
+        "Exposición breve con demostración de un caso normal y uno límite."
+      ],
+      "defense": "Agrega un producto entre dos consultas y explica cómo mantienes válido el índice.",
+      "directory": "02-searching-and-sorting-algorithms/PLs"
+    },
+    {
+      "unit": 3,
+      "id": "PL3.1",
+      "title": "Atención de turnos e historial",
+      "hours": 8,
+      "problem": "Una oficina recibe turnos, los atiende por llegada y permite consultar el historial. Una cola administra pendientes, una lista enlazada conserva atendidos y una pila permite deshacer la última atención.",
+      "objectives": [
+        "Implementar cola circular acotada, lista enlazada y pila propias. No delegar el núcleo a colecciones estándar.",
+        "Relaciona FIFO, LIFO y enlaces con las operaciones del sistema y sus costos reales."
+      ],
+      "requirements": [
+        "Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.",
+        "Implementar cola circular acotada, lista enlazada y pila propias. No delegar el núcleo a colecciones estándar.",
+        "Asignar ID único y rechazar duplicados activos. Cada atención retira de pendientes y agrega al final del historial.",
+        "Deshacer la última atención retira el último registro del historial y lo devuelve al frente de pendientes. Definir operación de inserción al frente del buffer circular.",
+        "Si la cola está llena al deshacer, rechazar la operación sin perder ni modificar el historial o la pila.",
+        "Listar pendientes e historial sin destruirlos. Validar menú, capacidad y operaciones vacías."
+      ],
+      "phases": [
+        [
+          "Estructuras",
+          "Dibujar estados vacíos y unitarios y definir sus invariantes. Implementar operaciones aisladas."
+        ],
+        [
+          "Flujo",
+          "Integrar recepción y atención, preservando identificadores y orden de llegada."
+        ],
+        [
+          "Deshacer",
+          "Implementar reversión atómica respecto de errores de capacidad. Crear pruebas de llenado, vaciado y múltiples vueltas."
+        ],
+        [
+          "Evidencias",
+          "Registrar trazas por operación y justificar el costo de cada estructura, incluida la búsqueda de IDs."
+        ]
+      ],
+      "tests": [
+        [
+          "recibir A,B; atender",
+          "atendido A; pendiente B"
+        ],
+        [
+          "deshacer atención A",
+          "pendientes A,B; historial vacío"
+        ],
+        [
+          "deshacer con cola llena",
+          "rechazo sin mutación parcial"
+        ],
+        [
+          "listar dos veces",
+          "mismos elementos y mismo orden"
+        ]
+      ],
+      "rubric": [
+        [
+          "Corrección funcional",
+          4,
+          "Cumple todos los casos obligatorios y conserva los invariantes.",
+          "Cumple los casos normales, pero falla un caso límite o una operación obligatoria.",
+          "No ejecuta el núcleo requerido o no produce resultados válidos."
+        ],
+        [
+          "Análisis y decisiones",
+          2,
+          "Relaciona FIFO, LIFO y enlaces con las operaciones del sistema y sus costos reales.",
+          "Justifica parte de las decisiones, pero omite un costo o una comparación requerida.",
+          "No fundamenta decisiones ni analiza costos."
+        ],
+        [
+          "Pruebas y evidencia",
+          2,
+          "Registra entradas, salidas reales y casos de error reproducibles.",
+          "Entrega evidencia reproducible incompleta.",
+          "No aporta ejecuciones verificables."
+        ],
+        [
+          "Organización y Git",
+          1,
+          "Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.",
+          "La organización o el historial está incompleto, pero permite ejecutar.",
+          "No se puede reproducir la entrega desde las instrucciones."
+        ],
+        [
+          "Defensa y conclusiones",
+          1,
+          "Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.",
+          "Explica parcialmente el código o no completa la modificación.",
+          "No puede explicar el comportamiento del código entregado."
+        ]
+      ],
+      "deliverables": [
+        "Fuentes Java organizados por paquetes y README con compilación y ejecución.",
+        "Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.",
+        "Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.",
+        "Repositorio con commits funcionales por fase y hash real de la entrega.",
+        "Exposición breve con demostración de un caso normal y uno límite."
+      ],
+      "defense": "Explica cómo evitas perder un turno cuando deshacer falla por capacidad y muestra los invariantes después del error.",
+      "directory": "03-data-structures/PLs"
+    },
+    {
+      "unit": 3,
+      "id": "PL3.2",
+      "title": "Índice de documentos con colecciones",
+      "hours": 6,
+      "problem": "Un buscador local organiza documentos breves mediante un índice palabra→conjunto de IDs. Se atenderán consultas de intersección y unión sin releer todos los textos.",
+      "objectives": [
+        "Usar Map<String,Set<String>> y documentar la implementación elegida. Mantener documentos por ID.",
+        "Justifica igualdad, hashing, elección de conjuntos y costo de mantener el índice coherente."
+      ],
+      "requirements": [
+        "Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.",
+        "Usar Map<String,Set<String>> y documentar la implementación elegida. Mantener documentos por ID.",
+        "Normalizar texto a minúsculas con Locale.ROOT y extraer secuencias de letras Unicode con un patrón explícito.",
+        "Agregar, reemplazar y eliminar documentos actualizando todas sus asociaciones. Eliminar claves sin documentos asociados.",
+        "Consultar AND mediante intersección y OR mediante unión. Devolver IDs ordenados para salida determinista.",
+        "Una palabra repetida en un documento no repite su ID. ID vacío se rechaza; documento vacío es válido y se almacena sin términos."
+      ],
+      "phases": [
+        [
+          "Modelo",
+          "Definir tokenización y contratos de alta, actualización y baja. Preparar documentos con palabras repetidas y acentos."
+        ],
+        [
+          "Índice",
+          "Construir mapa y conjuntos. Comprobar que cada asociación corresponde a un documento existente."
+        ],
+        [
+          "Consultas",
+          "Implementar AND y OR con entradas vacías y términos ausentes. Distinguir costo de construir y consultar."
+        ],
+        [
+          "Actualización",
+          "Reemplazar y borrar documentos, verificar que ninguna consulta usa asociaciones obsoletas."
+        ]
+      ],
+      "tests": [
+        [
+          "D1: sol sol; D2: sol luna",
+          "sol→D1,D2; luna→D2"
+        ],
+        [
+          "AND sol,luna",
+          "D2"
+        ],
+        [
+          "borrar D2; consultar luna",
+          "sin resultados y sin clave vacía"
+        ],
+        [
+          "reemplazar D1 por mar",
+          "sol desaparece; mar→D1"
+        ]
+      ],
+      "rubric": [
+        [
+          "Corrección funcional",
+          4,
+          "Cumple todos los casos obligatorios y conserva los invariantes.",
+          "Cumple los casos normales, pero falla un caso límite o una operación obligatoria.",
+          "No ejecuta el núcleo requerido o no produce resultados válidos."
+        ],
+        [
+          "Análisis y decisiones",
+          2,
+          "Justifica igualdad, hashing, elección de conjuntos y costo de mantener el índice coherente.",
+          "Justifica parte de las decisiones, pero omite un costo o una comparación requerida.",
+          "No fundamenta decisiones ni analiza costos."
+        ],
+        [
+          "Pruebas y evidencia",
+          2,
+          "Registra entradas, salidas reales y casos de error reproducibles.",
+          "Entrega evidencia reproducible incompleta.",
+          "No aporta ejecuciones verificables."
+        ],
+        [
+          "Organización y Git",
+          1,
+          "Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.",
+          "La organización o el historial está incompleto, pero permite ejecutar.",
+          "No se puede reproducir la entrega desde las instrucciones."
+        ],
+        [
+          "Defensa y conclusiones",
+          1,
+          "Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.",
+          "Explica parcialmente el código o no completa la modificación.",
+          "No puede explicar el comportamiento del código entregado."
+        ]
+      ],
+      "deliverables": [
+        "Fuentes Java organizados por paquetes y README con compilación y ejecución.",
+        "Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.",
+        "Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.",
+        "Repositorio con commits funcionales por fase y hash real de la entrega.",
+        "Exposición breve con demostración de un caso normal y uno límite."
+      ],
+      "defense": "Reemplaza un documento en vivo y demuestra que el índice no conserva términos del texto anterior.",
+      "directory": "03-data-structures/PLs"
+    },
+    {
+      "unit": 3,
+      "id": "PL3.3",
+      "title": "Rutas y jerarquías de una red",
+      "hours": 10,
+      "problem": "Adaptación del proyecto de rutas BFS y DFS suministrado. La entrega obligatoria usa consola y archivos de texto para concentrar el trabajo en estructuras y recorridos. Una vista Swing de mapa puede añadirse como ampliación.",
+      "objectives": [
+        "Representar una red de intersecciones con listas de adyacencia y un catálogo de IDs mediante BST propio. Mantener consistencia entre ambos.",
+        "Analiza costos en V,E y altura del BST, y explica la diferencia entre exploración y ruta."
+      ],
+      "requirements": [
+        "Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.",
+        "Representar una red de intersecciones con listas de adyacencia y un catálogo de IDs mediante BST propio. Mantener consistencia entre ambos.",
+        "Cargar vértices y aristas de archivos CSV simples sin comas dentro de los campos. Validar IDs duplicados y extremos inexistentes antes de aplicar cambios.",
+        "Implementar BFS con predecesores para camino mínimo sin pesos y DFS para un camino válido. Evitar ciclos y procesar vértices aislados.",
+        "Permitir alta y baja de vértices, borrando aristas incidentes y actualizando el BST. Listar IDs mediante inorden.",
+        "Separar modelo, algoritmos, persistencia y vista. Registrar orden de exploración y ruta final como salidas diferentes.",
+        "Si se añade mapa Swing, conservar la lógica fuera de la vista. No requiere frameworks externos ni base de datos."
+      ],
+      "phases": [
+        [
+          "Modelo y archivos",
+          "Definir esquema de datos, invariantes y errores. Cargar un grafo con dos componentes y un ciclo."
+        ],
+        [
+          "Catálogo y recorridos",
+          "Implementar BST, BFS y DFS independientes de consola o interfaz. Ordenar vecinos para reproducibilidad."
+        ],
+        [
+          "Edición y persistencia",
+          "Agregar y borrar elementos, guardar y recargar. Rechazar archivos inválidos sin dejar un estado parcial."
+        ],
+        [
+          "Comparación y defensa",
+          "Contrastar rutas, visitados y costos. Explicar por qué DFS no promete la ruta más corta."
+        ]
+      ],
+      "tests": [
+        [
+          "A-B,A-C,B-D,C-D; ruta A-D",
+          "BFS devuelve 2 aristas; DFS devuelve ruta válida"
+        ],
+        [
+          "E aislado; A-E",
+          "sin camino"
+        ],
+        [
+          "A-A",
+          "ruta [A]"
+        ],
+        [
+          "borrar B",
+          "sin B en BST ni aristas incidentes"
+        ],
+        [
+          "archivo con extremo X inexistente",
+          "rechazo con diagnóstico"
+        ]
+      ],
+      "rubric": [
+        [
+          "Corrección funcional",
+          4,
+          "Cumple todos los casos obligatorios y conserva los invariantes.",
+          "Cumple los casos normales, pero falla un caso límite o una operación obligatoria.",
+          "No ejecuta el núcleo requerido o no produce resultados válidos."
+        ],
+        [
+          "Análisis y decisiones",
+          2,
+          "Analiza costos en V,E y altura del BST, y explica la diferencia entre exploración y ruta.",
+          "Justifica parte de las decisiones, pero omite un costo o una comparación requerida.",
+          "No fundamenta decisiones ni analiza costos."
+        ],
+        [
+          "Pruebas y evidencia",
+          2,
+          "Registra entradas, salidas reales y casos de error reproducibles.",
+          "Entrega evidencia reproducible incompleta.",
+          "No aporta ejecuciones verificables."
+        ],
+        [
+          "Organización y Git",
+          1,
+          "Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.",
+          "La organización o el historial está incompleto, pero permite ejecutar.",
+          "No se puede reproducir la entrega desde las instrucciones."
+        ],
+        [
+          "Defensa y conclusiones",
+          1,
+          "Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.",
+          "Explica parcialmente el código o no completa la modificación.",
+          "No puede explicar el comportamiento del código entregado."
+        ]
+      ],
+      "deliverables": [
+        "Fuentes Java organizados por paquetes y README con compilación y ejecución.",
+        "Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.",
+        "Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.",
+        "Repositorio con commits funcionales por fase y hash real de la entrega.",
+        "Exposición breve con demostración de un caso normal y uno límite."
+      ],
+      "defense": "Añade una arista que cambie el camino mínimo y explica el resultado de BFS y DFS usando sus estructuras de control.",
+      "directory": "03-data-structures/PLs"
+    },
+    {
+      "unit": 4,
+      "id": "PL4.1",
+      "title": "Proyecto final: selección con presupuesto",
+      "hours": 12,
+      "problem": "Una unidad académica selecciona actividades con costo entero y beneficio estimado. Cada actividad puede elegirse como máximo una vez. Se necesita maximizar beneficio sin superar un presupuesto y justificar la selección.",
+      "objectives": [
+        "Modelar la variante de mochila 0/1: ID único, costo entero positivo, beneficio entero no negativo y presupuesto entero entre 0 y 10000. Limitar a 100 actividades.",
+        "Deriva O(n·C) tiempo y espacio de la tabla, distingue complejidad seudopolinómica y demuestra coherencia entre óptimo y selección."
+      ],
+      "requirements": [
+        "Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.",
+        "Modelar la variante de mochila 0/1: ID único, costo entero positivo, beneficio entero no negativo y presupuesto entero entre 0 y 10000. Limitar a 100 actividades.",
+        "Implementar tres estrategias: recursión directa para n≤20, memoización con estado (i,capacidad) y tabulación. No usar solvers ni bibliotecas de optimización.",
+        "Usar valores long en Java y validar beneficio individual ≤1000000 para mantener el total en rango seguro.",
+        "Reconstruir IDs seleccionados, costo total y beneficio total. En empate entre incluir y excluir, preferir excluir la actividad actual para reproducibilidad.",
+        "Para memoización, crear caché por instancia. No reutilizar resultados cuando cambia la lista o el presupuesto sin invalidarlos.",
+        "Comparar igualdad de óptimos en entradas pequeñas y desempeño de memoización y tabulación en tamaños mayores. Registrar llamadas, estados, tiempo y memoria estimada.",
+        "Separar archivos de entrada, modelos, estrategias y presentación de resultados. Importar CSV simple con validación. Conservar evidencia reproducible y commits por fase."
+      ],
+      "phases": [
+        [
+          "Formulación",
+          "Definir estado, casos base, recurrencia y criterio de desempate. Explicar por qué una elección voraz por beneficio/costo no basta."
+        ],
+        [
+          "Referencia recursiva",
+          "Implementar versión directa para instancias pequeñas y usar casos de resultado conocido para validar."
+        ],
+        [
+          "Memoización y tabla",
+          "Implementar las dos estrategias, justificar orden de dependencias y mantener el estado completo en cada clave."
+        ],
+        [
+          "Reconstrucción",
+          "Recuperar la selección sin repetir actividades. Verificar presupuesto y suma del beneficio frente al óptimo calculado."
+        ],
+        [
+          "Evaluación final",
+          "Ejecutar casos pequeños equivalentes y muestras grandes permitidas. Presentar datos reales, límites, conclusiones y defensa."
+        ]
+      ],
+      "tests": [
+        [
+          "A:(2,3), B:(3,4), C:(4,5); presupuesto 5",
+          "IDs A,B; costo 5; beneficio 7"
+        ],
+        [
+          "mismas actividades; presupuesto 0",
+          "selección vacía; beneficio 0"
+        ],
+        [
+          "sin actividades; presupuesto 10",
+          "selección vacía; beneficio 0"
+        ],
+        [
+          "A:(2,3), B:(2,3); presupuesto 2",
+          "elige A según desempate"
+        ],
+        [
+          "costo cero o negativo, ID repetido",
+          "rechazo antes de ejecutar algoritmos"
+        ]
+      ],
+      "rubric": [
+        [
+          "Corrección funcional",
+          4,
+          "Cumple todos los casos obligatorios y conserva los invariantes.",
+          "Cumple los casos normales, pero falla un caso límite o una operación obligatoria.",
+          "No ejecuta el núcleo requerido o no produce resultados válidos."
+        ],
+        [
+          "Análisis y decisiones",
+          2,
+          "Deriva O(n·C) tiempo y espacio de la tabla, distingue complejidad seudopolinómica y demuestra coherencia entre óptimo y selección.",
+          "Justifica parte de las decisiones, pero omite un costo o una comparación requerida.",
+          "No fundamenta decisiones ni analiza costos."
+        ],
+        [
+          "Pruebas y evidencia",
+          2,
+          "Registra entradas, salidas reales y casos de error reproducibles.",
+          "Entrega evidencia reproducible incompleta.",
+          "No aporta ejecuciones verificables."
+        ],
+        [
+          "Organización y Git",
+          1,
+          "Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.",
+          "La organización o el historial está incompleto, pero permite ejecutar.",
+          "No se puede reproducir la entrega desde las instrucciones."
+        ],
+        [
+          "Defensa y conclusiones",
+          1,
+          "Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.",
+          "Explica parcialmente el código o no completa la modificación.",
+          "No puede explicar el comportamiento del código entregado."
+        ]
+      ],
+      "deliverables": [
+        "Fuentes Java organizados por paquetes y README con compilación y ejecución.",
+        "Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.",
+        "Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.",
+        "Repositorio con commits funcionales por fase y hash real de la entrega.",
+        "Exposición breve con demostración de un caso normal y uno límite."
+      ],
+      "defense": "Cambia un beneficio y explica por qué no sirve la caché de la instancia anterior. Reconstruye una fila de la tabla y una decisión de inclusión o exclusión.",
+      "directory": "04-dynamic-programming/PLs"
+    }
+  ],
+  "languages": [
+    "java",
+    "python",
+    "js"
+  ],
+  "protection": true
+}

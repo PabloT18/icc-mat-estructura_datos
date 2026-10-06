@@ -1,0 +1,96 @@
+{
+  "generatedImages": [],
+  "reason": "Las representaciones de algoritmos requieren exactitud. Se emplearon trazas SVG y tablas editables, sin ilustraciones de IA.",
+  "assets": [
+    {
+      "path": "01-complexity-analysis/1.1-notation/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "01-complexity-analysis/1.2-growth/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "01-complexity-analysis/1.3-analysis/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "02-searching-and-sorting-algorithms/2.1.1-direct-sorts/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "02-searching-and-sorting-algorithms/2.1.2-shell-sort/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "02-searching-and-sorting-algorithms/2.1.3-merge-sort/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "02-searching-and-sorting-algorithms/2.1.4-quick-sort/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "02-searching-and-sorting-algorithms/2.2-search/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "02-searching-and-sorting-algorithms/2.3-recursion/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "03-data-structures/3.1.1-stacks/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "03-data-structures/3.1.2-queues/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "03-data-structures/3.1.3-linked-lists/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "03-data-structures/3.2.1-collections/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "03-data-structures/3.2.2-maps/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "03-data-structures/3.3.1-trees/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "03-data-structures/3.3.2-graphs/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "04-dynamic-programming/4.1-dynamic-programming/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    },
+    {
+      "path": "04-dynamic-programming/4.2-memoization/assets/guia-visual.svg",
+      "purpose": "Traza exacta del contenido; tabla equivalente editable en PPTX",
+      "prompt": null
+    }
+  ]
+}

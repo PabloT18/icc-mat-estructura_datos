@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 1/1.2 Clases de complejidad</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>1.2-01 Clases de complejidad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuántos pares i&amp;lt;j hay para n=8?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;La suma es 8·7/2.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_1.2_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>28</text>
+      <feedback format="html">
+        <text>La suma es 8·7/2.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>64</text>
+      <feedback format="html">
+        <text>La suma es 8·7/2.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>8</text>
+      <feedback format="html">
+        <text>La suma es 8·7/2.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>1.2-02 Clases de complejidad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Al duplicar n, ¿cómo cambia n²?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;(2n)²=4n².&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_1.2_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Se multiplica por 4</text>
+      <feedback format="html">
+        <text>(2n)²=4n².</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Se multiplica por 2</text>
+      <feedback format="html">
+        <text>(2n)²=4n².</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Se suma 1</text>
+      <feedback format="html">
+        <text>(2n)²=4n².</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>1.2-03 Clases de complejidad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El conteo triangular n(n-1)/2 tiene orden cuadrático.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;El término dominante es n².&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_1.2_3</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>El término dominante es n².</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>El término dominante es n².</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>1.2-04 Clases de complejidad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Toda inserción en un arreglo dinámico tiene peor costo constante.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Una expansión puede copiar todos los elementos.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_1.2_4</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Una expansión puede copiar todos los elementos.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Una expansión puede copiar todos los elementos.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>1.2-05 Clases de complejidad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuántos pares i&amp;lt;j hay entre 16 posiciones?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 120. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_1.2_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>120</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>1.2-06 Clases de complejidad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_1.2_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>

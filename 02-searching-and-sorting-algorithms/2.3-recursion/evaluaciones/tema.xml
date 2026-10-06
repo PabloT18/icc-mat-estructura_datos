@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Unidad 2/2.3 Recursividad</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>2.3-01 Recursividad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué garantiza terminar, además de un caso base?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se requiere una medida que disminuya en un dominio bien fundado.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.3_1</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Progreso hacia un caso base alcanzable</text>
+      <feedback format="html">
+        <text>Se requiere una medida que disminuya en un dominio bien fundado.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Llamarse exactamente dos veces</text>
+      <feedback format="html">
+        <text>Se requiere una medida que disminuya en un dominio bien fundado.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Usar una variable global</text>
+      <feedback format="html">
+        <text>Se requiere una medida que disminuya en un dominio bien fundado.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>2.3-02 Recursividad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Qué espacio auxiliar usa factorial recursivo?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Hay n+1 activaciones simultáneas al alcanzar el caso base.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.3_2</idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text>Θ(n)</text>
+      <feedback format="html">
+        <text>Hay n+1 activaciones simultáneas al alcanzar el caso base.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Θ(1)</text>
+      <feedback format="html">
+        <text>Hay n+1 activaciones simultáneas al alcanzar el caso base.</text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text>Θ(n²)</text>
+      <feedback format="html">
+        <text>Hay n+1 activaciones simultáneas al alcanzar el caso base.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>2.3-03 Recursividad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Un caso base n==0 basta para factorial de enteros negativos.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;n-1 se aleja de cero para negativos.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.3_3</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>n-1 se aleja de cero para negativos.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>n-1 se aleja de cero para negativos.</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>2.3-04 Recursividad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Dos llamadas recursivas siempre implican tiempo exponencial.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Merge Sort divide el tamaño y cuesta Θ(n log n).&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.3_4</idnumber>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+      <feedback format="html">
+        <text>Merge Sort divide el tamaño y cuesta Θ(n log n).</text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+      <feedback format="html">
+        <text>Merge Sort divide el tamaño y cuesta Θ(n log n).</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="numerical">
+    <name>
+      <text>2.3-05 Recursividad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;¿Cuánto devuelve factorial(5)?&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Resultado: 120. Comprueba el conteo o la traza del material.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.3_5</idnumber>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>120</text>
+      <tolerance>0</tolerance>
+    </answer>
+  </question>
+  <question type="essay">
+    <name>
+      <text>2.3-06 Recursividad</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Explica un invariante de la demostración y muestra cómo se conserva en una transición de su traza. Indica qué error detectaría su incumplimiento.&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>&lt;p&gt;Se evalúa que la propiedad se refiera al algoritmo de este tema y se justifique con una transición concreta.&lt;/p&gt;</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber>EST_2.3_6</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>10</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text>&lt;p&gt;1 punto: invariante correcto, transición justificada y error pertinente. 0.5: explicación parcial. 0: propiedad incorrecta o sin relación con el algoritmo.&lt;/p&gt;</text>
+    </graderinfo>
+  </question>
+</quiz>
