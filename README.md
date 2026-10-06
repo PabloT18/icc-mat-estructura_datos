@@ -80,3 +80,6 @@ Importa cada `evaluaciones/tema.xml` desde Banco de preguntas → Importar → F
 
 `MANIFEST.sha256` contiene hashes de todos los archivos salvo el propio manifiesto. Los ejemplos y materiales se organizan por unidades y códigos; `plantillas/` permite iniciar una entrega independiente.
 # icc-mat-estructura_datos
+
+
+---
