@@ -1,10 +1,15 @@
 # Estructura de Datos
-## 4.1 Programación dinámica frente a recursión · Java
 
-**Ing. Pablo Torres, Mgtr.** · Universidad Politécnica Salesiana · Computación · Cuenca  
+![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
+
+
+## 2.1.1 Ordenamiento directo · Python 4.1 Programación dinámica frente a recursión · Java
+
+**Autor:** Ing. Pablo Torres, Mgtr.  
+
 Unidad 4: Programación Dinámica
 
-[Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) · [Evaluación Moodle](../evaluaciones/tema.xml)
+[Índice del curso](../../../index.html) · 
 
 <a id="conceptos"></a>
 ## 1. Conceptos y ejemplos

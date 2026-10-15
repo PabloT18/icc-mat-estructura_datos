@@ -1,10 +1,15 @@
 # Estructura de Datos
-## 3.1.3 Listas enlazadas · Java
 
-**Ing. Pablo Torres, Mgtr.** · Universidad Politécnica Salesiana · Computación · Cuenca  
+![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
+
+
+## 2.1.1 Ordenamiento directo · Python 3.1.3 Listas enlazadas · Java
+
+**Autor:** Ing. Pablo Torres, Mgtr.  
+
 Unidad 3: Estructura de Datos y Grafos
 
-[Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) · [Evaluación Moodle](../evaluaciones/tema.xml)
+[Índice del curso](../../../index.html) · 
 
 <a id="conceptos"></a>
 ## 1. Conceptos y ejemplos

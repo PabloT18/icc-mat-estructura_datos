@@ -1,169 +1,545 @@
 # Estructura de Datos
-## 2.1.1 Ordenamiento directo · JavaScript
 
-**Ing. Pablo Torres, Mgtr.** · Universidad Politécnica Salesiana · Computación · Cuenca  
-Unidad 2: Ordenamiento, búsqueda y recursividad
+![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
-[Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) · [Evaluación Moodle](../evaluaciones/tema.xml)
+
+## 2.1.1 Ordenamiento directo · Python 2.1.1 Ordenamiento directo · JavaScript
+
+**Autor:** Ing. Pablo Torres, Mgtr.  
+
+**Unidad 2:** Ordenamiento, búsqueda y recursividad
+
+[Índice del curso](../../../index.html) · 
+
+[Java](../java/material.md) · [Python](../python/material.md) · [JavaScript](../js/material.md)
+
+### Índice de contenidos
+
+- [1. Conceptos y ejemplos](#conceptos)
+- [Burbuja](#concepto-2)
+- [Selección](#concepto-3)
+- [Inserción y traza](#concepto-4)
+- [Comparación de complejidades](#concepto-5)
+- [2. Demostración guiada](#demostracion)
+- [3. Práctica y PC](#pc)
+- [Lo esencial](#esencial)
+
+Este material explica cómo funcionan los ordenamientos directos, por qué producen una salida correcta y cómo justificar su costo. Cada método se estudia mediante concepto, procedimiento, traza, invariante, complejidad y errores frecuentes. Las tres versiones mantienen los mismos problemas, entradas y casos de aceptación.
 
 <a id="conceptos"></a>
 ## 1. Conceptos y ejemplos
 
-**Prerrequisitos:** variables, condiciones, bucles, funciones y arreglos. El contenido desarrolla los conceptos adicionales que utiliza.
+**Prerrequisitos:** variables, comparaciones, condiciones, bucles, funciones y acceso a una secuencia mediante índices. Se utilizan índices desde cero. La notación de complejidad se explica antes de aplicarla a los algoritmos.
 
 <a id="concepto-1"></a>
-### 1.1 Claves, orden y estabilidad
+### 1.1. Qué significa ordenar
 
-Ordenar consiste en reorganizar registros según una clave y un criterio consistente. La salida debe conservar todos los elementos y quedar en orden no decreciente. Un método estable preserva el orden relativo de registros con claves iguales. Para comprobar estabilidad hacen falta etiquetas: (2,A),(1,B),(2,C) debe conservar A antes de C. Comparar únicamente números repetidos no revela si se intercambiaron sus identidades.
+Ordenar consiste en reorganizar elementos según una **clave** y un **criterio de comparación**. Si cada elemento es un número, el propio número puede ser la clave. Si cada elemento es un registro de estudiante, la clave podría ser su nota. Ordenar por nota no significa ordenar alfabéticamente por nombre: primero se debe precisar qué información decide la posición.
+
+En orden ascendente se exige que cada elemento sea menor o igual que el siguiente. La igualdad permite conservar valores repetidos. Para una secuencia `a` de tamaño `n`, la condición es `a[k] <= a[k + 1]` para todo índice `k` entre `0` y `n - 2`. El orden descendente invierte la comparación: `a[k] >= a[k + 1]`.
+
+| Entrada | Criterio | Salida válida |
+|---|---|---|
+| `[5, 3, 4, 1, 2]` | Numérico ascendente | `[1, 2, 3, 4, 5]` |
+| `[5, 3, 4, 1, 2]` | Numérico descendente | `[5, 4, 3, 2, 1]` |
+| `[2, 1, 2]` | Numérico ascendente | `[1, 2, 2]` |
+| `[]` | Numérico ascendente | `[]` |
+
+**Dos condiciones de corrección.** La salida debe estar ordenada y conservar exactamente los elementos de la entrada, incluidas sus repeticiones. Convertir `[2, 1, 2]` en `[1, 2]` produce una secuencia ordenada, pero no resuelve el problema: ha eliminado un elemento. Decimos que la salida debe ser una **permutación** de la entrada.
+
+Vacío y un elemento ya están ordenados porque no existe ningún par vecino que incumpla el criterio. El algoritmo debe aceptarlos sin intentar acceder a posiciones inexistentes.
+
+**Error que evitar.** Confundir ordenar con filtrar, eliminar duplicados o construir una secuencia nueva de números consecutivos. El procedimiento debe funcionar con negativos, huecos entre valores y repeticiones.
+
+### 1.2. Estabilidad, modificación y copia
+
+Un algoritmo es **estable** si conserva el orden relativo de los registros que tienen la misma clave. La estabilidad solo se puede observar cuando se distinguen las identidades de esos registros.
+
+| Entrada por nota | Salida estable ascendente | Salida ordenada pero inestable |
+|---|---|---|
+| `[(A,8), (B,5), (C,8)]` | `[(B,5), (A,8), (C,8)]` | `[(B,5), (C,8), (A,8)]` |
+
+A y C tienen la misma nota. Ambas salidas están ordenadas por nota, pero solo la primera respeta que A llegó antes que C. Con números aislados como `[8, 5, 8]` no se puede observar cuál de los dos ochos cambió de lugar.
+
+Ordenar **sobre la misma secuencia** significa modificar sus posiciones. En las implementaciones de este tema, cada algoritmo usa únicamente unas pocas variables adicionales: su memoria auxiliar es constante. Esto no significa que la entrada ocupe memoria constante; almacenar `n` elementos requiere espacio proporcional a `n`.
+
+Una copia independiente del contenedor permite conservar el arreglo original. Cuando sus elementos son objetos, una copia superficial copia referencias: reordenar la copia no cambia las posiciones del original, pero modificar un objeto compartido puede ser visible desde ambos contenedores.
+
+**Ejemplo de aplicación.** Si se comparan tres algoritmos, cada uno debe recibir una copia del mismo arreglo inicial. Ejecutar selección sobre la salida de burbuja haría que el segundo algoritmo recibiera datos ya ordenados, alterando el experimento.
+
+### 1.3. Cómo analizar el costo
+
+El tamaño de entrada es **n = cantidad de elementos**, no el valor del mayor número. Ordenar `[1000000, -5, 7]` tiene `n = 3`. Bajo el modelo utilizado aquí, acceder a un índice, comparar dos enteros de tamaño acotado y asignar una referencia o un entero cuestan tiempo constante.
+
+| Operación contada | Qué significa | Qué no incluye |
+|---|---|---|
+| Comparación de claves | Evaluar `a[j] > clave` o comparar dos elementos | Comprobar un límite como `j >= 0` |
+| Intercambio | Permutar dos posiciones distintas | Actualizar el índice del mínimo |
+| Desplazamiento | Copiar un elemento una posición a la derecha en inserción | Escribir la clave guardada en su posición final |
+| Pasada | Una iteración del bucle exterior | Cada comparación del bucle interior |
+
+Los conteos exactos dependen de la implementación y de la convención. Un intercambio suele implicar una variable temporal y dos escrituras en la secuencia; no equivale a una sola asignación. Aquí contamos intercambios como operaciones completas, sin confundirlos con desplazamientos.
+
+**Mejor caso:** entradas que requieren menos trabajo entre las de tamaño `n`. **Peor caso:** entradas que requieren más trabajo con ese tamaño. **Caso promedio:** costo esperado bajo una distribución de entradas explícita. En las comparaciones de este tema se supone, para el promedio, una permutación uniformemente aleatoria de `n` claves distintas.
+
+| Notación | Significado |
+|---|---|
+| `O(g(n))` | Cota superior asintótica |
+| `Ω(g(n))` | Cota inferior asintótica |
+| `Θ(g(n))` | Cota ajustada: el crecimiento queda acotado por múltiplos positivos de `g(n)` |
+
+Estas notaciones no son sinónimos de peor, mejor y promedio. Se puede describir el **mejor caso** de burbuja optimizada como `Θ(n)` y el **peor caso** como `Θ(n²)`. Decir únicamente `O(n²)` es una cota válida, pero no expresa la mejora que aprovecha en datos ordenados.
+
+Para justificar un costo no basta con contar cuántos bucles aparecen escritos. Dos bucles consecutivos de `n` iteraciones suman trabajo lineal; dos bucles anidados pueden acumular trabajo cuadrático, pero hay que examinar sus límites y condiciones de terminación.
+
+**Límite del modelo.** Si las claves fueran cadenas de longitud máxima `m`, una comparación podría costar hasta `O(m)`. Los conteos de comparaciones seguirían siendo útiles, pero no se podría tratarlas automáticamente como operaciones constantes. En Python también debe distinguirse el número de elementos del tamaño en bits de enteros arbitrariamente grandes.
+
+### 1.4. Invariantes: qué permanece correcto
+
+Un **invariante de bucle** es una propiedad que se cumple antes de empezar una iteración y se conserva al terminarla. Sirve para explicar por qué el algoritmo funciona, además de mostrar que produjo una salida correcta en un ejemplo.
+
+La justificación tiene tres partes: indicar por qué la propiedad es verdadera al inicio, explicar cómo la iteración la conserva y relacionarla con el resultado cuando termina el bucle. También hay que justificar la terminación: un límite disminuye, un índice avanza o se cumple una condición de salida.
+
+| Método | Región cuya corrección se acumula |
+|---|---|
+| Burbuja ascendente | Sufijo con los mayores elementos en sus posiciones finales |
+| Selección del mínimo | Prefijo con los menores elementos en sus posiciones finales |
+| Inserción | Prefijo ordenado que contiene los elementos ya procesados |
+
+El prefijo de inserción está ordenado, pero sus elementos todavía pueden cambiar de posición al procesar claves posteriores. Por ejemplo, el `5` de `[3, 5]` se desplazará al insertar `4`. No se debe atribuir a ese prefijo la misma propiedad de posiciones definitivas que tiene selección.
 
 <a id="concepto-2"></a>
-### 1.2 Burbuja con detección de cambios
+### 1.5. Burbuja con detección de cambios
 
-Cada pasada compara vecinos y desplaza el mayor del tramo activo hacia su extremo derecho. Después de una pasada, esa última posición queda fijada. El tramo se reduce y una bandera permite terminar si no hubo intercambios. Con comparación estricta > conserva estabilidad. Su mejor caso es Θ(n) con la bandera; el peor es Θ(n²). El algoritmo que compara a[i] con todos los a[j] posteriores es intercambio directo, no esta variante de burbuja adyacente.
+**Concepto.** Burbuja compara elementos vecinos. Si están en el orden incorrecto, los intercambia. En un recorrido de izquierda a derecha, el mayor elemento del tramo activo va avanzando hasta su extremo derecho.
+
+**Procedimiento.** Se inicia `end = n - 1`. Se comparan las parejas de índices `(0,1)`, `(1,2)` y así hasta `(end - 1,end)`. Al terminar, la posición `end` ya contiene el máximo del tramo; la siguiente pasada reduce `end` en uno. Una bandera `changed` comienza en falso en cada pasada y cambia a verdadero si ocurre un intercambio.
+
+**Ejemplo completo por pasadas**, con entrada `[5, 3, 4, 1, 2]`:
+
+| Pasada | Tramo activo antes de recorrer | Estado al terminar | Comparaciones | Intercambios |
+|---|---|---|---:|---:|
+| 1 | Índices 0 a 4 | `[3, 4, 1, 2, 5]` | 4 | 4 |
+| 2 | Índices 0 a 3 | `[3, 1, 2, 4, 5]` | 3 | 2 |
+| 3 | Índices 0 a 2 | `[1, 2, 3, 4, 5]` | 2 | 2 |
+| 4 | Índices 0 a 1 | `[1, 2, 3, 4, 5]` | 1 | 0 |
+| **Total** | | | **10** | **8** |
+
+En la primera pasada se realizan los intercambios `5↔3`, `5↔4`, `5↔1` y `5↔2`. El `5` queda fijado. La última pasada no intercambia: la bandera permite terminar. Que la secuencia ya esté ordenada después de la tercera pasada no significa que el programa lo sepa sin comprobarlo.
+
+**Invariante y terminación.** Antes de una pasada, el sufijo posterior a `end` ya está fijado. El recorrido coloca el máximo restante en `end`, ampliando ese sufijo. Si no hubo cambios, todas las parejas vecinas del tramo activo están ordenadas; junto con el sufijo fijado, toda la secuencia está ordenada. El límite decrece hasta que no quedan parejas por revisar.
+
+**Estabilidad.** Con comparación estricta `>`, dos claves iguales no se intercambian. Como los movimientos son entre vecinos, dos registros iguales no pueden cruzarse sin intercambiarse directamente. Por eso esta variante es estable. Usar `>=` eliminaría esa garantía y produciría intercambios innecesarios entre iguales.
+
+**Complejidad paso a paso.** En el peor caso se completan todas las pasadas:
+
+| Paso | Expresión | Justificación |
+|---|---|---|
+| Conteo | `C(n) = (n - 1) + (n - 2) + ... + 1` | El tramo pierde una posición por pasada |
+| Suma | `C(n) = n(n - 1)/2` | Suma de los primeros `n - 1` enteros positivos |
+| Expansión | `C(n) = (n² - n)/2` | Distribución del producto |
+| Crecimiento | `C(n) ∈ Θ(n²)` | Domina el término cuadrático |
+
+En orden inverso y con claves distintas, todas estas comparaciones provocan intercambios. En cambio, para una entrada ya ordenada de tamaño `n >= 2`, la primera pasada realiza `n - 1` comparaciones y cero intercambios; la bandera detiene el algoritmo. Por tanto, el mejor tiempo es `Θ(n)` y el peor `Θ(n²)`. Sin la salida por bandera, esta estructura de bucles seguiría haciendo trabajo cuadrático incluso con la entrada ordenada.
+
+**Error que evitar.** Comparar `a[i]` con todos los `a[j]` posteriores e intercambiar inmediatamente no es la burbuja adyacente descrita aquí. Tampoco se debe reiniciar la bandera dentro del bucle interior: se perdería la información de los intercambios anteriores de esa pasada.
 
 <a id="concepto-3"></a>
-### 1.3 Selección del mínimo
+### 1.6. Selección del mínimo
 
-En cada posición i se busca el mínimo del sufijo y se hace como máximo un intercambio. El prefijo contiene los i menores elementos en orden. Realiza n(n-1)/2 comparaciones independientemente del orden inicial. Reduce intercambios, pero la variante usual no es estable: [2A,2B,1] puede terminar [1,2B,2A]. No debe confundirse encontrar el mínimo con ir intercambiando cada candidato menor.
+**Concepto.** Selección busca el menor elemento del tramo pendiente y lo coloca en la primera posición de ese tramo. Durante la búsqueda solo actualiza un índice; realiza el intercambio después de terminar de buscar.
+
+**Procedimiento.** Para cada posición `i`, se supone inicialmente que el mínimo está en `i`. Se recorren las posiciones `i + 1` a `n - 1`. Si aparece una clave menor, se actualiza `minimum`. Al terminar, se intercambian `i` y `minimum` solamente si son posiciones distintas.
+
+| Posición i | Mínimo encontrado | Estado después de colocarlo | Comparaciones | Intercambios |
+|---:|---:|---|---:|---:|
+| 0 | 1 | `[1, 3, 4, 5, 2]` | 4 | 1 |
+| 1 | 2 | `[1, 2, 4, 5, 3]` | 3 | 1 |
+| 2 | 3 | `[1, 2, 3, 5, 4]` | 2 | 1 |
+| 3 | 4 | `[1, 2, 3, 4, 5]` | 1 | 1 |
+| **Total** | | | **10** | **4** |
+
+**Invariante y terminación.** Al comenzar la iteración `i`, las posiciones anteriores contienen los `i` menores elementos en orden. Elegir el mínimo del sufijo coloca el siguiente elemento correcto en `i`. El prefijo crece una posición por iteración. Tras fijar `n - 1` posiciones, la última queda determinada.
+
+**Complejidad paso a paso.** La búsqueda del mínimo siempre recorre todo el sufijo. Aunque no encuentre un valor menor, debe comprobarlo:
+
+`C(n) = Σ desde i = 0 hasta n - 2 de (n - i - 1) = n(n - 1)/2`.
+
+La entrada ordenada y la entrada inversa producen el mismo número de comparaciones. El mejor, promedio y peor tiempo son `Θ(n²)`. El número de intercambios es como máximo `n - 1`, porque hay como máximo uno por iteración exterior. Con la condición `minimum != i`, una entrada ordenada realiza cero intercambios, pero mantiene las comparaciones cuadráticas.
+
+**Contraejemplo de estabilidad.** En `[2A, 2B, 1C]`, las letras identifican registros y solo los números se comparan. El mínimo `1C` se intercambia con `2A`, dejando `[1C, 2B, 2A]`. Los registros de clave 2 invierten su orden. Por tanto, esta selección con intercambio no es estable, incluso si se usa comparación estricta para buscar el mínimo.
+
+**Utilidad y límite.** Puede interesar cuando reducir escrituras importa más que reducir comparaciones. Esto no implica que sea siempre más rápida: el costo de comparar y escribir, el tamaño y el entorno también influyen.
+
+**Error que evitar.** Intercambiar cada vez que aparece un candidato menor cambia la implementación y su cantidad de intercambios. Actualizar `minimum` no modifica el arreglo. Las versiones de los tres lenguajes de esta lectura evitan también el intercambio de una posición consigo misma.
 
 <a id="concepto-4"></a>
-### 1.4 Inserción y desplazamiento
+### 1.7. Inserción por desplazamiento
 
-Se guarda una clave y se desplazan a la derecha los valores mayores del prefijo ordenado. Cuando aparece un valor menor o igual, se inserta la clave. Usar > en el desplazamiento conserva la estabilidad. En datos ordenados cuesta Θ(n) y en orden inverso Θ(n²). Consume Θ(1) memoria auxiliar y se adapta a pocas inversiones. La condición j≥0 debe comprobarse antes de acceder a a[j].
+**Concepto.** Inserción mantiene ordenados los elementos que ya procesó. Toma la siguiente clave, abre un espacio desplazando a la derecha los elementos mayores y guarda la clave en ese espacio. Es comparable a insertar una carta en una mano que ya está ordenada.
 
-<a id="concepto-5"></a>
-### 1.5 Elección del método
+**Procedimiento.** El primer elemento forma un prefijo ordenado de longitud uno. Para cada `i` desde 1, se guarda `key = a[i]` y se inicia `j = i - 1`. Mientras `j` sea válido y `a[j] > key`, se copia `a[j]` en `a[j + 1]` y se decrementa `j`. Al terminar se escribe `key` en `a[j + 1]`.
 
-Los tres métodos son útiles para entender invariantes y costos. Para datos pequeños casi ordenados, inserción aprovecha el orden existente. Selección conviene como contraste cuando interesan pocas escrituras, sin prometer superioridad general. Burbuja facilita trazados de vecinos. La demostración ordena copias del mismo arreglo y comprueba que las tres salidas coincidan.
+Guardar la clave antes de desplazar es indispensable: la primera copia puede sobrescribir su posición original. Durante el desplazamiento pueden verse valores duplicados temporalmente en el arreglo; el valor guardado en `key` completa el estado lógico de los datos. La conservación de todos los elementos se recupera al terminar la inserción.
 
 <a id="traza"></a>
-### Traza de referencia
+**Traza completa por inserciones**, contando solo comparaciones entre claves:
 
-| Paso de inserción | Estado |
-| --- | --- |
-| Entrada | [5,3,4,1,2] |
-| Insertar 3 | [3,5,4,1,2] |
-| Insertar 4 | [3,4,5,1,2] |
-| Insertar 1 | [1,3,4,5,2] |
-| Insertar 2 | [1,2,3,4,5] |
+| i | Clave | Comparaciones efectuadas, en orden | Estado al terminar | Desplazamientos |
+|---:|---:|---|---|---:|
+| 1 | 3 | `5 > 3`: V | `[3, 5, 4, 1, 2]` | 1 |
+| 2 | 4 | `5 > 4`: V; `3 > 4`: F | `[3, 4, 5, 1, 2]` | 1 |
+| 3 | 1 | `5 > 1`: V; `4 > 1`: V; `3 > 1`: V | `[1, 3, 4, 5, 2]` | 3 |
+| 4 | 2 | `5 > 2`: V; `4 > 2`: V; `3 > 2`: V; `1 > 2`: F | `[1, 2, 3, 4, 5]` | 3 |
+| **Total** | | **10 comparaciones de claves** | | **8 desplazamientos** |
 
-La tabla muestra estados o conteos concretos. Reproduce cada transición y comprueba qué propiedad permanece verdadera. Una traza finita ayuda a encontrar errores; la justificación del algoritmo también exige explicar por qué progresa y por qué la condición final satisface el contrato.
+En las inserciones de 3 y 1, el bucle termina al llegar `j` a -1; no existe una comparación adicional con `a[-1]`. En las otras dos inserciones se evalúa una comparación falsa entre claves antes de detenerse. La escritura final de `key` ocurre una vez por inserción, pero no se cuenta como desplazamiento.
 
-![Síntesis del tema 2.1.1](../assets/guia-visual.svg)
+**Invariante y terminación.** Antes de procesar `i`, el prefijo `a[0..i-1]` está ordenado. Desplazar únicamente las claves mayores conserva el orden de ese grupo y abre la posición de `key`. Al insertarla queda ordenado `a[0..i]`. El índice exterior avanza; el interior solo retrocede hasta detenerse o llegar al inicio.
 
-### Particularidades de JavaScript
+**Estabilidad.** La condición estricta `a[j] > key` no desplaza claves iguales. La clave nueva se coloca después de las iguales que llegaron antes. Cambiar `>` por `>=` puede invertir empates. Para comprobar estabilidad, la comparación debe utilizar solo la clave de orden y el registro completo debe desplazarse como una unidad.
 
-JavaScript se ejecuta aquí con Node.js como módulo .mjs. Number solo representa exactamente enteros hasta 2^53-1; factorial usa BigInt y no mezcla su aritmética con Number. Math.floor realiza la división para índices. [...a] es una copia superficial. Map y Set expresan asociaciones y pertenencia. Los errores se verifican con condiciones explícitas, ya que console.assert no sustituye una prueba que detenga el proceso. No se requiere pnpm.
+**Mejor caso.** Si la entrada está ordenada, cada una de las `n - 1` claves encuentra inmediatamente un elemento menor o igual. Hay `n - 1` comparaciones y cero desplazamientos. Las escrituras finales y el bucle exterior siguen ejecutándose: el tiempo es `Θ(n)`, no `Θ(1)`.
+
+**Peor caso.** Con claves distintas en orden inverso, la clave de la iteración `i` es menor que las `i` anteriores. Se necesitan `i` comparaciones y `i` desplazamientos:
+
+`D(n) = 1 + 2 + ... + (n - 1) = n(n - 1)/2`.
+
+La cantidad de comparaciones de claves tiene ese mismo valor en este caso. El tiempo total es `Θ(n²)`. Que la implementación use `while` en vez de un segundo `for` no cambia este resultado: importa cuántas veces se ejecuta su cuerpo.
+
+**Inversiones y adaptación.** Una inversión es un par de posiciones `p < q` cuyas claves cumplen `a[p] > a[q]`. Cada desplazamiento de inserción corrige una de esas inversiones. Si la entrada tiene `I` inversiones, se realizan exactamente `I` desplazamientos. El trabajo restante es lineal y el tiempo es `Θ(n + I)` para `n >= 1`. Esta expresión explica por qué se adapta a datos casi ordenados: si `I` es pequeño, hace poco trabajo adicional al recorrido básico.
+
+**Error que evitar.** Comprobar primero `a[j] > key` y después `j >= 0`. La condición de índice debe proteger el acceso por cortocircuito. En Java un índice negativo causa una excepción; en Python puede leer desde el final; en JavaScript el acceso ordinario `a[-1]` no representa el último elemento. Ninguno expresa el recorrido buscado.
+
+### 1.8. Caso promedio y comparación global
+
+Con una permutación aleatoria de claves distintas, cada par tiene probabilidad 1/2 de estar invertido. Hay `n(n - 1)/2` pares; por tanto, el número esperado de inversiones es `n(n - 1)/4`.
+
+Inserción debe corregir esas inversiones mediante desplazamientos y burbuja mediante intercambios adyacentes. Como el número esperado de esas operaciones es cuadrático y ambas implementaciones tienen una cota superior cuadrática, su tiempo promedio es `Θ(n²)`. Selección ya realiza un número cuadrático fijo de comparaciones en cualquier orden. Este argumento no supone que todos los conjuntos de datos del mundo real sean aleatorios.
+
+<a id="concepto-5"></a>
+| Método de esta lectura | Mejor tiempo | Tiempo promedio* | Peor tiempo | Memoria auxiliar** | Estable |
+|---|---|---|---|---|---|
+| Burbuja con bandera | Θ(n) | Θ(n²) | Θ(n²) | Θ(1) | Sí, con `>` |
+| Selección con intercambio | Θ(n²) | Θ(n²) | Θ(n²) | Θ(1) | No |
+| Inserción por desplazamiento | Θ(n) | Θ(n²) | Θ(n²) | Θ(1) | Sí, con `>` |
+
+*Promedio sobre permutaciones uniformes de claves distintas. **Memoria adicional del algoritmo, sin contar la entrada, las copias de prueba ni la impresión. Las cotas describen el crecimiento con `n`; vacío y un elemento requieren trabajo constante.
+
+**Ejemplo numérico.** Para `n = 1000`, selección realiza `1000 × 999 / 2 = 499500` comparaciones, aunque los datos estén ordenados. Burbuja con bandera e inserción realizan 999 comparaciones en una entrada ordenada. En sus peores casos, las tres alcanzan 499500 comparaciones con las implementaciones mostradas.
+
+Tener la misma clase `Θ(n²)` no implica ejecutar exactamente las mismas operaciones ni tardar lo mismo. Tampoco unos pocos tiempos medidos demuestran una cota asintótica. Para comparar tiempos se deben usar los mismos datos originales, separar copia e impresión del intervalo medido y repetir las mediciones. La complejidad se justifica mediante el crecimiento del trabajo.
+
+**Elección razonada.** Inserción suele ser una opción didáctica y práctica para secuencias pequeñas o con pocas inversiones; selección permite estudiar el intercambio entre comparaciones y escrituras; burbuja permite observar movimientos locales y terminación anticipada. Para grandes volúmenes generales se estudian métodos con mejores garantías, sin atribuirles aquí propiedades que aún no se han analizado.
+
+**Error que evitar.** Concluir que todo arreglo «casi ordenado» hace lineal a burbuja. En `[2, 3, ..., n, 1]` hay solo `n - 1` inversiones, pero el 1 avanza una posición hacia la izquierda por pasada. Esta burbuja realiza trabajo cuadrático, mientras que inserción resuelve esa familia en tiempo lineal.
+
+### 1.9. Particularidades de JavaScript
+
+La demostración se ejecuta con Node.js como módulo `.mjs`. Usa arreglos densos de enteros representables exactamente como `Number`. Los casos compartidos están dentro del rango de `int` de Java. No se admiten huecos, `undefined`, `NaN` ni cadenas como datos del contrato. Para ampliar el dominio a enteros mayores, comprobar el rango seguro de `Number`; este ejemplo no necesita `BigInt`.
+
+`[...a]` crea una copia superficial. `const` impide reasignar la variable, pero no impide modificar las posiciones de su arreglo. Dos arreglos diferentes con los mismos números no son iguales mediante `===`: esa comparación comprueba identidad. La demostración usa `assert.deepEqual` de `node:assert/strict` para comparar sus contenidos y lanzar una excepción ante un fallo; ese módulo está incluido en Node.js.
+
+La ordenación de biblioteca sin comparador no establece el orden numérico esperado para estos datos. El oráculo usa `[...data].sort((x, y) => x - y)` para ordenar una copia numéricamente. Los algoritmos implementados no llaman a `sort()`.
+
+`&&` cortocircuita y protege el acceso a `a[j]`. `a[-1]` es un acceso a una propiedad con clave `"-1"`, no el último elemento del arreglo. Las funciones de ordenamiento modifican el arreglo y retornan `undefined`; no se debe sustituir la referencia por ese retorno. No se requiere pnpm ni instalar dependencias.
 
 <a id="demostracion"></a>
 ## 2. Demostración guiada
 
-**Problema y contrato:** Arreglo de enteros válidos. Modifica la entrada en orden ascendente y conserva repeticiones. Acepta vacío y un elemento. La biblioteca de ordenación se usa únicamente como oráculo de verificación, no dentro del algoritmo.
+### 2.1. Problema y contrato
 
-1. Lee el contrato y predice la salida del caso principal antes de ejecutar.
-2. Identifica las variables que representan el estado y vincúlalas con la traza de la sección anterior.
-3. Ejecuta el archivo completo. Las comprobaciones internas detienen el programa si una condición esperada falla.
-4. Cambia una entrada del bloque de ejecución, predice el resultado y contrástalo. Conserva el núcleo de la demostración como referencia.
+Ordenar `[5, 3, 4, 1, 2]` con burbuja, selección e inserción. Cada método recibe una copia independiente de la misma entrada. Mostrar las tres salidas y verificar cada implementación con diez casos compartidos entre lenguajes.
 
-### Código completo
+**Entrada válida:** una secuencia no nula de enteros dentro del rango de 32 bits con signo. Puede estar vacía, contener un solo elemento, valores negativos o repeticiones. Las funciones del núcleo presuponen esta entrada válida; no incluyen validación de tipos ni lectura de teclado. En Python se usan enteros, no booleanos; en JavaScript se usa un arreglo denso de números enteros, no cadenas ni valores ausentes.
 
-Este bloque se genera desde `ejemplos/demo.mjs` mediante `scripts/sync-code.py`; ese archivo es la fuente del código. La PC tiene otro objetivo y sus casos de aceptación aparecen en la sección 3.
+**Efecto:** cada algoritmo modifica la secuencia que recibe en orden ascendente y conserva las multiplicidades. El original del programa permanece intacto porque se entregan copias. No se promete estabilidad para selección. Las pruebas numéricas no comprueban identidades de registros: esa comprobación forma parte de la PC.
+
+**Verificación:** la ordenación de biblioteca se utiliza solamente para obtener el resultado esperado. Cada método se compara por separado con ese resultado; que tres implementaciones coincidan entre sí no bastaría si compartieran el mismo error.
+
+### 2.2. Antes de ejecutar
+
+1. Reproducir la primera pasada de cada algoritmo sobre la entrada principal.
+2. Identificar qué posición o región queda ordenada y si sus posiciones ya son definitivas.
+3. Predecir los resultados de vacío, un elemento, duplicados y entrada inversa.
+4. Localizar las copias y distinguirlas del núcleo que modifica sus elementos.
+5. Explicar por qué `minimum` se actualiza durante la búsqueda, pero el intercambio ocurre después.
+
+### 2.3. Código completo
+
+Guardar el bloque en `ejemplos/demo.mjs` dentro de la carpeta de esta versión. El código está incluido íntegramente para poder copiarlo y ejecutarlo sin dependencias externas. Si el repositorio sincroniza estos bloques desde los archivos de ejemplos, actualizar también ese archivo fuente antes de ejecutar su sincronizador.
 
 <!-- DEMO:START -->
 ```javascript
+import assert from "node:assert/strict";
+
 function bubble(a) {
     for (let end = a.length - 1; end > 0; end--) {
         let changed = false;
         for (let j = 0; j < end; j++) {
-            if (a[j] > a[j+1]) {
-                [a[j], a[j+1]] = [a[j+1], a[j]]; changed = true;
+            if (a[j] > a[j + 1]) {
+                [a[j], a[j + 1]] = [a[j + 1], a[j]];
+                changed = true;
             }
         }
-        if (!changed) break;
+        if (!changed) {
+            break;
+        }
     }
-}
-function selection(a) {
-    for (let i = 0; i < a.length - 1; i++) {
-        let min = i;
-        for (let j = i+1; j < a.length; j++) if (a[j] < a[min]) min = j;
-        [a[i],a[min]] = [a[min],a[i]];
-    }
-}
-function insertion(a) {
-    for (let i = 1; i < a.length; i++) {
-        const key = a[i]; let j = i-1;
-        while (j >= 0 && a[j] > key) { a[j+1] = a[j]; j--; }
-        a[j+1] = key;
-    }
-}
-function sort(a) {
-    const b = [...a], c = [...a]; bubble(b); selection(c); insertion(a);
-    if (JSON.stringify(a) !== JSON.stringify(b) || JSON.stringify(a) !== JSON.stringify(c))
-        throw new Error("Métodos diferentes");
 }
 
-for (const data of [[5,3,4,1,2], [], [1], [2,2,1], [-1,5,0], [1,2,3], [3,2,1]]) {
-    const a = [...data]; sort(a);
-    const expected = [...data].sort((x,y) => x-y);
-    if (JSON.stringify(a) !== JSON.stringify(expected)) throw new Error("Orden incorrecto");
+function selection(a) {
+    for (let i = 0; i < a.length - 1; i++) {
+        let minimum = i;
+        for (let j = i + 1; j < a.length; j++) {
+            if (a[j] < a[minimum]) {
+                minimum = j;
+            }
+        }
+        if (minimum !== i) {
+            [a[i], a[minimum]] = [a[minimum], a[i]];
+        }
+    }
 }
-const a = [5,3,4,1,2]; sort(a);
-console.log(`[${a.join(", ")}]`);
+
+function insertion(a) {
+    for (let i = 1; i < a.length; i++) {
+        const key = a[i];
+        let j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = key;
+    }
+}
+
+function verifyCases() {
+    const cases = [
+        [5, 3, 4, 1, 2], [], [1], [2, 2, 1], [-1, 5, 0],
+        [1, 2, 3], [3, 2, 1], [7, 7, 7], [2, 1],
+        [2147483647, 0, -2147483648]
+    ];
+    for (const data of cases) {
+        const original = [...data];
+        const expected = [...data].sort((x, y) => x - y); // Solo oráculo.
+        for (const method of [bubble, selection, insertion]) {
+            const actual = [...data];
+            method(actual);
+            assert.deepEqual(actual, expected, `Fallo en ${method.name}`);
+            assert.deepEqual(data, original, "Se modificó el original");
+        }
+    }
+}
+
+verifyCases();
+const original = [5, 3, 4, 1, 2];
+const b = [...original];
+const s = [...original];
+const i = [...original];
+bubble(b);
+selection(s);
+insertion(i);
+console.log(`Original: [${original.join(", ")}]`);
+console.log(`Burbuja: [${b.join(", ")}]`);
+console.log(`Selección: [${s.join(", ")}]`);
+console.log(`Inserción: [${i.join(", ")}]`);
+console.log("Verificación: 10 casos correctos por algoritmo.");
 ```
 <!-- DEMO:END -->
 
-### Ejecución
+### 2.4. Ejecución
 
-Desde esta carpeta `02-searching-and-sorting-algorithms/2.1.1-direct-sorts/js`:
+En la terminal integrada de VS Code, situarse en `02-searching-and-sorting-algorithms/2.1.1-direct-sorts/js` y ejecutar:
 
 ```bash
 node ejemplos/demo.mjs
 ```
 
-### Salida esperada de la demostración
+El sufijo `.mjs` permite ejecutar el archivo como módulo. `node:assert/strict` forma parte de Node.js.
+
+### 2.5. Salida esperada
 
 ```text
-[1, 2, 3, 4, 5]
+Original: [5, 3, 4, 1, 2]
+Burbuja: [1, 2, 3, 4, 5]
+Selección: [1, 2, 3, 4, 5]
+Inserción: [1, 2, 3, 4, 5]
+Verificación: 10 casos correctos por algoritmo.
 ```
 
-La salida procede de los datos fijos del bloque de ejecución. Las verificaciones internas también cubren los casos adicionales que se leen en el código. El registro de ejecuciones realizadas se conserva en [verificación](../../../docs/verificacion.md), separado de estas expectativas.
+Las comprobaciones se ejecutan antes de imprimir. Una excepción indica que una comparación con el resultado esperado o la conservación del original ha fallado. La última línea solo aparece si se superan todas las comprobaciones.
+
+| Caso de prueba | Resultado esperado |
+|---|---|
+| `[5, 3, 4, 1, 2]` | `[1, 2, 3, 4, 5]` |
+| `[]` | `[]` |
+| `[1]` | `[1]` |
+| `[2, 2, 1]` | `[1, 2, 2]` |
+| `[-1, 5, 0]` | `[-1, 0, 5]` |
+| `[1, 2, 3]` | `[1, 2, 3]` |
+| `[3, 2, 1]` | `[1, 2, 3]` |
+| `[7, 7, 7]` | `[7, 7, 7]` |
+| `[2, 1]` | `[1, 2]` |
+| `[2147483647, 0, -2147483648]` | `[-2147483648, 0, 2147483647]` |
+
+Son pruebas de la demostración numérica, no los casos de aceptación de la PC de registros. El caso de valores extremos permite detectar errores si se sustituye una comparación directa por una resta que desborda en Java.
+
+### 2.6. Interpretación de costos
+
+Para la entrada principal, las trazas desarrolladas en la sección 1 producen:
+
+| Método | Comparaciones de claves | Intercambios | Desplazamientos |
+|---|---:|---:|---:|
+| Burbuja | 10 | 8 | No utiliza este movimiento |
+| Selección | 10 | 4 | No utiliza este movimiento |
+| Inserción | 10 | No utiliza intercambios | 8 |
+
+Los conteos de esta tabla se deducen de las trazas; el programa mostrado verifica salidas y **no imprime contadores**. En inserción se agregan cuatro escrituras finales de la clave, una por iteración exterior, que no están incluidas en sus ocho desplazamientos. La PC pide instrumentar el algoritmo con una convención explícita.
+
+Cada núcleo conserva memoria auxiliar Θ(1). La demostración necesita Θ(n) memoria adicional por las copias de tamaño `n`. Un número constante de copias sigue ocupando espacio lineal: no debe concluirse que el programa completo usa memoria constante porque sus algoritmos individuales sí lo hacen.
+
+Ejecutar los tres métodos consecutivamente suma sus costos. Como selección siempre es cuadrática, la ejecución conjunta de los tres núcleos tiene tiempo Θ(n²), incluso si los otros dos encuentran datos ordenados. La biblioteca de verificación, las copias y la impresión son tareas adicionales y deben distinguirse de las operaciones estudiadas. La comprobación con diez entradas fijas es una prueba funcional; no mide cómo crece el tiempo con entradas arbitrariamente grandes.
 
 <a id="pc"></a>
-## 3. PC — 2.1.1: Ordenamiento directo
+## 3. Práctica
 
-Ordena registros con código, nota y posición original mediante inserción estable. Conserva el orden de llegada cuando las notas coincidan. Implementa contadores de comparaciones y desplazamientos, sin usar la ordenación de biblioteca.
+### 3.1. Indicaciones comunes
 
-### Requisitos de la entrega
+Los ejercicios se presentan **sin solución**. Resolver primero las trazas y los conteos a mano; después contrastar con una ejecución. Una salida ordenada no sustituye la explicación del procedimiento ni demuestra por sí sola estabilidad o complejidad.
 
-- Implementa la actividad en **una versión**, a tu elección entre Java, Python y JavaScript. Las PL se entregan exclusivamente en Java.
-- Separa la lógica del procesamiento de la entrada y la impresión. Documenta tipos, dominio válido, salida y comportamiento de error.
-- Conserva los casos de aceptación siguientes y agrega al menos un caso que compruebe el invariante del tema.
-- No copies como solución el bloque de demostración: resuelve la ampliación pedida. No se suministra una solución completa de esta PC.
+En cada traza indicar la entrada, el criterio de orden, las variables relevantes, el estado después de cada pasada y el invariante. Al contar, separar comparaciones de claves, intercambios y desplazamientos según la sección 1.3. No contar comprobaciones de índices como comparaciones de claves.
 
-### Casos de aceptación de la PC
+Los ejercicios 1 a 24 preparan la PC integradora. Se mantiene una sola PC para este contenido; no son 24 proyectos independientes ni requieren una rúbrica individual.
 
-| Entrada o escenario | Resultado exigido |
-| --- | --- |
-| [(A,8),(B,5),(C,8)] | B,A,C; A precede a C |
-| [] | [] |
-| [(A,8),(B,8)] | A,B sin invertir empates |
+### 3.2. Nivel 1: conceptos y trazas
 
-### Ejecución y evidencia
+| N.º | Actividad | Evidencia solicitada |
+|---:|---|---|
+| 1 | Para `[4, -2, 4, 0]`, escribir una salida ascendente y una descendente. | Explicar cómo se conservan las repeticiones. |
+| 2 | Ordenar manualmente `[(A,7),(B,3),(C,7),(D,3)]` por nota. | Distinguir una salida estable de otra que solo esté ordenada. |
+| 3 | Ejecutar burbuja sobre `[4, 1, 3, 2]`. | Estado después de cada intercambio y valor de la bandera al final de cada pasada. |
+| 4 | Ejecutar selección sobre `[4, 1, 3, 2]`. | Valores sucesivos de `minimum` y estado después de cada intercambio final. |
+| 5 | Ejecutar inserción sobre `[4, 1, 3, 2]`. | Clave guardada, desplazamientos y posición de inserción. |
+| 6 | Ejecutar los tres métodos sobre `[2, 2, 2, 2]`. | Comparaciones de claves y movimientos de cada método. |
+| 7 | Revisar los bucles con `[]` y `[9]`. | Explicar por qué no acceden a posiciones inválidas. |
+| 8 | Trazar inserción sobre `[3, 5, 2]`. | Identificar cuándo el arreglo contiene temporalmente un duplicado y dónde se conserva la clave. |
 
-Desde la carpeta de tu entrega, ejecuta el programa con `node main.mjs`. Si divides Java en paquetes, utiliza los comandos de la plantilla del estudiante. Registra entrada, resultado esperado, resultado real y explicación de cualquier diferencia en `evidencias/PC2.1.1.md` de tu repositorio personal.
+### 3.3. Nivel 2: conteos y complejidad
 
-Crea commits pequeños: `feat(pc2.1.1): implementar contrato`, `test(pc2.1.1): cubrir casos limite` y `docs(pc2.1.1): explicar costos`. Sustituye los mensajes por descripciones del cambio real. Obtén el hash con `git rev-parse HEAD` y revisa una etapa con `git show HASH`. La actividad no necesita continuar un proyecto acumulativo.
+Para cada respuesta indicar el tamaño `n`, la operación contada, el caso de entrada y la justificación. No responder solamente «O(n²) porque tiene dos bucles».
 
+| N.º | Problema |
+|---:|---|
+| 9 | Calcular las comparaciones de selección para `n = 8` y `n = 100`. Derivar la suma antes de sustituir. |
+| 10 | Comparar los conteos de burbuja para `[1,2,3,4,5,6]` y `[6,5,4,3,2,1]`. Indicar la función de la bandera. |
+| 11 | Derivar comparaciones y desplazamientos de inserción sobre una secuencia ordenada de tamaño `n >= 2`. |
+| 12 | Derivar comparaciones y desplazamientos de inserción sobre una secuencia inversa de claves distintas. |
+| 13 | Enumerar las inversiones de `[3,1,4,2]` y contrastarlas con los desplazamientos de inserción. |
+| 14 | Analizar la familia `[2,3,...,n,1]` con burbuja e inserción. Justificar sus diferencias sin usar tiempos medidos. |
+| 15 | Calcular el cociente `C(2n)/C(n)` para selección, con `n >= 2`, y explicar su tendencia cuando crece `n`. |
+| 16 | Si comparar dos claves de texto cuesta hasta O(m), expresar una cota superior temporal de selección en función de `n` y `m`. Distinguir número de comparaciones de costo total. |
+
+### 3.4. Nivel 3: detectar y corregir errores
+
+Para cada afirmación, explicar si es válida. Si es falsa, aportar un contraejemplo o corregir la condición necesaria.
+
+| N.º | Afirmación a revisar |
+|---:|---|
+| 17 | «Selección es estable porque nunca compara usando `<=`». |
+| 18 | «Burbuja siempre cuesta Θ(n²), incluso con bandera y entrada ordenada». |
+| 19 | «Inserción tiene memoria auxiliar Θ(n) porque la lista de entrada almacena n elementos». |
+| 20 | «Tres ordenamientos Θ(n²) ejecutados uno después del otro producen Θ(n⁶)». |
+| 21 | «Si la salida está ordenada, el algoritmo es correcto aunque haya eliminado un valor repetido». |
+| 22 | «Cambiar `>` por `>=` en inserción solo modifica la velocidad; nunca cambia la estabilidad». |
+| 23 | «Medir cada algoritmo sobre el mismo arreglo ya modificado garantiza una comparación justa». |
+| 24 | «Si dos registros tienen la misma nota, agregar el código como desempate equivale a preservar siempre su orden de llegada». |
+
+### 3.5. PC2.1.1 · Ordenamiento estable de calificaciones
+
+**Contexto.** Una lista registra estudiantes en orden de llegada. Cada registro contiene un código, una nota y su posición original. Se requiere ordenarlos por nota ascendente sin cambiar el orden de llegada entre estudiantes con la misma nota.
+
+**Contrato de entrada.** Una secuencia de registros con `codigo` no vacío, `nota` entera entre 0 y 10 y `posicionOriginal` igual a su índice de llegada desde cero. Los códigos deben ser únicos. No se aceptan registros incompletos, notas textuales, booleanos como notas ni valores fuera del rango. La lista vacía es válida. Validar toda la entrada antes de ordenarla; ante un error, informar su causa y conservarla sin modificaciones.
+
+**Contrato de salida.** Una copia ordenada por nota que contenga los mismos registros completos. La secuencia original mantiene su orden. Los registros con notas iguales conservan su orden de llegada. `posicionOriginal` se utiliza para comprobar ese requisito; no se modifica ni se usa como una segunda clave para ocultar un algoritmo inestable.
+
+**Trabajo solicitado:**
+
+1. Implementar inserción estable por desplazamiento para registros completos, comparando únicamente `nota`.
+2. Separar validación, ordenamiento y presentación de resultados. No usar ordenación de biblioteca en la implementación de la PC.
+3. Mantener intacta la secuencia original mediante una copia superficial; no modificar los campos de los registros.
+4. Contar **comparaciones de notas**: cada evaluación efectiva de «nota anterior > nota de la clave», incluida la falsa que detiene la búsqueda cuando se evalúa.
+5. Contar **desplazamientos**: cada copia de un registro una posición a la derecha. No incluir la colocación final de la clave, la copia inicial ni la validación.
+6. Mostrar original, resultado, posiciones originales, comparaciones y desplazamientos. Explicar por qué los empates conservan su orden.
+7. Añadir un modo de traza para observar el prefijo ordenado después de cada inserción. La impresión se estudia separadamente del costo del núcleo.
+8. Justificar el mejor y peor tiempo del ordenamiento y distinguir su memoria auxiliar de la memoria de la copia y de la validación elegida.
+
+La demostración anterior ordena enteros. Esta PC requiere adaptar la comparación a una clave, conservar registros e identidades, instrumentar operaciones y validar el contrato. No se proporciona la solución completa.
+
+### 3.6. Casos de aceptación de la PC
+
+En la tabla se abrevia cada registro como `(código, nota)`; su posición original se obtiene del orden de entrada. Los conteos corresponden exclusivamente al núcleo de inserción con comparación estricta.
+
+| Entrada o escenario | Códigos en la salida | Comparaciones | Desplazamientos | Condición adicional |
+|---|---|---:|---:|---|
+| `[(A,8),(B,5),(C,8)]` | B, A, C | 2 | 1 | A conserva precedencia sobre C |
+| `[]` | Lista vacía | 0 | 0 | Sin accesos inválidos |
+| `[(A,7)]` | A | 0 | 0 | Registro conservado |
+| `[(A,8),(B,8)]` | A, B | 1 | 0 | Empate sin invertir |
+| `[(A,1),(B,5),(C,9)]` | A, B, C | 2 | 0 | Entrada ya ordenada |
+| `[(A,9),(B,7),(C,5)]` | C, B, A | 3 | 3 | Orden inverso |
+| `[(A,8),(B,5),(C,8),(D,6)]` | B, D, A, C | 5 | 3 | Posiciones originales: 1, 3, 0, 2 |
+| `[(A,0),(B,10)]` | A, B | 1 | 0 | Límites válidos |
+| Nota -1, 11, `"8"` o booleana | Rechazo con causa | No iniciar | No iniciar | Entrada intacta |
+| Código vacío, repetido o campo ausente | Rechazo con causa | No iniciar | No iniciar | Entrada intacta |
+| Posición original incoherente con la llegada | Rechazo con causa | No iniciar | No iniciar | Entrada intacta |
+
+Añadir un caso propio de al menos cinco registros y un control del invariante después de cada inserción. Justificar por qué la validación de códigos únicos podría agregar costo: buscar duplicados con dos bucles, por ejemplo, puede hacer cuadrática la validación aunque la entrada ya esté ordenada por nota. Reportar por separado el núcleo de ordenamiento y el programa completo.
+
+### 3.7. Entrega, ejecución y evidencia
+
+Implementar la PC en **una versión**, a elección entre Java, Python y JavaScript. Las PL de la asignatura se entregan exclusivamente en Java. La actividad no requiere un proyecto acumulativo ni dependencias externas.
+
+Desde la carpeta de la entrega personal, ejecutar:
+
+```bash
+node main.mjs
+```
+
+Entregar código fuente y `evidencias/PC2.1.1.md` en el repositorio personal. La evidencia debe contener: contrato, traza manual, comandos, entrada, resultado esperado, resultado real, conteos, comprobación de estabilidad, análisis temporal y espacial, y explicación de cualquier diferencia. Los resultados deben proceder de ejecuciones reales.
+
+Crear commits por avances funcionales, adaptando los mensajes al cambio realizado:
+
+```bash
+git add .
+git commit -m "feat(pc2.1.1): ordenar registros por nota"
+# Después de implementar y comprobar nuevos casos:
+git add .
+git commit -m "test(pc2.1.1): verificar estabilidad y conteos"
+# Después de documentar el análisis:
+git add .
+git commit -m "docs(pc2.1.1): justificar complejidad"
+git rev-parse HEAD
+```
+
+Para revisar una etapa, ejecutar `git show HASH` con el hash real correspondiente. Para comparar dos avances, usar `git diff HASH_ANTERIOR HASH_ACTUAL`. No inventar identificadores ni sustituir los resultados por capturas sin datos reproducibles.
 
 <a id="esencial"></a>
 ## Lo esencial
 
-- Ordenar consiste en reorganizar registros según una clave y un criterio consistente.
-- Los tres métodos son útiles para entender invariantes y costos.
-- Explica el contrato, traza una entrada y justifica tiempo y memoria con las condiciones descritas.
+- Ordenar exige cumplir el criterio y conservar todos los elementos, incluidas sus repeticiones.
+- La estabilidad conserva el orden relativo de registros con la misma clave; no se observa comparando únicamente números repetidos.
+- Burbuja fija un sufijo; selección fija un prefijo; inserción mantiene ordenado el prefijo procesado.
+- La bandera hace lineal el mejor caso de esta burbuja. Selección mantiene comparaciones cuadráticas en todos los casos.
+- Inserción realiza un desplazamiento por inversión y tiene tiempo Θ(n + I) bajo el modelo indicado.
+- El conteo exacto requiere definir qué operación se cuenta y qué implementación se analiza.
+- Los tres núcleos usan memoria auxiliar constante; las copias de la demostración o de la PC requieren memoria lineal.
+- La corrección se justifica mediante invariantes y conservación; las pruebas detectan errores en casos concretos.
 
-## Referencias
+## Referencias y lectura de apoyo
 
-- Programa analítico y referencias del docente: correspondencia en el documento docente de este contenido.
-- [Referencia técnica de JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference).
-- [Bibliografía y análisis de fuentes](../../../docs/analisis-referencias.md).
+- MDN. [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort). Consulta sobre la comparación numérica del oráculo de pruebas.
+- El análisis de complejidad de esta lectura se deriva de los límites y condiciones de sus implementaciones. Las cotas no se atribuyen a los métodos de ordenación de biblioteca utilizados como oráculo.
+- [Bibliografía y análisis de fuentes del curso](../../../docs/analisis-referencias.md).
+
+[Volver al índice del curso](../../../index.html)

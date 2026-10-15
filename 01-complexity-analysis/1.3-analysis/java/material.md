@@ -1,10 +1,15 @@
 # Estructura de Datos
-## 1.3 Análisis y experimentación · Java
 
-**Ing. Pablo Torres, Mgtr.** · Universidad Politécnica Salesiana · Computación · Cuenca  
+![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
+
+
+## 2.1.1 Ordenamiento directo · Python 1.3 Análisis y experimentación · Java
+
+**Autor:** Ing. Pablo Torres, Mgtr.  
+
 Unidad 1: Teoría de la Complejidad
 
-[Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) · [Evaluación Moodle](../evaluaciones/tema.xml)
+[Índice del curso](../../../index.html) · 
 
 <a id="conceptos"></a>
 ## 1. Conceptos y ejemplos

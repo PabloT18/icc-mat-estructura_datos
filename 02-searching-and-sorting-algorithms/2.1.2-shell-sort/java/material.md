@@ -1,10 +1,15 @@
 # Estructura de Datos
-## 2.1.2 Ordenamiento Shell · Java
 
-**Ing. Pablo Torres, Mgtr.** · Universidad Politécnica Salesiana · Computación · Cuenca  
-Unidad 2: Ordenamiento, búsqueda y recursividad
+![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
-[Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) · [Evaluación Moodle](../evaluaciones/tema.xml)
+
+## 2.1.1 Ordenamiento directo · Python 2.1.2 Ordenamiento Shell · Java
+
+**Autor:** Ing. Pablo Torres, Mgtr.  
+
+**Unidad 2:** Ordenamiento, búsqueda y recursividad
+
+[Índice del curso](../../../index.html) · 
 
 <a id="conceptos"></a>
 ## 1. Conceptos y ejemplos
