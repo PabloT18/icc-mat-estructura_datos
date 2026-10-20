@@ -518,7 +518,7 @@ git commit -m "docs(pc2.1.1): justificar complejidad"
 git rev-parse HEAD
 ```
 
-Para revisar una etapa, ejecutar `git show HASH` con el hash real correspondiente. Para comparar dos avances, usar `git diff HASH_ANTERIOR HASH_ACTUAL`. No inventar identificadores ni sustituir los resultados por capturas sin datos reproducibles.
+
 
 <a id="esencial"></a>
 ## Lo esencial

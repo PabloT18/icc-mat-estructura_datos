@@ -1,8 +1,8 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2.1.1-java · Ordenamiento directo · Estructura de Datos</title><link rel="stylesheet" href="../../../assets/css/styles.css"></head><body><a class="skip" href="#contenido">Ir al material</a><main class="page" id="contenido"><nav class="article-nav" aria-label="Recursos del contenido"><a href="../../../index.html" target="_top">Índice del curso</a><a href="material.md" download>Descargar MD</a><a href="../presentacion.pptx" download>Descargar PPTX</a><a href="../../../01-complexity-analysis/1.3-analysis/java/index.html">Anterior</a><a href="../../2.1.2-shell-sort/java/index.html">Siguiente</a></nav><h1>Estructura de Datos</h1>
 <p><img src="../../../assets/logos/ups-computacion.png" alt="UPS · Carrera de Computación"></p>
 <h2>2.1.1 Ordenamiento directo · Java</h2>
-<p><strong>Autor:</strong> Ing. Pablo Torres, Mgtr.
-<strong>Unidad 2:</strong> Ordenamiento, búsqueda y recursividad</p>
+<p><strong>Autor:</strong> Ing. Pablo Torres, Mgtr.</p>
+<p><strong>Unidad 2:</strong> Ordenamiento, búsqueda y recursividad</p>
 <p><a href="../../../index.html">Índice del curso</a> · <a href="../presentacion.pptx">Presentación Java</a> · <a href="../evaluaciones/tema.xml">Evaluación Moodle</a></p>
 <p><a href="../java/index.html">Java</a> · <a href="../python/index.html">Python</a> · <a href="../js/index.html">JavaScript</a></p>
 <h3>Índice de contenidos</h3>
@@ -10,7 +10,7 @@
 <li><a href="#conceptos">1. Conceptos y ejemplos</a></li>
 <li><a href="#concepto-2">Burbuja</a></li>
 <li><a href="#concepto-3">Selección</a></li>
-<li><a href="#concepto-4">Inserción y traza</a></li>
+<li><a href="#concepto-4">Inserción</a></li>
 <li><a href="#concepto-5">Comparación de complejidades</a></li>
 <li><a href="#demostracion">2. Demostración guiada</a></li>
 <li><a href="#pc">3. Práctica y PC</a></li>
@@ -627,7 +627,7 @@ Verificación: 10 casos correctos por algoritmo.
 <p>Los ejercicios se presentan <strong>sin solución</strong>. Resolver primero las trazas y los conteos a mano; después contrastar con una ejecución. Una salida ordenada no sustituye la explicación del procedimiento ni demuestra por sí sola estabilidad o complejidad.</p>
 <p>En cada traza indicar la entrada, el criterio de orden, las variables relevantes, el estado después de cada pasada y el invariante. Al contar, separar comparaciones de claves, intercambios y desplazamientos según la sección 1.3. No contar comprobaciones de índices como comparaciones de claves.</p>
 <p>Los ejercicios 1 a 24 preparan la PC integradora. Se mantiene una sola PC para este contenido; no son 24 proyectos independientes ni requieren una rúbrica individual.</p>
-<h3>3.2. Nivel 1: conceptos y trazas</h3>
+<h3>3.2. Nivel 1: conceptos</h3>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -884,9 +884,8 @@ git commit -m &quot;test(pc2.1.1): verificar estabilidad y conteos&quot;
 # Después de documentar el análisis:
 git add .
 git commit -m &quot;docs(pc2.1.1): justificar complejidad&quot;
-git rev-parse HEAD
+git push
 </code></pre>
-<p>Para revisar una etapa, ejecutar <code>git show HASH</code> con el hash real correspondiente. Para comparar dos avances, usar <code>git diff HASH_ANTERIOR HASH_ACTUAL</code>. No inventar identificadores ni sustituir los resultados por capturas sin datos reproducibles.</p>
 <p><a id="esencial"></a></p>
 <h2>Lo esencial</h2>
 <ul>

@@ -5,6 +5,7 @@
 ## 2.1.1 Ordenamiento directo · Java
 
 **Autor:** Ing. Pablo Torres, Mgtr.
+
 **Unidad 2:** Ordenamiento, búsqueda y recursividad
 
 [Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) · [Evaluación Moodle](../evaluaciones/tema.xml)
@@ -16,7 +17,7 @@
 - [1. Conceptos y ejemplos](#conceptos)
 - [Burbuja](#concepto-2)
 - [Selección](#concepto-3)
-- [Inserción y traza](#concepto-4)
+- [Inserción](#concepto-4)
 - [Comparación de complejidades](#concepto-5)
 - [2. Demostración guiada](#demostracion)
 - [3. Práctica y PC](#pc)
@@ -429,7 +430,7 @@ En cada traza indicar la entrada, el criterio de orden, las variables relevantes
 
 Los ejercicios 1 a 24 preparan la PC integradora. Se mantiene una sola PC para este contenido; no son 24 proyectos independientes ni requieren una rúbrica individual.
 
-### 3.2. Nivel 1: conceptos y trazas
+### 3.2. Nivel 1: conceptos
 
 | N.º | Actividad | Evidencia solicitada |
 |---:|---|---|
@@ -538,10 +539,10 @@ git commit -m "test(pc2.1.1): verificar estabilidad y conteos"
 # Después de documentar el análisis:
 git add .
 git commit -m "docs(pc2.1.1): justificar complejidad"
-git rev-parse HEAD
+git push
 ```
 
-Para revisar una etapa, ejecutar `git show HASH` con el hash real correspondiente. Para comparar dos avances, usar `git diff HASH_ANTERIOR HASH_ACTUAL`. No inventar identificadores ni sustituir los resultados por capturas sin datos reproducibles.
+
 
 <a id="esencial"></a>
 ## Lo esencial
