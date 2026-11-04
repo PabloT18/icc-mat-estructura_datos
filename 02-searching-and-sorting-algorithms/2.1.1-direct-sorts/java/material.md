@@ -8,7 +8,7 @@
 
 **Unidad 2:** Ordenamiento, búsqueda y recursividad
 
-[Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) · [Evaluación Moodle](../evaluaciones/tema.xml)
+[Índice del curso](../../../index.html) · [Presentación Java](../presentacion.pptx) 
 
 [Java](../java/material.md) · [Python](../python/material.md) · [JavaScript](../js/material.md)
 

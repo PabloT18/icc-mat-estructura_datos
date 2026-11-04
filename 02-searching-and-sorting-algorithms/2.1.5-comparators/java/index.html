@@ -1,0 +1,1128 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2.1.5-java · Comparatos&amp;Comparables · Estructura de Datos</title><link rel="stylesheet" href="../../../assets/css/styles.css"></head><body><a class="skip" href="#contenido">Ir al material</a><main class="page" id="contenido">
+  <nav class="article-nav" aria-label="Recursos del contenido">
+    <a href="../../../index.html" target="_top">Índice del curso</a>
+    <a href="material.md" download>Descargar MD</a>
+    
+    <a href="../../2.1.3-merge-sort/java/index.html">Anterior</a>
+    <a href="../../2.2-search/java/index.html">Siguiente</a>
+  </nav>
+<h1>Estructura de Datos</h1>
+<p><img src="../../../assets/logos/ups-computacion.png" alt="UPS · Carrera de Computación"></p>
+<h2>Ordenamiento con la API de Java: <code>sort</code>, <code>Comparator</code> y <code>Comparable</code></h2>
+<p><strong>Autor:</strong> Ing. Pablo Torres, Mgtr.<br><strong>Unidad 2:</strong> Ordenamiento, búsqueda y recursividad<br><strong>Lenguaje:</strong> Java · Ejemplos compatibles con Java 17 o posterior</p>
+<p><a href="../../../index.html">Índice del curso</a></p>
+<h3>Índice de contenidos</h3>
+<ul>
+<li><a href="#conceptos">1. Conceptos y ejemplos</a><ul>
+<li><a href="#biblioteca">1.1. Ordenar mediante una biblioteca</a></li>
+<li><a href="#primitivos">1.2. Orden ascendente de primitivos</a></li>
+<li><a href="#natural">1.3. Objetos con orden natural</a></li>
+<li><a href="#interno">1.4. Cómo funciona sort por detrás</a></li>
+<li><a href="#complejidad">1.5. Complejidad y costo de comparar</a></li>
+<li><a href="#estudiante">1.6. Clase de trabajo</a></li>
+<li><a href="#comparadores">1.7. Qué es un comparador</a></li>
+<li><a href="#atributo">1.8. Orden simple por un atributo</a></li>
+<li><a href="#lambda">1.9. Funciones lambda y referencias a métodos</a></li>
+<li><a href="#criterios">1.10. Varios criterios y orden descendente</a></li>
+<li><a href="#manuales">1.11. Comparadores manuales</a></li>
+<li><a href="#estabilidad">1.12. Estabilidad y empates</a></li>
+<li><a href="#comparable">1.13. Comparable: el orden natural de una clase</a></li>
+<li><a href="#comparadores-clase">1.14. Comparadores definidos dentro de la clase</a></li>
+<li><a href="#copias">1.15. Modificación, copias y restricciones</a></li>
+<li><a href="#errores">1.16. Errores frecuentes</a></li>
+</ul>
+</li>
+<li><a href="#demostracion">2. Demostración guiada</a></li>
+<li><a href="#pc">3. Práctica y PC</a></li>
+<li><a href="#esencial">Lo esencial</a></li>
+<li><a href="#referencias">Referencias</a></li>
+</ul>
+<p>Este material desarrolla el uso de las herramientas de ordenamiento de Java. El recorrido comienza con arreglos de primitivos, continúa con objetos y comparadores externos, y termina con el orden natural definido por la propia clase. Se estudian el criterio de comparación, la estabilidad, los efectos sobre la entrada y el costo temporal y espacial. La explicación interna permite interpretar el comportamiento de la biblioteca sin implementar sus algoritmos.</p>
+<p><a id="conceptos"></a></p>
+<h2>1. Conceptos y ejemplos</h2>
+<p><strong>Prerrequisitos:</strong> arreglos, listas, clases, objetos, métodos, interfaces, genéricos básicos y notación asintótica. Se usan índices desde cero. Los fragmentos parciales se integran en un método <code>main</code> y utilizan las clases e importaciones que se presentan más adelante. La sección 2 contiene un programa completo independiente.</p>
+<p><a id="biblioteca"></a></p>
+<h3>1.1. Ordenar mediante una biblioteca</h3>
+<p>Ordenar reorganiza los elementos de una secuencia de acuerdo con una relación de orden. El resultado debe cumplir dos condiciones: respetar el criterio elegido y conservar todos los elementos con sus multiplicidades. Una biblioteca proporciona el mecanismo para reorganizarlos; el programador selecciona los datos y define la regla que determina su posición.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Arrays.sort(primitivos)</code></td>
+<td>Orden ascendente de un arreglo primitivo</td>
+</tr>
+<tr>
+<td><code>Arrays.sort(objetos)</code></td>
+<td>Orden natural de los objetos</td>
+</tr>
+<tr>
+<td><code>Arrays.sort(objetos, comparador)</code></td>
+<td>Orden de un arreglo de objetos según un criterio explícito</td>
+</tr>
+<tr>
+<td><code>lista.sort(comparador)</code></td>
+<td>Orden de una lista según un criterio explícito</td>
+</tr>
+<tr>
+<td><code>lista.sort(null)</code></td>
+<td>Orden natural de los elementos de una lista</td>
+</tr>
+<tr>
+<td><code>Collections.sort(lista)</code></td>
+<td>Orden natural de una lista</td>
+</tr>
+<tr>
+<td><code>Collections.sort(lista, comparador)</code></td>
+<td>Orden de una lista con comparador</td>
+</tr>
+</tbody></table></div>
+<p>Estas operaciones devuelven <code>void</code> y modifican el contenedor recibido. Para conservar su disposición original, se ordena una copia. El resultado no es otra lista devuelta por <code>sort</code> [1, 2, 7].</p>
+<p><strong>Tres responsabilidades diferentes:</strong></p>
+<ol>
+<li>El contenedor almacena los elementos.</li>
+<li>El criterio determina cuándo un elemento precede a otro.</li>
+<li>La implementación del ordenamiento realiza las comparaciones y movimientos necesarios.</li>
+</ol>
+<p>No se debe suponer que un método ejecuta la misma secuencia de comparaciones en todos los JDK. El programa depende del contrato de la API, no de una traza interna específica.</p>
+<p><a id="primitivos"></a></p>
+<h3>1.2. Orden ascendente de primitivos</h3>
+<pre><code class="language-java">import java.util.Arrays;
+
+int[] numeros = {8, 3, 5, 1, 9, 3};
+Arrays.sort(numeros);
+System.out.println(Arrays.toString(numeros));
+// [1, 3, 3, 5, 8, 9]
+</code></pre>
+<p>Los valores repetidos permanecen. Un arreglo vacío o con un solo elemento es válido y ya está ordenado.</p>
+<pre><code class="language-java">double[] notas = {8.5, 6.2, 9.1, 7.0};
+Arrays.sort(notas);
+// [6.2, 7.0, 8.5, 9.1]
+</code></pre>
+<p>La API tiene sobrecargas para <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>char</code>, <code>float</code> y <code>double</code>. No tiene <code>Arrays.sort(boolean[])</code>. Las versiones de primitivos no aceptan un <code>Comparator</code> [1].</p>
+<p>Para ordenar solamente una región se indica el inicio inclusivo y el final exclusivo:</p>
+<pre><code class="language-java">int[] datos = {90, 4, 1, 3, 80};
+Arrays.sort(datos, 1, 4);
+// [90, 1, 3, 4, 80]
+</code></pre>
+<p>El tamaño del problema es <code>r = toIndex - fromIndex</code>. Los elementos externos al rango conservan sus posiciones. Los límites deben satisfacer <code>0 &lt;= fromIndex &lt;= toIndex &lt;= datos.length</code>.</p>
+<p><strong>Primitivos y objetos no son intercambiables.</strong> <code>int[]</code> almacena valores primitivos; <code>Integer[]</code> almacena referencias a objetos. Para solicitar orden descendente con un comparador se puede utilizar <code>Integer[]</code>:</p>
+<pre><code class="language-java">Integer[] numeros = {8, 3, 5, 1, 9};
+Arrays.sort(numeros, Comparator.reverseOrder());
+// [9, 8, 5, 3, 1]
+</code></pre>
+<p>Para mantener <code>int[]</code>, una alternativa es ordenar ascendentemente y después invertir sus posiciones con un recorrido. Esa inversión agrega tiempo lineal. Convertir a <code>Integer[]</code> introduce objetos y referencias; conviene elegir el tipo por las necesidades del programa.</p>
+<p><a id="natural"></a></p>
+<h3>1.3. Objetos con orden natural</h3>
+<p>El <strong>orden natural</strong> es la regla definida por una clase mediante <code>Comparable</code>. Clases como <code>Integer</code> y <code>String</code> ya proporcionan esa regla [4, 6].</p>
+<pre><code class="language-java">List&lt;Integer&gt; valores = new ArrayList&lt;&gt;(List.of(8, 3, 5, 1));
+valores.sort(Comparator.naturalOrder());
+// [1, 3, 5, 8]
+
+List&lt;String&gt; nombres = new ArrayList&lt;&gt;(List.of(&quot;Marta&quot;, &quot;Ana&quot;, &quot;Luis&quot;));
+nombres.sort(null);
+// [Ana, Luis, Marta]
+</code></pre>
+<p>En <code>lista.sort(null)</code>, <code>null</code> significa que no se aporta un comparador externo y se solicita el orden natural. No significa que la lista pueda contener elementos nulos sin una política específica.</p>
+<p>Los genéricos utilizan tipos de referencia: se escribe <code>List&lt;Integer&gt;</code>, no <code>List&lt;int&gt;</code>.</p>
+<p>El orden natural de <code>String</code> es lexicográfico según unidades UTF-16. No garantiza el orden lingüístico del español ni ignora automáticamente mayúsculas o tildes. Si el problema exige un orden de un idioma, debe seleccionarse una regla de colación apropiada.</p>
+<p><a id="interno"></a></p>
+<h3>1.4. Cómo funciona <code>sort</code> por detrás</h3>
+<p><strong>Contrato e implementación.</strong> El contrato establece el resultado y las garantías observables. La implementación es el código interno utilizado para cumplirlo y puede cambiar entre versiones [1]. Para los detalles siguientes se toma como referencia la documentación de Java SE 25; los ejemplos públicos de esta lectura funcionan desde Java 17.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>Comportamiento interno documentado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Arrays.sort(int[])</code></td>
+<td>Variante optimizada de Dual-Pivot Quicksort</td>
+</tr>
+<tr>
+<td><code>Arrays.sort</code> para objetos</td>
+<td>Ordenamiento estable y adaptativo de la familia TimSort</td>
+</tr>
+<tr>
+<td>Implementación predeterminada de <code>List.sort</code></td>
+<td>Obtiene un arreglo, lo ordena y escribe las referencias de vuelta en la lista</td>
+</tr>
+<tr>
+<td><code>ArrayList.sort</code> en OpenJDK</td>
+<td>Ordena el tramo ocupado de su arreglo interno; no necesita reconstruirlo como la implementación predeterminada de <code>List</code></td>
+</tr>
+</tbody></table></div>
+<p>TimSort reconoce segmentos ya ordenados, llamados <em>runs</em>, y aprovecha esa estructura. Los segmentos cortos se procesan con estrategias apropiadas para tamaños pequeños y los segmentos ordenados se combinan. Esto permite reducir trabajo en entradas favorables. El nombre <code>sort</code> no implica que todos los tipos, tamaños y contenedores recorran exactamente el mismo procedimiento [1, 2, 8].</p>
+<p>No se necesita reconstruir esas estrategias para usar la API. Sí se necesita comprender que el criterio puede ser consultado muchas veces, que no existe una cantidad universal de llamadas al comparador y que el ordenamiento de objetos debe conservar estabilidad.</p>
+<p><strong>Modelo conceptual para objetos:</strong> cuando necesita comparar dos elementos, la implementación consulta <code>comparador.compare(a, b)</code>. Un valor negativo indica que <code>a</code> precede a <code>b</code>; cero indica equivalencia según el criterio; un valor positivo indica que <code>a</code> sigue a <code>b</code>. Si se solicita orden natural, la comparación utiliza <code>compareTo</code>.</p>
+<p>La implementación decide qué parejas comparar. No se garantiza que sean siempre vecinas ni que cada objeto se compare una sola vez. Tampoco se garantiza que las claves extraídas se almacenen en caché.</p>
+<p><strong>Referencias e identidad.</strong> Al ordenar estudiantes se cambian de posición sus referencias. El nombre, código y nota de cada estudiante siguen perteneciendo al mismo objeto. No se ordenan las notas por separado para volver a asociarlas con otros nombres.</p>
+<p><a id="complejidad"></a></p>
+<h3>1.5. Complejidad y costo de comparar</h3>
+<p>El tamaño de entrada es <code>n = cantidad de elementos</code>. La notación <code>O</code> expresa una cota superior asintótica; <code>Θ</code> expresa una cota ajustada. Ninguna de ellas significa por sí sola «peor caso» o «mejor caso».</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operación o escenario</th>
+<th>Tiempo</th>
+<th>Memoria adicional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TimSort para objetos, entrada favorable ya ordenada</td>
+<td><code>Θ(n)</code> para el reconocimiento y recorrido</td>
+<td>No requiere el máximo espacio de mezcla en todos los casos</td>
+</tr>
+<tr>
+<td>TimSort para objetos, peor caso</td>
+<td><code>O(n log n)</code>; existen familias de costo <code>Θ(n log n)</code></td>
+<td><code>O(n)</code> referencias auxiliares</td>
+</tr>
+<tr>
+<td><code>Arrays.sort(int[])</code>, según la nota de implementación de Java SE 25</td>
+<td><code>O(n log n)</code> en todos los conjuntos de datos</td>
+<td>No se atribuye aquí una cota universal a todas las sobrecargas primitivas</td>
+</tr>
+<tr>
+<td>Crear una copia de un arreglo o <code>ArrayList</code></td>
+<td><code>Θ(n)</code></td>
+<td><code>Θ(n)</code></td>
+</tr>
+<tr>
+<td>Copiar y ordenar objetos, peor caso</td>
+<td><code>O(n log n)</code></td>
+<td><code>O(n)</code></td>
+</tr>
+</tbody></table></div>
+<p>Las cotas de TimSort suponen comparaciones de costo constante. La adaptabilidad explica que no sea correcto describir todas las entradas con un tiempo ajustado <code>Θ(n log n)</code>. Las garantías internas deben asociarse a la versión y al contenedor estudiados [1, 2].</p>
+<p><strong>Justificación del crecimiento.</strong> La combinación equilibrada de segmentos ordenados permite distribuir el trabajo en una cantidad de niveles proporcional a <code>log n</code>; en cada nivel, el trabajo total puede ser proporcional a <code>n</code>. El producto explica la escala <code>n log n</code> del peor caso. En una entrada que ya constituye un segmento ordenado, reconocerla requiere recorrerla: su costo sigue siendo lineal, no constante.</p>
+<p>Para ordenar mediante comparaciones y con claves distintas, un límite inferior clásico del peor caso se obtiene de las <code>n!</code> permutaciones posibles: distinguirlas requiere una altura de decisión de al menos <code>log₂(n!)</code>, que crece como <code>Θ(n log n)</code>. Esta es una justificación matemática del modelo de comparaciones, no una afirmación de que todas las entradas necesiten ese trabajo.</p>
+<p><strong>El comparador también cuesta.</strong> Si <code>q(n)</code> es el número de comparaciones y <code>C</code> una cota de costo por comparación, el costo de comparar se puede acotar mediante <code>O(q(n) · C)</code>. Hay que agregar además movimientos de referencias y preparación de datos.</p>
+<ul>
+<li>Comparar notas <code>double</code> de tamaño fijo cuesta <code>O(1)</code>.</li>
+<li>Comparar dos cadenas puede recorrer hasta <code>m</code> unidades de texto: costo <code>O(m)</code>.</li>
+<li>Para un ordenamiento con <code>O(n log n)</code> comparaciones de cadenas, una cota es <code>O(n log n · m)</code>.</li>
+<li>Con <code>k</code> criterios de costo constante, una comparación puede costar <code>O(k)</code> si se llega hasta el último desempate. Si <code>k</code> es fijo, el orden global sigue siendo <code>O(n log n)</code>.</li>
+</ul>
+<p><strong>Ejemplo de escala, no de tiempo exacto:</strong> duplicar <code>n</code> multiplica <code>n log₂ n</code> por <code>2 · (1 + 1/log₂ n)</code>. Para tamaños grandes el factor se aproxima a 2; no se aproxima a 4 como en una función cuadrática. No equivale a predecir exactamente milisegundos.</p>
+<p><strong>Memoria.</strong> Modificar la entrada no implica memoria auxiliar constante. TimSort puede reservar almacenamiento temporal de referencias. Una copia superficial adicional cuesta espacio lineal, aunque no duplique los objetos.</p>
+<p><strong>Medición.</strong> Si se instrumenta un comparador, se cuentan sus invocaciones reales. El conteo depende de la entrada y la implementación. No se debe afirmar que siempre se realizan exactamente <code>n log₂ n</code> comparaciones ni extrapolar complejidad desde una sola ejecución.</p>
+<p><a id="estudiante"></a></p>
+<h3>1.6. Clase de trabajo</h3>
+<p>Los ejemplos siguientes comienzan con una clase sin orden natural. Por eso se proporciona un comparador externo. En la sección 1.13 se incorpora <code>Comparable</code>.</p>
+<pre><code class="language-java">class Estudiante {
+    private final String codigo;
+    private final String nombre;
+    private final double nota;
+
+    public Estudiante(String codigo, String nombre, double nota) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.nota = nota;
+    }
+
+    public String getCodigo() { return codigo; }
+    public String getNombre() { return nombre; }
+    public double getNota() { return nota; }
+
+    @Override
+    public String toString() {
+        return codigo + &quot; - &quot; + nombre + &quot; - &quot; + nota;
+    }
+}
+</code></pre>
+<p>Se presupone que códigos y nombres no son nulos y que las notas son finitas. La demostración completa valida estas condiciones. Cada ejercicio de ordenamiento parte de una copia nueva de la siguiente lista:</p>
+<pre><code class="language-java">List&lt;Estudiante&gt; original = List.of(
+    new Estudiante(&quot;E03&quot;, &quot;Marta&quot;, 8.5),
+    new Estudiante(&quot;E01&quot;, &quot;Luis&quot;, 6.2),
+    new Estudiante(&quot;E02&quot;, &quot;Ana&quot;, 8.5),
+    new Estudiante(&quot;E04&quot;, &quot;Pedro&quot;, 9.1)
+);
+
+List&lt;Estudiante&gt; estudiantes = new ArrayList&lt;&gt;(original);
+</code></pre>
+<p>Importaciones utilizadas en los fragmentos:</p>
+<pre><code class="language-java">import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.ToDoubleFunction;
+</code></pre>
+<p><a id="comparadores"></a></p>
+<h3>1.7. Qué es un comparador</h3>
+<p><code>Comparator&lt;T&gt;</code> representa una regla externa para comparar dos objetos de tipo <code>T</code>. Su método funcional es <code>int compare(T a, T b)</code> [3].</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Resultado</th>
+<th>Significado dentro del orden elegido</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Menor que cero</td>
+<td><code>a</code> debe aparecer antes que <code>b</code></td>
+</tr>
+<tr>
+<td>Igual a cero</td>
+<td><code>a</code> y <code>b</code> son equivalentes para ese criterio</td>
+</tr>
+<tr>
+<td>Mayor que cero</td>
+<td><code>a</code> debe aparecer después que <code>b</code></td>
+</tr>
+</tbody></table></div>
+<p>No se exige devolver exactamente -1, 0 y 1. Se interpreta el signo. Un resultado cero no significa que <code>a == b</code> ni que <code>a.equals(b)</code>; puede indicar solamente que tienen la misma nota.</p>
+<p><strong>Separación de responsabilidades.</strong> El comparador responde una pregunta sobre dos elementos. <code>sort</code> usa esas respuestas para ordenar toda la secuencia. Crear el comparador no ordena los datos.</p>
+<p>Un comparador válido debe cumplir antisimetría de signo, transitividad y consistencia de las equivalencias. Si <code>a</code> y <code>b</code> se consideran equivalentes, deben producir el mismo signo al compararse con un tercer elemento. Además, comparar un elemento consigo mismo debe dar cero. La implementación puede detectar ciertos incumplimientos y lanzar <code>IllegalArgumentException</code>; no está obligada a descubrir todos los comparadores incorrectos [3].</p>
+<p><a id="atributo"></a></p>
+<h3>1.8. Orden simple por un atributo</h3>
+<p><strong>Nota ascendente:</strong></p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNota =
+    Comparator.comparingDouble(e -&gt; e.getNota());
+
+estudiantes.sort(porNota);
+</code></pre>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">Posición final</th>
+<th>Código</th>
+<th>Nombre</th>
+<th align="right">Nota</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td>E01</td>
+<td>Luis</td>
+<td align="right">6.2</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td>E03</td>
+<td>Marta</td>
+<td align="right">8.5</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>E02</td>
+<td>Ana</td>
+<td align="right">8.5</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>E04</td>
+<td>Pedro</td>
+<td align="right">9.1</td>
+</tr>
+</tbody></table></div>
+<p>Marta permanece antes que Ana porque el comparador solo considera la nota y el ordenamiento es estable.</p>
+<p><strong>Nombre ascendente:</strong></p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNombre =
+    Comparator.comparing(Estudiante::getNombre);
+
+estudiantes.sort(porNombre);
+// Códigos: E02, E01, E03, E04
+</code></pre>
+<p>Los constructores especializados evitan convertir una clave primitiva en su envolvente para compararla: <code>comparingInt</code>, <code>comparingLong</code> y <code>comparingDouble</code>. <code>comparing</code> sirve para claves de referencia que tengan un orden natural o un comparador propio [3].</p>
+<p><a id="lambda"></a></p>
+<h3>1.9. Funciones lambda y referencias a métodos</h3>
+<p>En este ejemplo, la expresión con flecha es una <strong>función extractora de clave</strong>:</p>
+<pre><code class="language-java">e -&gt; e.getNota()
+</code></pre>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Parte</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>e</code></td>
+<td>Parámetro que representa un estudiante</td>
+</tr>
+<tr>
+<td><code>-&gt;</code></td>
+<td>Separa los parámetros del cuerpo de la función</td>
+</tr>
+<tr>
+<td><code>e.getNota()</code></td>
+<td>Expresión cuyo resultado se devuelve</td>
+</tr>
+</tbody></table></div>
+<p>El nombre <code>e</code> puede reemplazarse por otro nombre válido:</p>
+<pre><code class="language-java">estudiante -&gt; estudiante.getNota()
+</code></pre>
+<p>En ese contexto, Java deduce el tipo <code>Estudiante</code>. La función recibe <strong>un objeto</strong> y devuelve <strong>un <code>double</code></strong>. No compara dos estudiantes. El cuerpo de una sola expresión devuelve su resultado implícitamente:</p>
+<pre><code class="language-java">e -&gt; e.getNota()
+</code></pre>
+<p>Equivale a:</p>
+<pre><code class="language-java">e -&gt; {
+    return e.getNota();
+}
+</code></pre>
+<p>Se puede almacenar y ejecutar esa función de forma independiente. <code>ToDoubleFunction&lt;Estudiante&gt;</code> es la interfaz funcional que representa una operación que recibe un estudiante y produce un <code>double</code> [5].</p>
+<pre><code class="language-java">ToDoubleFunction&lt;Estudiante&gt; extraerNota = e -&gt; e.getNota();
+
+double notaDeMarta = extraerNota.applyAsDouble(original.get(0));
+// notaDeMarta vale 8.5
+
+Comparator&lt;Estudiante&gt; porNota =
+    Comparator.comparingDouble(extraerNota);
+
+estudiantes.sort(porNota);
+</code></pre>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Expresión</th>
+<th>Qué produce</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>e -&gt; e.getNota()</code></td>
+<td>Una función extractora compatible con el tipo funcional esperado</td>
+</tr>
+<tr>
+<td><code>extraerNota.applyAsDouble(estudiante)</code></td>
+<td>Un valor <code>double</code> concreto</td>
+</tr>
+<tr>
+<td><code>Comparator.comparingDouble(extraerNota)</code></td>
+<td>Un comparador de estudiantes</td>
+</tr>
+<tr>
+<td><code>porNota.compare(a, b)</code></td>
+<td>Un entero que expresa el orden entre dos estudiantes</td>
+</tr>
+<tr>
+<td><code>estudiantes.sort(porNota)</code></td>
+<td>Reorganiza la lista; devuelve <code>void</code></td>
+</tr>
+</tbody></table></div>
+<p><strong>Modelo de comparación.</strong> Si la biblioteca necesita comparar a Marta y Luis, el comparador obtiene 8.5 y 6.2 y los compara numéricamente. El resultado es positivo, por lo que Marta sigue a Luis en orden ascendente. Esta explicación describe una comparación posible, no una promesa sobre el orden real de llamadas.</p>
+<p>La lambda anterior es equivalente, en este contexto, a una referencia a método:</p>
+<pre><code class="language-java">Comparator.comparingDouble(e -&gt; e.getNota())
+Comparator.comparingDouble(Estudiante::getNota)
+</code></pre>
+<p>También es posible escribir directamente una función de dos argumentos:</p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNota =
+    (a, b) -&gt; Double.compare(a.getNota(), b.getNota());
+</code></pre>
+<p>Aquí la lambda recibe <strong>dos estudiantes</strong> y devuelve <strong>un <code>int</code> de comparación</strong>. Es distinta de la extractora, aunque el comparador resultante establezca el mismo orden.</p>
+<p><strong>Nombre de la herramienta.</strong> En estos ejemplos se usa <code>Comparator.comparingDouble</code>, del paquete <code>java.util</code>. <code>Collectors</code>, del paquete <code>java.util.stream</code>, agrupa operaciones de recolección y reducción de flujos; no es la clase que construye este comparador.</p>
+<p><a id="criterios"></a></p>
+<h3>1.10. Varios criterios y orden descendente</h3>
+<p><strong>Regla del problema:</strong> nota descendente; a igualdad de nota, nombre ascendente; a igualdad de ambos, código ascendente.</p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNotaNombreCodigo =
+    Comparator.comparingDouble(Estudiante::getNota)
+              .reversed()
+              .thenComparing(Estudiante::getNombre)
+              .thenComparing(Estudiante::getCodigo);
+
+estudiantes.sort(porNotaNombreCodigo);
+// Códigos: E04, E02, E03, E01
+</code></pre>
+<p>Los criterios se consultan en prioridad. <code>thenComparing</code> aplica el siguiente cuando el comparador anterior devuelve cero [3]. No ordena cada atributo de forma independiente.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Comparación</th>
+<th>Decisión</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pedro, 9.1 frente a Ana, 8.5</td>
+<td>Pedro precede por nota descendente</td>
+</tr>
+<tr>
+<td>Marta, 8.5 frente a Ana, 8.5</td>
+<td>Ana precede por nombre ascendente</td>
+</tr>
+<tr>
+<td>Dos estudiantes con la misma nota y nombre</td>
+<td>Se comparan sus códigos</td>
+</tr>
+</tbody></table></div>
+<p><strong>La posición de <code>reversed()</code> cambia la regla:</strong></p>
+<pre><code class="language-java">// Nota descendente y nombre ascendente.
+Comparator&lt;Estudiante&gt; primero =
+    Comparator.comparingDouble(Estudiante::getNota)
+              .reversed()
+              .thenComparing(Estudiante::getNombre);
+
+// Nota descendente y nombre descendente.
+Comparator&lt;Estudiante&gt; segundo =
+    Comparator.comparingDouble(Estudiante::getNota)
+              .thenComparing(Estudiante::getNombre)
+              .reversed();
+</code></pre>
+<p>En el segundo caso se invierte el comparador compuesto completo. Si los criterios contienen reglas para nulos, invertir todo también invierte esa ubicación.</p>
+<p><a id="manuales"></a></p>
+<h3>1.11. Comparadores manuales</h3>
+<p>Un comparador manual resulta útil cuando la regla combina decisiones que no se expresan cómodamente mediante una cadena de constructores. Puede declararse como variable, lambda o clase.</p>
+<p><strong>Como variable con clase anónima:</strong></p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNotaNombre = new Comparator&lt;Estudiante&gt;() {
+    @Override
+    public int compare(Estudiante a, Estudiante b) {
+        int resultado = Double.compare(b.getNota(), a.getNota());
+        if (resultado != 0) {
+            return resultado;
+        }
+        return a.getNombre().compareTo(b.getNombre());
+    }
+};
+
+estudiantes.sort(porNotaNombre);
+</code></pre>
+<p><code>Double.compare(b.getNota(), a.getNota())</code> invierte los argumentos para obtener nota descendente. El nombre conserva el sentido ascendente. Un empate en nota permite continuar hacia el segundo criterio.</p>
+<p><strong>Con lambda:</strong></p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNotaNombre = (a, b) -&gt; {
+    int resultado = Double.compare(b.getNota(), a.getNota());
+    if (resultado != 0) {
+        return resultado;
+    }
+    return a.getNombre().compareTo(b.getNombre());
+};
+</code></pre>
+<p>Estas declaraciones son alternativas; no se colocan con el mismo nombre en el mismo ámbito.</p>
+<p><strong>Como clase reutilizable:</strong></p>
+<pre><code class="language-java">class ComparadorPorNota implements Comparator&lt;Estudiante&gt; {
+    @Override
+    public int compare(Estudiante a, Estudiante b) {
+        return Double.compare(a.getNota(), b.getNota());
+    }
+}
+
+// Dentro de main:
+estudiantes.sort(new ComparadorPorNota());
+</code></pre>
+<p><strong>Con condiciones explícitas, bajo la precondición de notas finitas:</strong></p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNota = (a, b) -&gt; {
+    if (a.getNota() &lt; b.getNota()) {
+        return -1;
+    }
+    if (a.getNota() &gt; b.getNota()) {
+        return 1;
+    }
+    return 0;
+};
+</code></pre>
+<p>Esta última versión permite explicar el signo. Para una comparación general de <code>double</code>, se prefiere <code>Double.compare</code>, que define el tratamiento de <code>NaN</code> y de los ceros con signo. Las comparaciones <code>&lt;</code> y <code>&gt;</code> por sí solas no establecen ese mismo orden total [1].</p>
+<p><strong>No comparar mediante una resta convertida a entero:</strong></p>
+<pre><code class="language-java">// Incorrecto para notas decimales:
+return (int) (a.getNota() - b.getNota());
+</code></pre>
+<p>Para 8.5 y 8.2, la conversión produce cero y declara un empate falso. Con enteros, una resta también puede desbordarse. Se emplean <code>Integer.compare</code>, <code>Long.compare</code> o <code>Double.compare</code> según el tipo.</p>
+<p><a id="estabilidad"></a></p>
+<h3>1.12. Estabilidad y empates</h3>
+<p>Un ordenamiento estable conserva el orden relativo <strong>previo a esa llamada</strong> de los elementos que el criterio considera equivalentes. <code>List.sort</code> y <code>Arrays.sort</code> para objetos garantizan estabilidad [1, 2].</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Criterio</th>
+<th>Salida</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Marta 8.5, Luis 6.2, Ana 8.5</td>
+<td>Solo nota ascendente</td>
+<td>Luis, Marta, Ana</td>
+</tr>
+<tr>
+<td>Marta 8.5, Luis 6.2, Ana 8.5</td>
+<td>Nota ascendente y nombre ascendente</td>
+<td>Luis, Ana, Marta</td>
+</tr>
+</tbody></table></div>
+<p>En la segunda fila, Marta y Ana no empatan en el comparador completo. El cambio no viola estabilidad.</p>
+<p>Si primero se ordena por nombre y después solo por nota, los empates de nota conservan el orden que dejó la primera llamada. La estabilidad no reconstruye automáticamente un orden de llegada perdido. Para una prioridad compuesta, una sola cadena de comparadores suele comunicar mejor la regla.</p>
+<p>Un resultado cero no elimina registros de una lista. En estructuras como <code>TreeSet</code> y en las claves de <code>TreeMap</code>, la equivalencia según el orden sí influye en la identificación de elementos. Un comparador solo por nota puede considerar equivalentes a dos estudiantes diferentes. Esa consecuencia debe evaluarse antes de reutilizarlo en esas estructuras [3, 4].</p>
+<p><a id="comparable"></a></p>
+<h3>1.13. <code>Comparable</code>: el orden natural de una clase</h3>
+<p><code>Comparable&lt;T&gt;</code> permite que la clase establezca su propio orden natural mediante <code>int compareTo(T otro)</code>. A diferencia de un comparador externo, cada objeto se compara con otro del mismo dominio [4].</p>
+<p>Para que el orden natural de <code>Estudiante</code> sea por código ascendente, se cambia la declaración:</p>
+<pre><code class="language-java">class Estudiante implements Comparable&lt;Estudiante&gt; {
+    // Campos, constructor, getters y toString de la sección 1.6.
+
+    @Override
+    public int compareTo(Estudiante otro) {
+        return this.codigo.compareTo(otro.codigo);
+    }
+}
+</code></pre>
+<p>El comentario indica miembros que deben conservarse; este fragmento no es una segunda clase completa para copiar junto a la anterior.</p>
+<p>Uso:</p>
+<pre><code class="language-java">List&lt;Estudiante&gt; porCodigo = new ArrayList&lt;&gt;(original);
+porCodigo.sort(null);
+// E01, E02, E03, E04
+
+// Forma explícita equivalente:
+porCodigo.sort(Comparator.naturalOrder());
+
+// Orden natural inverso:
+porCodigo.sort(Comparator.reverseOrder());
+</code></pre>
+<p>Aunque exista un orden natural por código, se puede proporcionar un comparador por nota cuando el caso de uso lo requiera. La clase no necesita cambiar cada vez que una pantalla solicita una prioridad diferente.</p>
+<p><strong>Consistencia con <code>equals</code>.</strong> Se recomienda que <code>a.compareTo(b) == 0</code> coincida con <code>a.equals(b)</code>. En este modelo se considera que el código identifica al estudiante; por eso la demostración define también <code>equals</code> y <code>hashCode</code> por código. La clase mínima de la sección 1.6 heredaba igualdad por identidad y debe completarse si se desea esa consistencia. La recomendación no obliga a convertir todos los comparadores alternativos en criterios de identidad [4].</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th><code>Comparable&lt;Estudiante&gt;</code></th>
+<th><code>Comparator&lt;Estudiante&gt;</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Método</td>
+<td><code>compareTo(otro)</code></td>
+<td><code>compare(a, b)</code></td>
+</tr>
+<tr>
+<td>Lugar habitual de la regla</td>
+<td>Clase <code>Estudiante</code></td>
+<td>Objeto comparador externo o miembro estático</td>
+</tr>
+<tr>
+<td>Finalidad</td>
+<td>Un orden natural de la clase</td>
+<td>Órdenes alternativos según el contexto</td>
+</tr>
+<tr>
+<td>¿Requiere modificar la clase del elemento?</td>
+<td>Sí</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Ejemplo</td>
+<td>Código ascendente</td>
+<td>Nota descendente y nombre ascendente</td>
+</tr>
+</tbody></table></div>
+<p><a id="comparadores-clase"></a></p>
+<h3>1.14. Comparadores definidos dentro de la clase</h3>
+<p>Una clase también puede publicar criterios reutilizables sin convertirlos en su orden natural:</p>
+<pre><code class="language-java">// Miembros dentro de Estudiante:
+public static final Comparator&lt;Estudiante&gt; POR_NOTA =
+    Comparator.comparingDouble(Estudiante::getNota);
+
+public static final Comparator&lt;Estudiante&gt; POR_NOMBRE =
+    Comparator.comparing(Estudiante::getNombre);
+</code></pre>
+<p>Uso:</p>
+<pre><code class="language-java">estudiantes.sort(Estudiante.POR_NOTA);
+estudiantes.sort(Estudiante.POR_NOMBRE);
+</code></pre>
+<p><code>Comparable</code> define cómo se compara una instancia con otra. Estas constantes almacenan objetos <code>Comparator</code> accesibles desde la clase. Pueden coexistir: orden natural por código y criterios publicados por nota y nombre. Una variable local es suficiente cuando la regla solo se usa en un método; una constante o clase independiente resulta útil cuando tiene varios consumidores.</p>
+<p><a id="copias"></a></p>
+<h3>1.15. Modificación, copias y restricciones</h3>
+<p><strong>Conservar el original:</strong></p>
+<pre><code class="language-java">List&lt;Estudiante&gt; ordenados = new ArrayList&lt;&gt;(original);
+ordenados.sort(Estudiante.POR_NOTA); // Tras incorporar la sección 1.14.
+</code></pre>
+<p>La copia es superficial: ambas listas apuntan a los mismos estudiantes. Reordenar la copia no altera las posiciones del original. Si los objetos fueran mutables, cambiar un campo compartido sí sería observable desde ambos contenedores. Los campos finales del ejemplo evitan reasignarlos después de construir el objeto.</p>
+<p><strong>Lista modificable:</strong> <code>List.of</code> crea una lista no modificable. Llamar a su <code>sort</code> lanza <code>UnsupportedOperationException</code>. Un <code>ArrayList</code> construido con sus elementos permite ordenar. Una lista de tamaño fijo como <code>Arrays.asList</code> puede permitir reemplazar posiciones y ordenar aunque no permita agregar o quitar elementos [2].</p>
+<p><strong>Nulos:</strong> si el dominio admite referencias nulas, debe definirse su ubicación:</p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNotaConNulosAlFinal =
+    Comparator.nullsLast(
+        Comparator.comparingDouble(Estudiante::getNota)
+    );
+</code></pre>
+<p>Este criterio tolera estudiantes nulos, pero no soluciona atributos nulos dentro de un estudiante. Para un nombre nulo se configura el comparador de esa clave:</p>
+<pre><code class="language-java">Comparator&lt;Estudiante&gt; porNombreConNulos =
+    Comparator.comparing(
+        Estudiante::getNombre,
+        Comparator.nullsLast(Comparator.naturalOrder())
+    );
+</code></pre>
+<p>En los ejercicios principales se rechazan nombres nulos para mantener un contrato único.</p>
+<p><strong>Orden posterior:</strong> una lista no se mantiene ordenada automáticamente por haber ejecutado <code>sort</code>. Agregar elementos o modificar claves puede invalidar el orden. Un comparador debe observar valores coherentes durante la operación y no modificar los objetos que compara.</p>
+<p><a id="errores"></a></p>
+<h3>1.16. Errores frecuentes</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Causa y corrección</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>List&lt;int&gt;</code></td>
+<td>Los genéricos requieren tipos de referencia; usar <code>List&lt;Integer&gt;</code></td>
+</tr>
+<tr>
+<td><code>Arrays.sort(intArray, comparador)</code></td>
+<td>No existe esa sobrecarga; elegir objetos o procesar el arreglo primitivo apropiadamente</td>
+</tr>
+<tr>
+<td><code>List&lt;Estudiante&gt; ordenados = estudiantes.sort(c)</code></td>
+<td><code>sort</code> devuelve <code>void</code>; crear la copia antes de ordenar</td>
+</tr>
+<tr>
+<td>Orden natural sin <code>Comparable</code></td>
+<td>Falta una regla natural; implementar la interfaz o pasar un comparador</td>
+</tr>
+<tr>
+<td>Restar notas y convertir a <code>int</code></td>
+<td>Puede declarar empates falsos; usar <code>Double.compare</code></td>
+</tr>
+<tr>
+<td><code>compare(a, a)</code> devuelve 1</td>
+<td>Incumple el contrato; devolver cero cuando corresponda</td>
+</tr>
+<tr>
+<td>Usar datos aleatorios o modificar notas dentro de <code>compare</code></td>
+<td>La regla cambia durante el ordenamiento; comparar claves estables</td>
+</tr>
+<tr>
+<td>Poner <code>reversed()</code> al final sin revisar</td>
+<td>Se invierte toda la cadena; ubicarlo según la prioridad requerida</td>
+</tr>
+<tr>
+<td>Agregar código como desempate y afirmar que se conservó llegada</td>
+<td>El desempate impone otra prioridad; comparar solo la clave si se quiere preservar el orden previo</td>
+</tr>
+<tr>
+<td>Suponer memoria <code>O(1)</code> porque se modifica la entrada</td>
+<td>La implementación puede reservar almacenamiento auxiliar</td>
+</tr>
+<tr>
+<td>Ordenar directamente una lista de <code>List.of</code></td>
+<td>Es no modificable; construir un <code>ArrayList</code></td>
+</tr>
+<tr>
+<td>Llamar <code>Collectors</code> al constructor del comparador</td>
+<td>La clase usada es <code>Comparator</code>; revisar paquete y método</td>
+</tr>
+</tbody></table></div>
+<p><a id="demostracion"></a></p>
+<h2>2. Demostración guiada</h2>
+<h3>2.1. Problema y contrato</h3>
+<p>Ordenar valores primitivos y estudiantes mediante la API de Java. Cada vista recibe una copia independiente. Mostrar orden por nota, por varios criterios, con comparador manual y mediante el orden natural de <code>Estudiante</code>.</p>
+<p><strong>Entrada válida:</strong> códigos y nombres no vacíos, notas finitas entre 0 y 10. Los objetos de la demostración son inmutables y sus códigos son distintos. La clase considera identidad por código y orden natural por ese mismo código. El orden natural de códigos es lexicográfico.</p>
+<p><strong>Salida:</strong> el arreglo primitivo se ordena sobre sí mismo. La lista original conserva su disposición; las copias contienen las mismas referencias. La demostración no presenta una solución de la PC integradora.</p>
+<h3>2.2. Antes de ejecutar</h3>
+<ol>
+<li>Predecir los códigos que aparecerán en cada vista.</li>
+<li>Explicar por qué Marta precede a Ana si solo se compara la nota ascendente.</li>
+<li>Distinguir la extractora <code>e -&gt; e.getNota()</code> del comparador <code>(a, b) -&gt; ...</code>.</li>
+<li>Identificar qué regla aplica <code>sort(null)</code>.</li>
+<li>Explicar por qué la lista original puede ser no modificable y las copias sí se pueden ordenar.</li>
+</ol>
+<h3>2.3. Código completo</h3>
+<p>Guardar exclusivamente el siguiente bloque como <code>DemoSortApi.java</code>. La clase <code>Estudiante</code> está anidada para mantener todo el ejemplo en un archivo. No se necesitan dependencias externas ni declaración de paquete.</p>
+<!-- DEMO:START -->
+<pre><code class="language-java">import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.ToDoubleFunction;
+
+public class DemoSortApi {
+    static final class Estudiante implements Comparable&lt;Estudiante&gt; {
+        private final String codigo;
+        private final String nombre;
+        private final double nota;
+
+        static final Comparator&lt;Estudiante&gt; POR_NOTA =
+            Comparator.comparingDouble(Estudiante::getNota);
+
+        Estudiante(String codigo, String nombre, double nota) {
+            if (codigo == null || codigo.isBlank()
+                    || nombre == null || nombre.isBlank()) {
+                throw new IllegalArgumentException(&quot;Código y nombre obligatorios&quot;);
+            }
+            if (!Double.isFinite(nota) || nota &lt; 0 || nota &gt; 10) {
+                throw new IllegalArgumentException(&quot;Nota inválida&quot;);
+            }
+            this.codigo = codigo;
+            this.nombre = nombre;
+            this.nota = nota;
+        }
+
+        String getCodigo() { return codigo; }
+        String getNombre() { return nombre; }
+        double getNota() { return nota; }
+
+        @Override
+        public int compareTo(Estudiante otro) {
+            return codigo.compareTo(otro.codigo);
+        }
+
+        @Override
+        public boolean equals(Object otro) {
+            return otro instanceof Estudiante
+                &amp;&amp; codigo.equals(((Estudiante) otro).codigo);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(codigo);
+        }
+
+        @Override
+        public String toString() {
+            return codigo + &quot; - &quot; + nombre + &quot; - &quot; + nota;
+        }
+    }
+
+    static List&lt;String&gt; codigos(List&lt;Estudiante&gt; datos) {
+        List&lt;String&gt; resultado = new ArrayList&lt;&gt;();
+        for (Estudiante e : datos) {
+            resultado.add(e.getCodigo());
+        }
+        return resultado;
+    }
+
+    static void mostrar(String titulo, List&lt;Estudiante&gt; datos) {
+        System.out.println(titulo + &quot;: &quot; + codigos(datos));
+    }
+
+    static void comprobar(boolean condicion, String mensaje) {
+        if (!condicion) {
+            throw new AssertionError(mensaje);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] numeros = {8, 3, 5, 1, 9, 3};
+        Arrays.sort(numeros);
+        comprobar(Arrays.equals(numeros, new int[]{1, 3, 3, 5, 8, 9}),
+            &quot;Orden primitivo incorrecto&quot;);
+        System.out.println(&quot;Primitivos: &quot; + Arrays.toString(numeros));
+
+        List&lt;Estudiante&gt; original = List.of(
+            new Estudiante(&quot;E03&quot;, &quot;Marta&quot;, 8.5),
+            new Estudiante(&quot;E01&quot;, &quot;Luis&quot;, 6.2),
+            new Estudiante(&quot;E02&quot;, &quot;Ana&quot;, 8.5),
+            new Estudiante(&quot;E04&quot;, &quot;Pedro&quot;, 9.1)
+        );
+
+        ToDoubleFunction&lt;Estudiante&gt; extraerNota = e -&gt; e.getNota();
+        System.out.println(&quot;Nota extraída: &quot;
+            + extraerNota.applyAsDouble(original.get(0)));
+
+        List&lt;Estudiante&gt; porNota = new ArrayList&lt;&gt;(original);
+        porNota.sort(Comparator.comparingDouble(extraerNota));
+        comprobar(codigos(porNota).equals(List.of(&quot;E01&quot;, &quot;E03&quot;, &quot;E02&quot;, &quot;E04&quot;)),
+            &quot;Orden o estabilidad incorrectos&quot;);
+        comprobar(porNota.get(1) == original.get(0)
+                &amp;&amp; porNota.get(2) == original.get(2),
+            &quot;No se conservaron identidades en el empate&quot;);
+        mostrar(&quot;Nota ascendente estable&quot;, porNota);
+
+        Comparator&lt;Estudiante&gt; variosCriterios =
+            Comparator.comparingDouble(Estudiante::getNota)
+                      .reversed()
+                      .thenComparing(Estudiante::getNombre)
+                      .thenComparing(Estudiante::getCodigo);
+
+        List&lt;Estudiante&gt; compuesta = new ArrayList&lt;&gt;(original);
+        compuesta.sort(variosCriterios);
+        comprobar(codigos(compuesta).equals(List.of(&quot;E04&quot;, &quot;E02&quot;, &quot;E03&quot;, &quot;E01&quot;)),
+            &quot;Criterios compuestos incorrectos&quot;);
+        mostrar(&quot;Nota descendente y nombre ascendente&quot;, compuesta);
+
+        Comparator&lt;Estudiante&gt; manual = new Comparator&lt;Estudiante&gt;() {
+            @Override
+            public int compare(Estudiante a, Estudiante b) {
+                int resultado = Double.compare(b.getNota(), a.getNota());
+                if (resultado != 0) {
+                    return resultado;
+                }
+                resultado = a.getNombre().compareTo(b.getNombre());
+                if (resultado != 0) {
+                    return resultado;
+                }
+                return a.getCodigo().compareTo(b.getCodigo());
+            }
+        };
+
+        List&lt;Estudiante&gt; conManual = new ArrayList&lt;&gt;(original);
+        conManual.sort(manual);
+        comprobar(codigos(conManual).equals(codigos(compuesta)),
+            &quot;El comparador manual no coincide&quot;);
+        mostrar(&quot;Comparador manual&quot;, conManual);
+
+        List&lt;Estudiante&gt; natural = new ArrayList&lt;&gt;(original);
+        natural.sort(null);
+        comprobar(codigos(natural).equals(List.of(&quot;E01&quot;, &quot;E02&quot;, &quot;E03&quot;, &quot;E04&quot;)),
+            &quot;Orden natural incorrecto&quot;);
+        mostrar(&quot;Comparable por código&quot;, natural);
+
+        Estudiante[] arreglo = original.toArray(new Estudiante[0]);
+        Arrays.sort(arreglo, Estudiante.POR_NOTA);
+        comprobar(Arrays.asList(arreglo).equals(porNota),
+            &quot;Orden del arreglo incorrecto&quot;);
+        mostrar(&quot;Arrays.sort por nota&quot;, Arrays.asList(arreglo));
+
+        comprobar(codigos(original).equals(List.of(&quot;E03&quot;, &quot;E01&quot;, &quot;E02&quot;, &quot;E04&quot;)),
+            &quot;Se modificó el original&quot;);
+        mostrar(&quot;Original conservado&quot;, original);
+        System.out.println(&quot;Verificación: correcta.&quot;);
+    }
+}
+</code></pre>
+<!-- DEMO:END -->
+
+<h3>2.4. Ejecución</h3>
+<p>Desde la carpeta donde se guardó el archivo:</p>
+<pre><code class="language-bash">java DemoSortApi.java
+</code></pre>
+<p>O mediante compilación explícita:</p>
+<pre><code class="language-bash">javac -encoding UTF-8 DemoSortApi.java
+java DemoSortApi
+</code></pre>
+<p>La demostración utiliza comprobaciones explícitas y no requiere <code>-ea</code>. Si falla una condición, se lanza <code>AssertionError</code> y no debe interpretarse la ejecución como correcta.</p>
+<h3>2.5. Salida esperada</h3>
+<pre><code class="language-text">Primitivos: [1, 3, 3, 5, 8, 9]
+Nota extraída: 8.5
+Nota ascendente estable: [E01, E03, E02, E04]
+Nota descendente y nombre ascendente: [E04, E02, E03, E01]
+Comparador manual: [E04, E02, E03, E01]
+Comparable por código: [E01, E02, E03, E04]
+Arrays.sort por nota: [E01, E03, E02, E04]
+Original conservado: [E03, E01, E02, E04]
+Verificación: correcta.
+</code></pre>
+<h3>2.6. Interpretación de la demostración</h3>
+<p>Cada vista se construye desde <code>original</code>, por lo que un ordenamiento no recibe accidentalmente el resultado del anterior. El criterio manual y la cadena de comparadores expresan las mismas tres prioridades. <code>compareTo</code> define otra regla: código ascendente.</p>
+<p>Las comprobaciones de identidad con <code>==</code> muestran que los dos objetos de nota 8.5 siguen siendo los mismos y mantienen su precedencia al ordenar solo por nota. Esto complementa la comprobación por códigos, que por sí sola no demostraría identidad si se permitieran códigos repetidos.</p>
+<p>Crear un número fijo de copias de tamaño <code>n</code> ocupa memoria total <code>O(n)</code>. Ejecutar un número fijo de ordenamientos de peor caso <code>O(n log n)</code> suma costos de esa misma clase asintótica; no los multiplica. El programa también valida constructores, construye listas para mostrar códigos e imprime resultados: esas tareas deben distinguirse del núcleo de ordenamiento.</p>
+<p><a id="pc"></a></p>
+<h2>3. Práctica y PC</h2>
+<h3>3.1. Indicaciones comunes</h3>
+<p>Los ejercicios se presentan sin solución. Para cada criterio indicar atributo, sentido y desempates. Para cada análisis indicar tamaño de entrada, costo de comparar, modificación del original y memoria adicional. No se exige reproducir las parejas internas que consulta TimSort.</p>
+<h3>3.2. Nivel 1: uso y conceptos</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">N.º</th>
+<th>Actividad</th>
+<th>Evidencia solicitada</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>Ordenar <code>int[] {4, -2, 4, 0}</code> y conservar una copia de la entrada.</td>
+<td>Original, salida y explicación de multiplicidades.</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>Ordenar solo los índices 1 a 3 de <code>{99, 7, 2, 5, 88}</code>.</td>
+<td>Argumentos de <code>Arrays.sort</code> y salida completa.</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>Ordenar un <code>Integer[]</code> de mayor a menor.</td>
+<td>Explicar por qué el mismo comparador no puede pasarse a <code>int[]</code>.</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>Ordenar estudiantes solo por nombre.</td>
+<td>Regla explícita y códigos de salida.</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>Declarar <code>ToDoubleFunction&lt;Estudiante&gt;</code> para extraer notas y ejecutarla con un estudiante.</td>
+<td>Separar el valor extraído del comparador construido.</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>Escribir un comparador por nota como clase anónima y como lambda de dos parámetros.</td>
+<td>Justificar la equivalencia del signo devuelto.</td>
+</tr>
+</tbody></table></div>
+<h3>3.3. Nivel 2: prioridades y estabilidad</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">N.º</th>
+<th>Problema</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">7</td>
+<td>Ordenar por nota descendente y código ascendente. Agregar dos estudiantes con la misma nota.</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>Ordenar por longitud de nombre ascendente, nombre ascendente y código ascendente.</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>Construir un ejemplo donde poner <code>reversed()</code> al final produzca un resultado distinto de invertir solo el primer criterio.</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>Usar tres estudiantes con nota igual. Ordenar solo por nota y comprobar la estabilidad mediante referencias.</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>Ordenar primero por nombre y después solo por nota. Explicar qué orden conserva el segundo ordenamiento entre empates.</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>Declarar un comparador estático dentro de <code>Estudiante</code> y utilizarlo desde otra clase.</td>
+</tr>
+</tbody></table></div>
+<h3>3.4. Nivel 3: contratos y complejidad</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">N.º</th>
+<th>Problema</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">13</td>
+<td>Incorporar <code>Comparable</code> por código y explicar qué igualdad necesita el modelo si el código es la identidad.</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>Demostrar con notas concretas por qué <code>(int)(a.nota - b.nota)</code> no es un comparador válido.</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>Instrumentar un comparador con un contador de invocaciones. Comparar entradas ordenadas, inversas y desordenadas de tamaño igual. Identificar JDK y contenedor; no generalizar desde una sola medición.</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>Si una comparación consulta una lista de hasta <code>m</code> elementos con un recorrido lineal, expresar una cota temporal del ordenamiento. Proponer cómo precalcular la clave.</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>Distinguir la memoria de <code>new ArrayList&lt;&gt;(original)</code> de la memoria auxiliar utilizada por el ordenamiento.</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>Explicar el efecto de usar un comparador solo por nota en un <code>TreeSet</code>. Compararlo con el resultado en un <code>ArrayList</code>.</td>
+</tr>
+</tbody></table></div>
+<h3>3.5. PC integradora · Vistas ordenadas de un registro académico</h3>
+<p><strong>Contexto.</strong> Una aplicación recibe estudiantes en orden de registro y necesita ofrecer varias vistas sin modificar la lista original. Cada estudiante tiene código, nombre y nota. Se requiere utilizar la API de ordenamiento de Java.</p>
+<p><strong>Contrato de entrada.</strong> Lista no nula, que puede estar vacía. Cada elemento debe ser no nulo, contener código y nombre no vacíos y una nota finita entre 0 y 10. Los códigos deben ser únicos y se comparan exactamente, distinguiendo mayúsculas de minúsculas. Rechazar toda la operación con una causa si hay un dato inválido. No recortar ni transformar silenciosamente los códigos.</p>
+<p><strong>Trabajo solicitado:</strong></p>
+<ol>
+<li>Crear la clase <code>Estudiante</code> con campos inmutables y orden natural por código. Definir <code>equals</code> y <code>hashCode</code> de forma consistente con esa identidad.</li>
+<li>Validar toda la lista antes de generar las vistas.</li>
+<li>Construir una copia superficial para cada vista: nota ascendente estable; nota descendente, nombre y código ascendentes; código ascendente mediante <code>Comparable</code>.</li>
+<li>Implementar la regla compuesta de dos formas: cadena de <code>Comparator</code> y comparador manual. Ambas deben producir la misma secuencia de referencias.</li>
+<li>Publicar al menos un comparador como constante de clase.</li>
+<li>Mostrar la lista original y los códigos de cada salida. Comprobar que el original conserva sus posiciones y que ninguna vista pierde elementos.</li>
+<li>Instrumentar el comparador de la vista por nota para contar invocaciones. Reportar el JDK utilizado. No exigir un conteo universal de la biblioteca.</li>
+<li>Analizar por separado validación, copia, comparación, ordenamiento y presentación. Si se usa un <code>HashSet</code> para códigos, declarar las suposiciones de costo esperado; si se buscan duplicados con dos bucles, incorporar su costo cuadrático.</li>
+</ol>
+<p><strong>Regla de estabilidad:</strong> la vista por nota ascendente compara únicamente la nota. No agregar código ni posición de llegada como desempates para aparentar que se conserva la estabilidad.</p>
+<h3>3.6. Casos de aceptación</h3>
+<p>Se abrevia cada estudiante como <code>(código, nombre, nota)</code>. La columna compuesta usa nota descendente, nombre ascendente y código ascendente.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entrada o escenario</th>
+<th>Solo nota ascendente</th>
+<th>Orden compuesto</th>
+<th>Orden natural</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E03/Marta/8.5; E01/Luis/6.2; E02/Ana/8.5; E04/Pedro/9.1</td>
+<td>E01, E03, E02, E04</td>
+<td>E04, E02, E03, E01</td>
+<td>E01, E02, E03, E04</td>
+</tr>
+<tr>
+<td>Lista vacía</td>
+<td>Vacía</td>
+<td>Vacía</td>
+<td>Vacía</td>
+</tr>
+<tr>
+<td>E02/Ana/8.5</td>
+<td>E02</td>
+<td>E02</td>
+<td>E02</td>
+</tr>
+<tr>
+<td>E02/Zoe/8; E01/Ana/8</td>
+<td>E02, E01</td>
+<td>E01, E02</td>
+<td>E01, E02</td>
+</tr>
+<tr>
+<td>E02/Ana/8; E01/Ana/8</td>
+<td>E02, E01</td>
+<td>E01, E02</td>
+<td>E01, E02</td>
+</tr>
+<tr>
+<td>E02/Zoe/0; E01/Ana/10</td>
+<td>E02, E01</td>
+<td>E01, E02</td>
+<td>E01, E02</td>
+</tr>
+<tr>
+<td>Código duplicado, nulo o vacío</td>
+<td>Rechazo con causa; no generar vistas</td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Nombre nulo o vacío, elemento nulo o lista nula</td>
+<td>Rechazo con causa; no generar vistas</td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Nota negativa, mayor a 10, NaN o infinita</td>
+<td>Rechazo con causa; no generar vistas</td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+</tbody></table></div>
+<p>En todas las entradas válidas, la lista original mantiene su disposición. Agregar un caso propio con al menos seis estudiantes y dos grupos de empate. No entregar solamente capturas: incluir comprobaciones ejecutables y una explicación del criterio.</p>
+<h3>3.7. Entrega y evidencia</h3>
+<p>Entregar código Java y un archivo <code>evidencias/ordenamiento-api-java.md</code> con contrato, reglas, comandos, entradas, resultados esperados y reales, comprobación de estabilidad e identidad, conteos observados y análisis de complejidad. La PC debe poder ejecutarse desde su carpeta con el comando documentado por el estudiante. No se proporciona su solución completa.</p>
+<p><a id="esencial"></a></p>
+<h2>Lo esencial</h2>
+<ul>
+<li><code>sort</code> reorganiza el contenedor y devuelve <code>void</code>; una copia permite conservar el orden original.</li>
+<li>Los primitivos se ordenan mediante sobrecargas específicas de <code>Arrays.sort</code>.</li>
+<li><code>Comparator</code> expresa una regla externa y <code>Comparable</code> define el orden natural de una clase.</li>
+<li><code>e -&gt; e.getNota()</code> recibe un estudiante y devuelve una clave; no compara dos estudiantes.</li>
+<li><code>thenComparing</code> incorpora desempates y <code>reversed</code> invierte el comparador al que se aplica.</li>
+<li>La estabilidad preserva la precedencia previa entre elementos equivalentes según el criterio completo.</li>
+<li>Para objetos, el costo de peor caso del ordenamiento estudiado es <code>O(n log n)</code> si comparar cuesta <code>O(1)</code>; la memoria auxiliar puede ser <code>O(n)</code>.</li>
+<li>El comportamiento público y la implementación interna deben distinguirse. Los conteos observados no son garantías universales de la API.</li>
+</ul>
+<p><a id="referencias"></a></p>
+<h2>Referencias y lectura de apoyo</h2>
+<ol>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Arrays.html">Java SE 25 · Arrays</a>. Sobrecargas, estabilidad e implementaciones documentadas.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html#sort(java.util.Comparator)">Java SE 25 · List.sort</a>. Contrato e implementación predeterminada.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Comparator.html">Java SE 25 · Comparator</a>. Contrato, composición, inversión y políticas para nulos.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Comparable.html">Java SE 25 · Comparable</a>. Orden natural y consistencia con igualdad.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/function/ToDoubleFunction.html">Java SE 25 · ToDoubleFunction</a>. Interfaz funcional para extraer un <code>double</code>.</li>
+<li>Oracle. <a href="https://docs.oracle.com/javase/tutorial/collections/interfaces/order.html">The Java Tutorials · Object Ordering</a>. Distinción conceptual entre orden natural y comparadores. Tutorial de JDK 8; se usa para conceptos estables.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Collections.html#sort(java.util.List)">Java SE 25 · Collections.sort</a>. Ordenamiento de listas mediante los auxiliares estáticos.</li>
+<li>OpenJDK. <a href="https://github.com/openjdk/jdk/blob/jdk-25-ga/src/java.base/share/classes/java/util/ArrayList.java">JDK 25 · ArrayList.java</a>. Implementación de la sobreescritura de <code>sort</code>.</li>
+<li>OpenJDK. <a href="https://github.com/openjdk/jdk/blob/jdk-25-ga/src/java.base/share/classes/java/util/TimSort.java">JDK 25 · TimSort.java</a>. Comentarios de implementación sobre adaptación, estabilidad y recursos.</li>
+</ol>
+<p>Los ejemplos, salidas y ejercicios son elaboración didáctica propia. Los análisis de copias, costo de claves, composición de costos y límite inferior por permutaciones son derivaciones explicadas en el texto. Las notas sobre algoritmos internos se refieren a las fuentes y versiones indicadas.</p>
+<p><a href="../../../index.html">Volver al índice del curso</a></p>
+
+  <nav class="article-nav" aria-label="Recursos del contenido">
+    <a href="../../../index.html" target="_top">Índice del curso</a>
+    <a href="material.md" download>Descargar MD</a>
+    
+    <a href="../../2.1.3-merge-sort/java/index.html">Anterior</a>
+    <a href="../../2.2-search/java/index.html">Siguiente</a>
+  </nav>
+</main></body></html>
