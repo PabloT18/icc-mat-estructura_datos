@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 2.1.1 Ordenamiento directo · JavaScript
+##  2.1.1 Ordenamiento directo · JavaScript
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

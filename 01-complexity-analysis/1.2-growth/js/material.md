@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 1.2 Clases de complejidad · JavaScript
+##  1.2 Clases de complejidad · JavaScript
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 2.3 Recursividad · JavaScript
+##  2.3 Recursividad · JavaScript
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

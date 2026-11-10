@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 3.1.1 Pilas · Java
+##  3.1.1 Pilas · Java
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

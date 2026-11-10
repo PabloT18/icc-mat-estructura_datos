@@ -8,132 +8,845 @@
   </nav>
 <h1>Estructura de Datos</h1>
 <p><img src="../../../assets/logos/ups-computacion.png" alt="UPS · Carrera de Computación"></p>
-<h2>2.1.1 Ordenamiento directo · Python 2.2 Búsqueda secuencial y binaria · Java</h2>
-<p><strong>Autor:</strong> Ing. Pablo Torres, Mgtr.  </p>
-<p><strong>Unidad 2:</strong> Ordenamiento, búsqueda y recursividad</p>
-<p><a href="../../../index.html">Índice del curso</a> · </p>
+<h2>2.2 Búsqueda secuencial y binaria · Java</h2>
+<p><strong>Autor:</strong> Ing. Pablo Torres, Mgtr.<br><strong>Unidad 2:</strong> Ordenamiento, búsqueda y recursividad<br><strong>Lenguaje:</strong> Java 17 o posterior</p>
+<p><a href="../../../index.html">Índice del curso</a></p>
+<h3>Índice de contenidos</h3>
+<ul>
+<li><a href="#conceptos">1. Conceptos y ejemplos</a><ul>
+<li><a href="#contrato">1.1. Qué significa buscar</a></li>
+<li><a href="#secuencial">1.2. Búsqueda secuencial en arreglos</a></li>
+<li><a href="#duplicados">1.3. Casos especiales y duplicados</a></li>
+<li><a href="#objetos">1.4. Búsqueda secuencial en objetos y listas</a></li>
+<li><a href="#precondicion">1.5. Precondición de búsqueda binaria</a></li>
+<li><a href="#binaria">1.6. Búsqueda binaria de una coincidencia</a></li>
+<li><a href="#invariante">1.7. Intervalos e invariantes</a></li>
+<li><a href="#lower">1.8. Primera coincidencia: lower bound</a></li>
+<li><a href="#upper">1.9. Última posición exclusiva: upper bound</a></li>
+<li><a href="#rango">1.10. Rango de duplicados</a></li>
+<li><a href="#trazas">1.11. Trazas de ejecución</a></li>
+<li><a href="#complejidad">1.12. Complejidad temporal y espacial</a></li>
+<li><a href="#preparacion">1.13. Preparación: ordenar antes de buscar</a></li>
+<li><a href="#api">1.14. Herramientas de la API de Java</a></li>
+<li><a href="#comparator">1.15. Búsqueda de objetos con Comparator</a></li>
+<li><a href="#errores">1.16. Errores frecuentes</a></li>
+</ul>
+</li>
+<li><a href="#demostracion">2. Demostración guiada</a></li>
+<li><a href="#pc">3. Práctica y PC</a></li>
+<li><a href="#esencial">Lo esencial</a></li>
+<li><a href="#referencias">Referencias</a></li>
+</ul>
+<p>Este material estudia cómo localizar valores y registros mediante recorrido secuencial y reducción binaria del intervalo. Se distinguen contratos de búsqueda, precondiciones, primeras coincidencias, rangos de duplicados, costo de preparación y uso de la API de Java. Los ejemplos de objetos conectan el tema con <code>Comparator</code> y <code>Comparable</code>.</p>
 <p><a id="conceptos"></a></p>
 <h2>1. Conceptos y ejemplos</h2>
-<p><strong>Prerrequisitos:</strong> variables, condiciones, bucles, funciones y arreglos. El contenido desarrolla los conceptos adicionales que utiliza.</p>
-<p><a id="concepto-1"></a></p>
-<h3>1.1 Contrato de búsqueda</h3>
-<p>La búsqueda recibe una secuencia y una clave. Devuelve un índice válido o -1 si la clave no está. Si hay repetidos, debe indicarse si devuelve cualquier coincidencia o la primera. En este contenido ambos métodos devuelven la primera para hacer sus resultados comparables. Los índices empiezan en cero y el método no modifica la entrada.</p>
-<p><a id="concepto-2"></a></p>
-<h3>1.2 Recorrido secuencial</h3>
-<p>La búsqueda secuencial compara desde el inicio hasta encontrar la primera igualdad. No exige orden previo. Su mejor caso realiza una comparación y el peor visita n elementos. El caso vacío realiza cero comparaciones. Se usa cuando los datos son pequeños, cambian a menudo o no conviene pagar el costo de ordenar para una sola consulta.</p>
-<p><a id="concepto-3"></a></p>
-<h3>1.3 Intervalo binario e invariante</h3>
-<p>La búsqueda binaria exige un arreglo ordenado según el mismo criterio de comparación. Mantenemos [lo,hi), intervalo donde aún puede estar la primera coincidencia. Si a[mid]&lt;clave descartamos hasta mid; en otro caso conservamos mid como posible inicio y movemos hi. Al terminar lo=hi, se verifica igualdad. Esto es lower_bound: la primera posición cuyo valor no es menor que la clave.</p>
-<p><a id="concepto-4"></a></p>
-<h3>1.4 Costo y precondición</h3>
-<p>Cada paso reduce aproximadamente a la mitad el intervalo y realiza O(1) accesos indexados. El tiempo es Θ(log n) en el peor caso y el espacio auxiliar Θ(1). Verificar que la entrada está ordenada cuesta Θ(n), por lo que se hace fuera del núcleo de búsqueda si se quiere conservar la cota por consulta. En una lista enlazada, llegar al punto medio no tiene acceso constante y el análisis cambia.</p>
-<p><a id="concepto-5"></a></p>
-<h3>1.5 Preparación frente a consultas</h3>
-<p>Ordenar cuesta tiempo y altera la correspondencia con índices originales. Para muchas búsquedas puede compensar crear una copia ordenada con referencias a los registros. En una sola búsqueda, ordenar primero puede costar más que recorrer. La decisión debe separar preparación y consultas y considerar si llegan nuevas entradas.</p>
-<p><a id="traza"></a></p>
-<h3>Traza de referencia</h3>
+<p><strong>Prerrequisitos:</strong> arreglos, listas, clases, métodos, bucles, condiciones, índices y notación asintótica. Se utilizan índices desde cero. Los fragmentos de código se interpretan dentro de métodos o clases con las importaciones necesarias; la sección 2 incluye un programa ejecutable completo.</p>
+<p><a id="contrato"></a></p>
+<h3>1.1. Qué significa buscar</h3>
+<p>Buscar consiste en determinar si existe un elemento cuya clave satisface el criterio solicitado y, cuando corresponde, devolver su posición. Conviene definir qué significa una coincidencia y qué sucede con los valores repetidos <strong>antes</strong> de escribir el algoritmo.</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
-<th>lo</th>
-<th>hi</th>
-<th>mid</th>
-<th>a[mid] en [1,3,3,7,9] para clave 3</th>
+<th>Contrato</th>
+<th>Entrada</th>
+<th>Salida</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>0</td>
-<td>5</td>
-<td>2</td>
-<td>3: hi=2</td>
+<td>Existencia</td>
+<td>Secuencia y clave</td>
+<td><code>true</code> o <code>false</code></td>
 </tr>
 <tr>
-<td>0</td>
-<td>2</td>
-<td>1</td>
-<td>3: hi=1</td>
+<td>Posición cualquiera</td>
+<td>Secuencia y clave</td>
+<td>Un índice válido o <code>-1</code></td>
 </tr>
 <tr>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1: lo=1</td>
+<td>Primera posición</td>
+<td>Secuencia y clave</td>
+<td>Menor índice coincidente o <code>-1</code></td>
 </tr>
 <tr>
-<td>1</td>
-<td>1</td>
-<td>fin</td>
-<td>primera coincidencia: 1</td>
+<td>Rango de coincidencias</td>
+<td>Secuencia ordenada y clave</td>
+<td>Intervalo <code>[inicio, fin)</code> o <code>[-1, -1]</code></td>
 </tr>
 </tbody></table></div>
-<p>La tabla muestra estados o conteos concretos. Reproduce cada transición y comprueba qué propiedad permanece verdadera. Una traza finita ayuda a encontrar errores; la justificación del algoritmo también exige explicar por qué progresa y por qué la condición final satisface el contrato.</p>
-<p><img src="../assets/guia-visual.svg" alt="Síntesis del tema 2.2"></p>
-<h3>Particularidades de Java</h3>
-<p>Java usa tipos estáticos y comprobación de tipos en compilación. int y long tienen rango fijo; los cálculos deben promoverse antes de una multiplicación que pudiera desbordar. Las referencias permiten compartir objetos y la copia de un arreglo de objetos es superficial. Las excepciones de los contratos se comprueban explícitamente. No se necesita Maven ni Gradle: el modo de archivo fuente ejecuta Demo.java con un JDK instalado.</p>
+<p>En este material, <code>sequentialFirst</code> y <code>binaryFirst</code> devuelven la <strong>primera posición</strong>. Cuando se solicita el rango, <code>fin</code> es exclusivo: la cantidad de coincidencias es <code>fin - inicio</code>. Los algoritmos no modifican la entrada. Un arreglo vacío es válido y devuelve ausencia. Un arreglo <code>null</code> se rechaza expresamente con <code>IllegalArgumentException</code> en la demostración.</p>
+<p><strong>Ejemplo:</strong> <code>int[] a = {7, 4, 7, 2};</code>. Buscar <code>7</code> con contrato de primera coincidencia devuelve <code>0</code>, no <code>2</code>; buscar <code>9</code> devuelve <code>-1</code>. La secuencia no necesita estar ordenada para el recorrido secuencial.</p>
+<p><a id="secuencial"></a></p>
+<h3>1.2. Búsqueda secuencial en arreglos</h3>
+<p>La búsqueda secuencial visita las posiciones desde el principio y termina cuando encuentra una coincidencia. No requiere ordenar los datos.</p>
+<pre><code class="language-java">static int sequentialFirst(int[] datos, int clave) {
+    for (int i = 0; i &lt; datos.length; i++) {
+        if (datos[i] == clave) {
+            return i;
+        }
+    }
+    return -1;
+}
+</code></pre>
+<pre><code class="language-java">int[] datos = {8, 3, 5, 3, 1};
+System.out.println(sequentialFirst(datos, 3)); // 1
+System.out.println(sequentialFirst(datos, 9)); // -1
+</code></pre>
+<p>La condición <code>datos[i] == clave</code> compara valores enteros, no posiciones. El <code>return</code> dentro del bucle garantiza que se conserve la primera coincidencia. No se debe ordenar el arreglo antes de ejecutar este ejemplo: cambiaría la posición solicitada.</p>
+<p><strong>Recorrido paso a paso para clave 5:</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">Índice <code>i</code></th>
+<th align="right"><code>datos[i]</code></th>
+<th>¿Coincide?</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">8</td>
+<td>No</td>
+<td>Continuar</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">3</td>
+<td>No</td>
+<td>Continuar</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">5</td>
+<td>Sí</td>
+<td>Devolver <code>2</code></td>
+</tr>
+</tbody></table></div>
+<p><a id="duplicados"></a></p>
+<h3>1.3. Casos especiales y duplicados</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th align="right">Clave</th>
+<th align="right">Resultado de primera posición</th>
+<th align="right">Comparaciones de igualdad</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[4, 4, 9]</code></td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><code>[4, 4, 9]</code></td>
+<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td><code>[4, 4, 9]</code></td>
+<td align="right">7</td>
+<td align="right">-1</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td align="right">4</td>
+<td align="right">-1</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td><code>[5]</code></td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+</tbody></table></div>
+<p>Si se necesita <strong>todas las posiciones</strong> de un arreglo no ordenado, un recorrido completo puede agregarlas a una lista:</p>
+<pre><code class="language-java">static List&lt;Integer&gt; sequentialAll(int[] datos, int clave) {
+    List&lt;Integer&gt; posiciones = new ArrayList&lt;&gt;();
+    for (int i = 0; i &lt; datos.length; i++) {
+        if (datos[i] == clave) posiciones.add(i);
+    }
+    return posiciones;
+}
+// sequentialAll(new int[]{4, 2, 4, 7, 4}, 4) → [0, 2, 4]
+</code></pre>
+<p>El costo de recorrer todas las posiciones es <code>Θ(n)</code> incluso cuando la primera coincide. La memoria del resultado depende del número <code>k</code> de coincidencias: <code>Θ(k)</code> sin contar la entrada.</p>
+<p><a id="objetos"></a></p>
+<h3>1.4. Búsqueda secuencial en objetos y listas</h3>
+<p>En objetos, la coincidencia debe establecerse mediante un atributo o criterio explícito. <code>==</code> entre referencias pregunta si son la <strong>misma instancia</strong>; <code>equals</code> consulta la igualdad definida por la clase.</p>
+<pre><code class="language-java">record Estudiante(String codigo, String nombre, double nota) {}
+
+static int buscarCodigo(List&lt;Estudiante&gt; estudiantes, String codigo) {
+    for (int i = 0; i &lt; estudiantes.size(); i++) {
+        if (estudiantes.get(i).codigo().equals(codigo)) return i;
+    }
+    return -1;
+}
+</code></pre>
+<pre><code class="language-java">List&lt;Estudiante&gt; lista = List.of(
+    new Estudiante(&quot;E03&quot;, &quot;Marta&quot;, 8.5),
+    new Estudiante(&quot;E01&quot;, &quot;Luis&quot;, 6.2),
+    new Estudiante(&quot;E02&quot;, &quot;Ana&quot;, 8.5)
+);
+System.out.println(buscarCodigo(lista, &quot;E01&quot;)); // 1
+</code></pre>
+<p>Aquí la igualdad se decide por código. Dos estudiantes con idéntica nota no son necesariamente el mismo registro. En una <code>ArrayList</code>, <code>get(i)</code> es de tiempo constante; en una lista enlazada, acceder repetidamente por índice es más costoso. Para una búsqueda secuencial en cualquier <code>List</code>, un bucle <code>for (Estudiante e : lista)</code> evita esos accesos indexados si solo se necesita el objeto y no el índice.</p>
+<p><a id="precondicion"></a></p>
+<h3>1.5. Precondición de búsqueda binaria</h3>
+<p>La búsqueda binaria necesita <strong>acceso indexado eficiente</strong> y una secuencia ordenada por el <strong>mismo criterio</strong> utilizado para buscar. Con números ascendentes, toda posición anterior a una dada contiene un valor menor o igual; esta propiedad permite descartar regiones enteras.</p>
+<pre><code class="language-java">int[] ordenado = {1, 3, 3, 7, 9}; // válido para comparación ASC
+int[] desordenado = {3, 1, 9, 3, 7}; // no cumple precondición
+</code></pre>
+<p>Un algoritmo binario no ordena automáticamente. Aplicarlo al segundo arreglo puede devolver un índice incorrecto o una ausencia falsa. Si se usa orden descendente, también debe adaptarse el sentido de la comparación. Si se ordena por nota pero se busca por código, el orden de las notas no justifica una búsqueda binaria por código.</p>
+<p><a id="binaria"></a></p>
+<h3>1.6. Búsqueda binaria de una coincidencia</h3>
+<p>La variante habitual busca cualquier coincidencia y retorna inmediatamente cuando <code>datos[mid] == clave</code>. <strong>No garantiza devolver la primera</strong> si existen duplicados.</p>
+<pre><code class="language-java">static int binaryAny(int[] datos, int clave) {
+    int lo = 0;
+    int hi = datos.length - 1; // extremo incluido
+    while (lo &lt;= hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (datos[mid] == clave) return mid;
+        if (datos[mid] &lt; clave) lo = mid + 1;
+        else hi = mid - 1;
+    }
+    return -1;
+}
+</code></pre>
+<p>Para <code>[1, 3, 3, 3, 8]</code> y clave <code>3</code>, esta implementación puede devolver <code>2</code>. Es correcto para el contrato de <strong>cualquier coincidencia</strong>, pero no para el contrato de <strong>primera coincidencia</strong>. El cálculo <code>lo + (hi - lo) / 2</code> evita el desbordamiento que podría provocar <code>(lo + hi) / 2</code> en índices enteros grandes y no negativos.</p>
+<p><a id="invariante"></a></p>
+<h3>1.7. Intervalos e invariantes</h3>
+<p>Un <strong>invariante</strong> es una propiedad que se mantiene antes y después de cada iteración. Para buscar la primera posición cuyo valor es mayor o igual que la clave, usamos <code>[lo, hi)</code>: <code>lo</code> incluido y <code>hi</code> excluido.</p>
+<p>Al inicio <code>lo = 0</code> y <code>hi = n</code>. En cada iteración se mantiene que:</p>
+<ol>
+<li>Los índices anteriores a <code>lo</code> contienen valores menores que la clave.</li>
+<li>Los índices desde <code>hi</code> hasta <code>n - 1</code> contienen valores mayores o iguales que la clave.</li>
+<li>La primera posición mayor o igual, o <code>n</code> si no existe, sigue estando en el intervalo candidato <code>[lo, hi]</code> en términos de sus fronteras.</li>
+</ol>
+<p>Si <code>datos[mid] &lt; clave</code>, se descartan los índices hasta <code>mid</code>, incluido: <code>lo = mid + 1</code>. Si <code>datos[mid] &gt;= clave</code>, <code>mid</code> todavía puede ser la primera posición válida: <code>hi = mid</code>. Ambas actualizaciones reducen estrictamente <code>hi - lo</code> cuando <code>lo &lt; hi</code>. El algoritmo termina cuando <code>lo == hi</code>.</p>
+<p><a id="lower"></a></p>
+<h3>1.8. Primera coincidencia: <code>lower bound</code></h3>
+<p><code>lowerBound</code> devuelve la primera posición cuyo valor es <strong>mayor o igual</strong> que la clave. Puede devolver <code>n</code>. Por sí solo no afirma que la clave exista.</p>
+<pre><code class="language-java">static int lowerBound(int[] datos, int clave) {
+    int lo = 0, hi = datos.length;
+    while (lo &lt; hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (datos[mid] &lt; clave) lo = mid + 1;
+        else hi = mid;
+    }
+    return lo;
+}
+
+static int binaryFirst(int[] datos, int clave) {
+    int pos = lowerBound(datos, clave);
+    return pos &lt; datos.length &amp;&amp; datos[pos] == clave ? pos : -1;
+}
+</code></pre>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Datos</th>
+<th align="right">Clave</th>
+<th align="right"><code>lowerBound</code></th>
+<th align="right"><code>binaryFirst</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[1, 3, 3, 7, 9]</code></td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><code>[1, 3, 3, 7, 9]</code></td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">-1</td>
+</tr>
+<tr>
+<td><code>[1, 3, 3, 7, 9]</code></td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">-1</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+</tr>
+</tbody></table></div>
+<p>La condición final es necesaria: la primera posición con valor mayor o igual puede contener un valor <strong>mayor</strong>, no igual. El acceso <code>datos[pos]</code> solo se realiza si <code>pos &lt; datos.length</code> gracias al cortocircuito de <code>&amp;&amp;</code>.</p>
+<p><a id="upper"></a></p>
+<h3>1.9. Última posición exclusiva: <code>upper bound</code></h3>
+<p><code>upperBound</code> devuelve la primera posición cuyo valor es <strong>estrictamente mayor</strong> que la clave. Para claves repetidas, es la frontera posterior a todas sus apariciones.</p>
+<pre><code class="language-java">static int upperBound(int[] datos, int clave) {
+    int lo = 0, hi = datos.length;
+    while (lo &lt; hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (datos[mid] &lt;= clave) lo = mid + 1;
+        else hi = mid;
+    }
+    return lo;
+}
+</code></pre>
+<p>La diferencia esencial frente a <code>lowerBound</code> es <code>&lt;=</code> en lugar de <code>&lt;</code>. En <code>[1, 3, 3, 3, 8]</code>, <code>lowerBound(3)</code> devuelve <code>1</code> y <code>upperBound(3)</code> devuelve <code>4</code>.</p>
+<p><a id="rango"></a></p>
+<h3>1.10. Rango de duplicados</h3>
+<p>En una secuencia ordenada, todas las coincidencias de una clave forman un bloque contiguo. Por ello, dos búsquedas binarias localizan las fronteras <strong>sin recorrer linealmente los duplicados</strong>.</p>
+<pre><code class="language-java">static int[] binaryRange(int[] datos, int clave) {
+    int inicio = lowerBound(datos, clave);
+    if (inicio == datos.length || datos[inicio] != clave) {
+        return new int[]{-1, -1};
+    }
+    return new int[]{inicio, upperBound(datos, clave)};
+}
+</code></pre>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Datos</th>
+<th align="right">Clave</th>
+<th>Rango <code>[inicio, fin)</code></th>
+<th align="right">Cantidad</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[1, 3, 3, 3, 8]</code></td>
+<td align="right">3</td>
+<td><code>[1, 4)</code></td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td><code>[1, 3, 3, 3, 8]</code></td>
+<td align="right">1</td>
+<td><code>[0, 1)</code></td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><code>[1, 3, 3, 3, 8]</code></td>
+<td align="right">8</td>
+<td><code>[4, 5)</code></td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><code>[1, 3]</code></td>
+<td align="right">2</td>
+<td><code>[-1, -1]</code></td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td align="right">1</td>
+<td><code>[-1, -1]</code></td>
+<td align="right">0</td>
+</tr>
+</tbody></table></div>
+<p>La PC de la sección 3 solicita precisamente este comportamiento. Los límites de salida se muestran como dos enteros en Java: <code>new int[]{inicio, fin}</code>.</p>
+<p><a id="trazas"></a></p>
+<h3>1.11. Trazas de ejecución</h3>
+<p><strong>Traza de <code>lowerBound</code></strong>, arreglo <code>[1, 3, 3, 7, 9]</code>, clave <code>3</code>:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">Paso</th>
+<th align="right"><code>lo</code></th>
+<th align="right"><code>hi</code></th>
+<th align="right"><code>mid</code></th>
+<th align="right"><code>datos[mid]</code></th>
+<th>Actualización</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td><code>hi = 2</code></td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td><code>hi = 1</code></td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td><code>lo = 1</code></td>
+</tr>
+<tr>
+<td align="right">Fin</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td>Primera coincidencia: <code>1</code></td>
+</tr>
+</tbody></table></div>
+<p><strong>Traza de <code>upperBound</code></strong>, arreglo <code>[1, 3, 3, 3, 8]</code>, clave <code>3</code>:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">Paso</th>
+<th align="right"><code>lo</code></th>
+<th align="right"><code>hi</code></th>
+<th align="right"><code>mid</code></th>
+<th align="right"><code>datos[mid]</code></th>
+<th>Actualización</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td><code>lo = 3</code></td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">8</td>
+<td><code>hi = 4</code></td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td><code>lo = 4</code></td>
+</tr>
+<tr>
+<td align="right">Fin</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td>Primera posición mayor que 3: <code>4</code></td>
+</tr>
+</tbody></table></div>
+<p>La traza ilustra una ejecución particular. La justificación general requiere mostrar conservación del invariante, reducción del intervalo y corrección de la comprobación final.</p>
+<p><a id="complejidad"></a></p>
+<h3>1.12. Complejidad temporal y espacial</h3>
+<p>Sea <code>n</code> la cantidad de elementos y supongamos comparación y acceso indexado <code>O(1)</code>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Mejor caso</th>
+<th>Peor caso</th>
+<th>Memoria auxiliar</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Secuencial primera coincidencia</td>
+<td><code>Θ(1)</code> si <code>n &gt; 0</code> y coincide al inicio</td>
+<td><code>Θ(n)</code></td>
+<td><code>Θ(1)</code></td>
+</tr>
+<tr>
+<td>Secuencial todas las posiciones</td>
+<td><code>Θ(n)</code> para recorrer <code>n</code> elementos</td>
+<td><code>Θ(n)</code></td>
+<td><code>Θ(k)</code> para <code>k</code> resultados</td>
+</tr>
+<tr>
+<td>Binaria con retorno inmediato (<code>binaryAny</code>)</td>
+<td><code>Θ(1)</code> cuando el punto medio coincide</td>
+<td><code>Θ(log(n + 1))</code></td>
+<td><code>Θ(1)</code></td>
+</tr>
+<tr>
+<td><code>lowerBound</code> / <code>upperBound</code></td>
+<td><code>Θ(log(n + 1))</code> para <code>n &gt; 1</code></td>
+<td><code>Θ(log(n + 1))</code></td>
+<td><code>Θ(1)</code></td>
+</tr>
+<tr>
+<td>Rango con dos límites</td>
+<td><code>Θ(log(n + 1))</code> para <code>n &gt; 1</code></td>
+<td><code>Θ(log(n + 1))</code></td>
+<td><code>Θ(1)</code></td>
+</tr>
+<tr>
+<td>Validar el orden de todo el arreglo</td>
+<td><code>Θ(n)</code> si se inspeccionan todas las parejas</td>
+<td><code>Θ(n)</code></td>
+<td><code>Θ(1)</code></td>
+</tr>
+</tbody></table></div>
+<p>Para <code>n = 0</code> las búsquedas binarias finalizan en tiempo constante. El uso de <code>log(n + 1)</code> evita la expresión <code>log 0</code> y describe la escala asintótica; no representa un número exacto de iteraciones.</p>
+<p><strong>Por qué la binaria es logarítmica:</strong> tras <code>t</code> divisiones queda un intervalo de tamaño aproximadamente <code>n / 2^t</code>. El procedimiento termina cuando alcanza un tamaño constante, lo que ocurre para <code>t</code> proporcional a <code>log₂ n</code>. Dos búsquedas binarias consecutivas cuestan <code>O(log n) + O(log n) = O(log n)</code>, no <code>O(log² n)</code>.</p>
+<p><strong>Costo de comparar:</strong> si comparar claves cuesta <code>O(m)</code>, una búsqueda secuencial tiene cota <code>O(nm)</code> y una búsqueda binaria <code>O(m log(n + 1))</code>, suponiendo que acceder a la posición media sigue siendo <code>O(1)</code>. Los <code>String</code> largos pueden requerir revisar múltiples caracteres.</p>
+<p><strong>No confundir preparación y consulta:</strong> comprobar que todo un arreglo está ordenado mediante un recorrido introduce costo <code>Θ(n)</code> adicional. Si se realiza en <strong>cada</strong> búsqueda, la operación completa ya no tiene cota puramente logarítmica. En una lista enlazada, calcular el punto medio por desplazamientos cambia el análisis y suele anular la ventaja práctica de la búsqueda binaria.</p>
+<p><a id="preparacion"></a></p>
+<h3>1.13. Preparación: ordenar antes de buscar</h3>
+<p>Si los datos no están ordenados, una alternativa consiste en copiar y ordenar una sola vez, para luego realizar muchas consultas.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Estrategia para <code>q</code> consultas</th>
+<th>Costo típico o cota</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>q</code> búsquedas secuenciales</td>
+<td><code>O(qn)</code></td>
+</tr>
+<tr>
+<td>Copiar + ordenar + <code>q</code> búsquedas binarias</td>
+<td><code>O(n log n + q log(n + 1))</code></td>
+</tr>
+<tr>
+<td>Validar orden en cada búsqueda y luego buscar</td>
+<td><code>O(qn + q log(n + 1))</code></td>
+</tr>
+</tbody></table></div>
+<p>Estas expresiones suponen claves de comparación constantes y un ordenamiento de <code>O(n log n)</code>. Para <strong>una sola consulta</strong> sobre datos desordenados, ordenar primero suele ser un trabajo innecesario. Para <strong>muchas consultas</strong> sobre datos que cambian poco, el costo de preparación puede amortizarse. No se deduce un umbral universal solo con notación asintótica.</p>
+<p><strong>Importante:</strong> ordenar altera las posiciones originales. Si una aplicación necesita devolver el índice de llegada, debe conservar la relación entre la posición original y el elemento ordenado, por ejemplo mediante registros que almacenen <code>indiceOriginal</code>.</p>
+<p><a id="api"></a></p>
+<h3>1.14. Herramientas de la API de Java</h3>
+<p><code>Arrays.binarySearch</code> y <code>Collections.binarySearch</code> permiten localizar una coincidencia en datos ordenados; <strong>no garantizan la primera posición</strong> de duplicados.</p>
+<pre><code class="language-java">int[] valores = {1, 3, 3, 7, 9};
+int indice = Arrays.binarySearch(valores, 7); // 3
+int ausente = Arrays.binarySearch(valores, 4); // -4
+</code></pre>
+<p>Cuando no hay coincidencia, la API devuelve <code>-(insertionPoint) - 1</code>, donde <code>insertionPoint</code> es la posición en que se insertaría la clave para conservar el orden. Para clave <code>4</code>, el punto de inserción es <code>3</code>, por eso el resultado es <code>-4</code>. No debe confundirse con el contrato didáctico que devuelve exactamente <code>-1</code> para cualquier ausencia.</p>
+<pre><code class="language-java">int resultado = Arrays.binarySearch(valores, 4);
+int insercion = resultado &gt;= 0 ? resultado : -resultado - 1; // 3
+</code></pre>
+<pre><code class="language-java">List&lt;Integer&gt; nums = List.of(1, 3, 3, 7, 9);
+int posicion = Collections.binarySearch(nums, 7); // 3
+</code></pre>
+<p><code>Collections.binarySearch</code> también tiene una versión que recibe un <code>Comparator</code>. En listas sin acceso aleatorio eficiente, su implementación puede utilizar una estrategia de recorrido diferente y aumentar el costo de desplazamientos. Para el contrato de primera coincidencia y rango de duplicados, los algoritmos explícitos <code>lowerBound</code> y <code>upperBound</code> son más apropiados para el estudio.</p>
+<p><a id="comparator"></a></p>
+<h3>1.15. Búsqueda de objetos con <code>Comparator</code></h3>
+<p>El criterio de búsqueda debe ser <strong>coherente con el orden usado para preparar los objetos</strong>. Si los estudiantes se ordenan por código, se comparan códigos durante la búsqueda. Se utiliza el mismo comparador para ordenar y para determinar las fronteras.</p>
+<pre><code class="language-java">record Producto(String codigo, double precio) {}
+
+Comparator&lt;Producto&gt; porCodigo =
+    Comparator.comparing(Producto::codigo);
+
+List&lt;Producto&gt; productos = new ArrayList&lt;&gt;(List.of(
+    new Producto(&quot;P03&quot;, 10),
+    new Producto(&quot;P01&quot;, 20),
+    new Producto(&quot;P02&quot;, 15)
+));
+productos.sort(porCodigo);
+
+Producto buscado = new Producto(&quot;P02&quot;, 0);
+int pos = Collections.binarySearch(productos, buscado, porCodigo);
+// pos == 1; el precio no interviene en este criterio
+</code></pre>
+<p><strong>Precondición:</strong> <code>porCodigo</code> compara únicamente códigos no nulos. El objeto usado como clave solo necesita un código válido porque el comparador ignora el precio. Si se cambia el criterio a precio sin reordenar la lista, la precondición deja de cumplirse.</p>
+<p><strong>Orden natural:</strong> una clase que implementa <code>Comparable&lt;Producto&gt;</code> puede permitir <code>Collections.binarySearch(productos, clave)</code> sin comparador explícito, siempre que la lista esté ordenada por ese mismo <code>compareTo</code>. Tener <code>Comparable</code> no hace que los datos se ordenen automáticamente.</p>
+<p><strong>Duplicados:</strong> el resultado de <code>Collections.binarySearch</code> puede ser cualquiera de los registros con igual código según el comparador. Si el contrato exige la primera posición, hay que implementar una búsqueda de frontera con ese mismo criterio.</p>
+<p><a id="errores"></a></p>
+<h3>1.16. Errores frecuentes</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Causa y corrección</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Usar binaria en datos desordenados</td>
+<td>No se puede descartar media región; ordenar antes o usar secuencial</td>
+</tr>
+<tr>
+<td>Ordenar por nota y buscar binariamente por nombre</td>
+<td>Criterios incompatibles; usar el mismo orden y comparación</td>
+</tr>
+<tr>
+<td>Retornar <code>mid</code> al encontrar igualdad y afirmar que es la primera</td>
+<td>Un duplicado anterior puede existir; usar <code>lowerBound</code></td>
+</tr>
+<tr>
+<td>Usar <code>lo &lt;= hi</code> junto con límites y actualizaciones de <code>[lo, hi)</code> sin adaptación</td>
+<td>Mezcla dos convenciones; mantener condiciones y extremos coherentes</td>
+</tr>
+<tr>
+<td>Escribir <code>hi = mid - 1</code> en <code>lowerBound</code></td>
+<td>Puede descartar la primera posición válida; usar <code>hi = mid</code></td>
+</tr>
+<tr>
+<td>Escribir <code>lo = mid</code> cuando <code>lo &lt; hi</code> y <code>mid == lo</code></td>
+<td>Puede no reducir el intervalo; usar <code>lo = mid + 1</code> cuando se descarta <code>mid</code></td>
+</tr>
+<tr>
+<td>Acceder a <code>datos[lo]</code> sin comprobar <code>lo &lt; n</code></td>
+<td>Riesgo de <code>ArrayIndexOutOfBoundsException</code>; validar antes</td>
+</tr>
+<tr>
+<td>Tratar un resultado negativo de <code>Arrays.binarySearch</code> como <code>-1</code> universal</td>
+<td>La API codifica el punto de inserción; usar su contrato documentado</td>
+</tr>
+<tr>
+<td>Confundir <code>==</code> con igualdad por atributo en objetos</td>
+<td>Comparar el atributo requerido o usar un <code>equals</code> apropiado</td>
+</tr>
+<tr>
+<td>Validar orden en cada búsqueda y seguir afirmando <code>Θ(log n)</code> para toda la operación</td>
+<td>La validación completa cuesta <code>Θ(n)</code></td>
+</tr>
+<tr>
+<td>Creer que el índice de un arreglo ordenado es el índice de llegada</td>
+<td>El ordenamiento cambia posiciones; conservar índices originales si se requieren</td>
+</tr>
+<tr>
+<td>Emplear resta para comparar enteros extremos</td>
+<td>Riesgo de desbordamiento; usar <code>Integer.compare</code> o un <code>Comparator</code> correcto</td>
+</tr>
+</tbody></table></div>
 <p><a id="demostracion"></a></p>
 <h2>2. Demostración guiada</h2>
-<p><strong>Problema y contrato:</strong> Secuencia de enteros, ordenada para binaryFirst. Devuelve primera posición o -1. No valida orden dentro de la función binaria ni modifica la entrada.</p>
+<h3>2.1. Problema y contrato</h3>
+<p>Comparar una búsqueda secuencial con una binaria de primera coincidencia y calcular fronteras de duplicados. El arreglo binario se recibe ordenado ascendentemente; la secuencial acepta cualquier orden. Se admite un arreglo vacío, pero no uno nulo. Los métodos no modifican la entrada.</p>
+<h3>2.2. Antes de ejecutar</h3>
 <ol>
-<li>Lee el contrato y predice la salida del caso principal antes de ejecutar.</li>
-<li>Identifica las variables que representan el estado y vincúlalas con la traza de la sección anterior.</li>
-<li>Ejecuta el archivo completo. Las comprobaciones internas detienen el programa si una condición esperada falla.</li>
-<li>Cambia una entrada del bloque de ejecución, predice el resultado y contrástalo. Conserva el núcleo de la demostración como referencia.</li>
+<li>Predecir la posición de las claves <code>3</code>, <code>8</code>, <code>1</code> y <code>9</code> en <code>[1, 3, 3, 7, 9]</code>.</li>
+<li>Predecir <code>lowerBound</code> y <code>upperBound</code> de <code>3</code> en <code>[1, 3, 3, 3, 8]</code>.</li>
+<li>Explicar por qué <code>binaryAny</code> puede devolver un duplicado distinto del primero.</li>
+<li>Identificar cuándo un método devuelve <code>-1</code> y cuándo puede devolver <code>n</code>.</li>
+<li>Comprobar si algún método cambia el orden de entrada.</li>
 </ol>
-<h3>Código completo</h3>
-<p>Este bloque se genera desde <code>ejemplos/Demo.java</code> mediante <code>scripts/sync-code.py</code>; ese archivo es la fuente del código. La PC tiene otro objetivo y sus casos de aceptación aparecen en la sección 3.</p>
+<h3>2.3. Código completo</h3>
+<p>Guardar como <code>ejemplos/DemoBusqueda.java</code>. No se requieren paquetes ni dependencias externas.</p>
 <!-- DEMO:START -->
-<pre><code class="language-java">import java.util.*;
+<pre><code class="language-java">import java.util.Arrays;
 
-public class Demo {
-    static void check(boolean ok) {
-        if (!ok) throw new AssertionError(&quot;Verificación fallida&quot;);
+public class DemoBusqueda {
+    static void comprobar(boolean condicion, String mensaje) {
+        if (!condicion) throw new AssertionError(mensaje);
     }
-static int sequential(int[] a, int key) {
-        for (int i=0; i&lt;a.length; i++) if (a[i]==key) return i;
+
+    static void validar(int[] datos) {
+        if (datos == null) throw new IllegalArgumentException(&quot;Arreglo nulo&quot;);
+    }
+
+    static int sequentialFirst(int[] datos, int clave) {
+        validar(datos);
+        for (int i = 0; i &lt; datos.length; i++) {
+            if (datos[i] == clave) return i;
+        }
         return -1;
     }
-    static int binaryFirst(int[] a, int key) {
-        int lo=0, hi=a.length;
-        while (lo&lt;hi) {
-            int mid=lo+(hi-lo)/2;
-            if (a[mid]&lt;key) lo=mid+1; else hi=mid;
+
+    // Precondición: datos está ordenado ascendentemente.
+    static int lowerBound(int[] datos, int clave) {
+        validar(datos);
+        int lo = 0, hi = datos.length;
+        while (lo &lt; hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (datos[mid] &lt; clave) lo = mid + 1;
+            else hi = mid;
         }
-        return lo&lt;a.length &amp;&amp; a[lo]==key ? lo : -1;
+        return lo;
     }
-    public static void main(String[] args) {
-        int[] a={1,3,3,7,9};
-        for (int key : new int[]{3,8,1,9}) {
-            check(binaryFirst(a,key)==sequential(a,key));
-            System.out.println(key+&quot;:&quot;+binaryFirst(a,key));
+
+    // Precondición: datos está ordenado ascendentemente.
+    static int upperBound(int[] datos, int clave) {
+        validar(datos);
+        int lo = 0, hi = datos.length;
+        while (lo &lt; hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (datos[mid] &lt;= clave) lo = mid + 1;
+            else hi = mid;
         }
-        check(binaryFirst(new int[0],3)==-1);
+        return lo;
+    }
+
+    static int binaryFirst(int[] datos, int clave) {
+        int pos = lowerBound(datos, clave);
+        return pos &lt; datos.length &amp;&amp; datos[pos] == clave ? pos : -1;
+    }
+
+    static int[] binaryRange(int[] datos, int clave) {
+        int inicio = lowerBound(datos, clave);
+        if (inicio == datos.length || datos[inicio] != clave) {
+            return new int[]{-1, -1};
+        }
+        return new int[]{inicio, upperBound(datos, clave)};
+    }
+
+    public static void main(String[] args) {
+        int[] a = {1, 3, 3, 7, 9};
+        for (int clave : new int[]{3, 8, 1, 9}) {
+            int secuencial = sequentialFirst(a, clave);
+            int binaria = binaryFirst(a, clave);
+            comprobar(secuencial == binaria, &quot;Diferencia para &quot; + clave);
+            System.out.println(clave + &quot;:&quot; + binaria);
+        }
+
+        int[] repetidos = {1, 3, 3, 3, 8};
+        int[] rango = binaryRange(repetidos, 3);
+        comprobar(Arrays.equals(rango, new int[]{1, 4}), &quot;Rango incorrecto&quot;);
+        System.out.println(&quot;Rango 3: &quot; + Arrays.toString(rango));
+        System.out.println(&quot;Limites 3: &quot; + lowerBound(repetidos, 3)
+            + &quot;,&quot; + upperBound(repetidos, 3));
+
+        comprobar(Arrays.equals(binaryRange(new int[]{1, 3}, 2),
+            new int[]{-1, -1}), &quot;Ausencia incorrecta&quot;);
+        comprobar(Arrays.equals(binaryRange(new int[0], 1),
+            new int[]{-1, -1}), &quot;Vacío incorrecto&quot;);
+        comprobar(Arrays.equals(a, new int[]{1, 3, 3, 7, 9}),
+            &quot;Se modificó el arreglo&quot;);
+        System.out.println(&quot;Verificación: correcta.&quot;);
     }
 }
 </code></pre>
 <!-- DEMO:END -->
 
-<h3>Ejecución</h3>
-<p>Desde esta carpeta <code>02-searching-and-sorting-algorithms/2.2-search/java</code>:</p>
-<pre><code class="language-bash">java ejemplos/Demo.java
+<h3>2.4. Ejecución</h3>
+<p>Desde la carpeta <code>2.2-search/java</code>:</p>
+<pre><code class="language-bash">java ejemplos/DemoBusqueda.java
 </code></pre>
-<h3>Salida esperada de la demostración</h3>
+<p>O mediante compilación explícita desde esa misma carpeta:</p>
+<pre><code class="language-bash">javac -encoding UTF-8 ejemplos/DemoBusqueda.java
+java -cp ejemplos DemoBusqueda
+</code></pre>
+<h3>2.5. Salida esperada</h3>
 <pre><code class="language-text">3:1
 8:-1
 1:0
 9:4
+Rango 3: [1, 4]
+Limites 3: 1,4
+Verificación: correcta.
 </code></pre>
-<p>La salida procede de los datos fijos del bloque de ejecución. Las verificaciones internas también cubren los casos adicionales que se leen en el código. El registro de ejecuciones realizadas se conserva en <a href="../../../docs/verificacion.md">verificación</a>, separado de estas expectativas.</p>
+<h3>2.6. Interpretación</h3>
+<p>La secuencial y <code>binaryFirst</code> cumplen el mismo contrato de primera coincidencia cuando la entrada está ordenada. <code>lowerBound</code> y <code>upperBound</code> no representan exactamente la misma operación: localizan fronteras diferentes. El arreglo <code>a</code> conserva su contenido y el caso vacío se resuelve sin accesos fuera de rango. Las comprobaciones son independientes de las opciones de ejecución de <code>assert</code>.</p>
 <p><a id="pc"></a></p>
-<h2>3. PC — 2.2: Búsqueda secuencial y binaria</h2>
-<p>Implementa una búsqueda que devuelva el intervalo semiabierto de todas las coincidencias con dos búsquedas binarias. No recorras linealmente el bloque de duplicados. Si no hay coincidencias devuelve [-1,-1].</p>
-<h3>Requisitos de la entrega</h3>
-<ul>
-<li>Implementa la actividad en <strong>una versión</strong>, a tu elección entre Java, Python y JavaScript. Las PL se entregan exclusivamente en Java.</li>
-<li>Separa la lógica del procesamiento de la entrada y la impresión. Documenta tipos, dominio válido, salida y comportamiento de error.</li>
-<li>Conserva los casos de aceptación siguientes y agrega al menos un caso que compruebe el invariante del tema.</li>
-<li>No copies como solución el bloque de demostración: resuelve la ampliación pedida. No se suministra una solución completa de esta PC.</li>
-</ul>
-<h3>Casos de aceptación de la PC</h3>
+<h2>3. Práctica y PC</h2>
+<h3>3.1. Indicaciones comunes</h3>
+<p>Los ejercicios se presentan sin solución. Justificar el contrato, la precondición, la salida esperada y el costo temporal y espacial. Los ejemplos con arreglos ordenados usan orden ascendente, salvo indicación contraria.</p>
+<h3>3.2. Nivel 1: conceptos y recorridos</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">N.º</th>
+<th>Actividad</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>Buscar la primera posición de <code>4</code> y de <code>7</code> en <code>{4, 2, 4, 9}</code> mediante recorrido secuencial.</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>Modificar una secuencial para devolver un booleano de existencia sin crear arreglos adicionales.</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>Implementar la búsqueda de todos los índices de <code>5</code> en <code>{5, 1, 5, 5}</code> y justificar memoria de salida.</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>Buscar por código en una <code>List&lt;Estudiante&gt;</code> sin comparar referencias con <code>==</code>.</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>Explicar por qué una búsqueda secuencial no exige ordenar previamente.</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>Construir un caso en el que <code>binaryAny</code> devuelva un duplicado distinto del primero.</td>
+</tr>
+</tbody></table></div>
+<h3>3.3. Nivel 2: binaria, límites y trazas</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">N.º</th>
+<th>Actividad</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">7</td>
+<td>Trazar <code>lowerBound</code> en <code>[2, 2, 4, 6, 6]</code> para claves <code>2</code>, <code>5</code> y <code>8</code>.</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>Trazar <code>upperBound</code> en <code>[1, 1, 1, 4, 7]</code> para clave <code>1</code>.</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>Identificar el error de un <code>lowerBound</code> que utiliza <code>hi = mid - 1</code>.</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>Explicar por qué <code>lo = mid</code> puede impedir terminar en un intervalo de dos elementos.</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>Obtener rango y cantidad de coincidencias de <code>6</code> en <code>[1, 6, 6, 6, 9]</code>.</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>Adaptar los límites para una secuencia descendente y documentar las desigualdades modificadas.</td>
+</tr>
+</tbody></table></div>
+<h3>3.4. Nivel 3: API, objetos y análisis</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th align="right">N.º</th>
+<th>Actividad</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">13</td>
+<td>Interpretar un resultado de <code>Arrays.binarySearch</code> igual a <code>-5</code> como punto de inserción.</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>Ordenar productos por código con <code>Comparator</code> y buscar un producto por esa clave.</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>Explicar por qué buscar por precio sobre una lista ordenada por código incumple la precondición.</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>Comparar el costo de una consulta secuencial con la estrategia de ordenar y realizar <code>q</code> consultas binarias.</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>Diferenciar el índice en un arreglo ordenado de la posición original de un registro.</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>Analizar la complejidad de una búsqueda binaria si comparar cadenas cuesta <code>O(m)</code>.</td>
+</tr>
+</tbody></table></div>
+<h3>3.5. PC integradora · Intervalo de coincidencias</h3>
+<p><strong>Contexto:</strong> una aplicación almacena un conjunto de números enteros ordenados y necesita conocer el bloque completo de posiciones que contienen una clave. No basta con localizar cualquier aparición.</p>
+<p><strong>Contrato de entrada:</strong> arreglo no nulo de enteros ordenados ascendentemente, posiblemente vacío, y clave <code>int</code>. Si el arreglo es <code>null</code>, rechazarlo con <code>IllegalArgumentException</code>. El algoritmo puede asumir que se cumple la precondición de orden y no necesita validarla en cada consulta.</p>
+<p><strong>Trabajo solicitado:</strong></p>
+<ol>
+<li>Implementar dos búsquedas binarias independientes para obtener la frontera inferior y la frontera superior exclusiva.</li>
+<li>Construir un método que devuelva <code>[inicio, fin]</code> como arreglo de dos enteros; utilizar <code>[-1, -1]</code> si la clave no existe.</li>
+<li>No recorrer linealmente el bloque de duplicados para descubrir su extremo final.</li>
+<li>Mantener la entrada sin modificaciones y separar lógica, pruebas y presentación.</li>
+<li>Incorporar comprobaciones ejecutables de valores repetidos, ausencia, arreglo vacío, extremos y valor único.</li>
+<li>Explicar por qué la búsqueda del rango es <code>O(log n)</code> y ocupa <code>O(1)</code> memoria auxiliar con arreglo de salida de tamaño fijo.</li>
+</ol>
+<p><strong>La demostración de la sección 2 funciona como referencia</strong>, pero la entrega debe ser una implementación propia y documentada, con casos adicionales y justificación de invariantes; no copiar el código de demostración como única solución.</p>
+<h3>3.6. Casos de aceptación</h3>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -142,34 +855,68 @@ static int sequential(int[] a, int key) {
 </tr>
 </thead>
 <tbody><tr>
-<td>[1,3,3,3,8], clave 3</td>
-<td>[1,4]</td>
+<td><code>[1, 3, 3, 3, 8]</code>, clave <code>3</code></td>
+<td><code>[1, 4]</code></td>
 </tr>
 <tr>
-<td>[1,3], clave 2</td>
-<td>[-1,-1]</td>
+<td><code>[1, 3]</code>, clave <code>2</code></td>
+<td><code>[-1, -1]</code></td>
 </tr>
 <tr>
-<td>[], clave 1</td>
-<td>[-1,-1]</td>
+<td><code>[]</code>, clave <code>1</code></td>
+<td><code>[-1, -1]</code></td>
+</tr>
+<tr>
+<td><code>[2, 2, 2]</code>, clave <code>2</code></td>
+<td><code>[0, 3]</code></td>
+</tr>
+<tr>
+<td><code>[1, 2, 4]</code>, clave <code>1</code></td>
+<td><code>[0, 1]</code></td>
+</tr>
+<tr>
+<td><code>[1, 2, 4]</code>, clave <code>4</code></td>
+<td><code>[2, 3]</code></td>
+</tr>
+<tr>
+<td><code>[1, 2, 4]</code>, clave <code>9</code></td>
+<td><code>[-1, -1]</code></td>
+</tr>
+<tr>
+<td><code>[5]</code>, clave <code>5</code></td>
+<td><code>[0, 1]</code></td>
+</tr>
+<tr>
+<td>Arreglo <code>null</code></td>
+<td>Rechazo con causa mediante <code>IllegalArgumentException</code></td>
 </tr>
 </tbody></table></div>
-<h3>Ejecución y evidencia</h3>
-<p>Desde la carpeta de tu entrega, ejecuta el programa con <code>java Main.java</code>. Si divides Java en paquetes, utiliza los comandos de la plantilla del estudiante. Registra entrada, resultado esperado, resultado real y explicación de cualquier diferencia en <code>evidencias/PC2.2.md</code> de tu repositorio personal.</p>
-<p>Crea commits pequeños: <code>feat(pc2.2): implementar contrato</code>, <code>test(pc2.2): cubrir casos limite</code> y <code>docs(pc2.2): explicar costos</code>. Sustituye los mensajes por descripciones del cambio real. Obtén el hash con <code>git rev-parse HEAD</code> y revisa una etapa con <code>git show HASH</code>. La actividad no necesita continuar un proyecto acumulativo.</p>
+<h3>3.7. Entrega y evidencia</h3>
+<p>La PC puede implementarse en <strong>una versión</strong> a elección entre Java, Python y JavaScript, conforme al contrato original del tema. Las PL se entregan exclusivamente en Java. Para esta guía, los ejemplos y la demostración se mantienen en Java.</p>
+<p>Registrar entrada, resultado esperado, resultado obtenido, comprobaciones ejecutadas y justificación del invariante en <code>evidencias/PC2.2.md</code>. Si la solución es Java, documentar el comando de ejecución desde la carpeta de entrega. Crear commits relacionados con implementación, pruebas y documentación; verificar el hash con <code>git rev-parse HEAD</code>.</p>
 <p><a id="esencial"></a></p>
 <h2>Lo esencial</h2>
 <ul>
-<li>La búsqueda recibe una secuencia y una clave.</li>
-<li>Ordenar cuesta tiempo y altera la correspondencia con índices originales.</li>
-<li>Explica el contrato, traza una entrada y justifica tiempo y memoria con las condiciones descritas.</li>
+<li>La secuencial acepta datos desordenados; la binaria necesita datos ordenados por el mismo criterio.</li>
+<li><code>binaryAny</code> puede retornar cualquier duplicado; <code>binaryFirst</code> utiliza la frontera inferior.</li>
+<li><code>lowerBound</code> busca el primer valor mayor o igual; <code>upperBound</code>, el primer valor estrictamente mayor.</li>
+<li>Dos límites determinan <code>[inicio, fin)</code> sin recorrer duplicados; si no hay coincidencia se devuelve <code>[-1, -1]</code>.</li>
+<li>Los intervalos y sus actualizaciones deben usar una convención consistente; el invariante permite justificar corrección y terminación.</li>
+<li>Una búsqueda secuencial requiere <code>O(n)</code> en el peor caso; una binaria sobre arreglo ordenado, <code>O(log n)</code> con comparaciones constantes.</li>
+<li>Ordenar, validar y conservar índices originales son costos y responsabilidades distintas de buscar.</li>
+<li><code>Arrays.binarySearch</code> no garantiza la primera coincidencia y codifica de modo especial las ausencias.</li>
 </ul>
-<h2>Referencias</h2>
-<ul>
-<li>Programa analítico y referencias del docente: correspondencia en el documento docente de este contenido.</li>
-<li><a href="https://docs.oracle.com/en/java/javase/27/docs/api/">Referencia técnica de Java</a>.</li>
-<li><a href="../../../docs/analisis-referencias.md">Bibliografía y análisis de fuentes</a>.</li>
-</ul>
+<p><a id="referencias"></a></p>
+<h2>Referencias y lectura de apoyo</h2>
+<ol>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Arrays.html">Java SE 25 · Arrays</a>. <code>sort</code> y <code>binarySearch</code>.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Collections.html">Java SE 25 · Collections</a>. <code>binarySearch</code> con orden natural o comparador.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Comparator.html">Java SE 25 · Comparator</a>. Criterios externos coherentes con el ordenamiento.</li>
+<li>Oracle. <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Comparable.html">Java SE 25 · Comparable</a>. Orden natural.</li>
+<li>Programa analítico del curso y material previo de <code>Comparator</code> y <code>Comparable</code>. Correspondencia con ordenamiento en la Unidad 2.</li>
+</ol>
+<p>Los ejemplos, trazas y ejercicios son elaboración didáctica orientada a Java 17 o posterior. La API se documenta con referencias de Java SE 25.</p>
+<p><a href="../../../index.html">Volver al índice del curso</a></p>
 
   <nav class="article-nav" aria-label="Recursos del contenido">
     <a href="../../../index.html" target="_top">Índice del curso</a>

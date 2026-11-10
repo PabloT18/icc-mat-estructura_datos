@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 4.2 Caché y memoización · Java
+##  4.2 Caché y memoización · Java
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 3.1.3 Listas enlazadas · Java
+##  3.1.3 Listas enlazadas · Java
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 3.2.2 Diccionarios y hashing · Python
+##  3.2.2 Diccionarios y hashing · Python
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

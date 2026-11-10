@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 3.3.1 Árboles binarios de búsqueda · JavaScript
+##  3.3.1 Árboles binarios de búsqueda · JavaScript
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

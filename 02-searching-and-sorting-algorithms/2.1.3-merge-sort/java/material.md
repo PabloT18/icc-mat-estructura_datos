@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 2.1.3 Merge Sort · Java
+## 2.1.3 Merge Sort · Java
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

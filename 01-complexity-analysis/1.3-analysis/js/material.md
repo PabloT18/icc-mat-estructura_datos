@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 1.3 Análisis y experimentación · JavaScript
+##  1.3 Análisis y experimentación · JavaScript
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

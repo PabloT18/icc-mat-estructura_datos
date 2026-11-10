@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 4.1 Programación dinámica frente a recursión · Java
+##  4.1 Programación dinámica frente a recursión · Java
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

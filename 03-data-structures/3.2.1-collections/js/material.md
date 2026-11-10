@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 3.2.1 Colecciones y conjuntos · JavaScript
+##  3.2.1 Colecciones y conjuntos · JavaScript
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 

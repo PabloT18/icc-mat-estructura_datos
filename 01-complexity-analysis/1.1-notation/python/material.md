@@ -3,7 +3,7 @@
 ![UPS · Carrera de Computación](../../../assets/logos/ups-computacion.png)
 
 
-## 2.1.1 Ordenamiento directo · Python 1.1 Notación asintótica · Python
+##  1.1 Notación asintótica · Python
 
 **Autor:** Ing. Pablo Torres, Mgtr.  
 
