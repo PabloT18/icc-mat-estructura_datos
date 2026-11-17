@@ -1,1 +1,980 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PL2.1 · Ordenamiento trazable y comparación situacional · Estructura de Datos</title><link rel="stylesheet" href="../../assets/css/styles.css"></head><body><a class="skip" href="#practice-content">Ir a la práctica</a><main class="page" id="practice-content" data-protected="true"><nav class="article-nav"><a href="../../index.html" target="_top">Índice del curso</a><a href="PL2.1.pptx" download>Presentación de la práctica</a></nav><div class="table-scroll"><table class="guide-table"><tr><td><img class="guide-logo" src="../../assets/logos/ups.png" alt="Universidad Politécnica Salesiana"></td><td colspan="3" class="guide-heading">GUÍA DE PRÁCTICA DE LABORATORIO / TALLERES / CENTROS DE SIMULACIÓN</td></tr><tr><td colspan="2"><strong>CARRERA:</strong> Computación</td><td colspan="2"><strong>ASIGNATURA:</strong> Estructura de Datos</td></tr><tr><td><strong>NRO. PRÁCTICA:</strong> PL2.1</td><td colspan="3"><strong>TÍTULO:</strong> Ordenamiento trazable y comparación situacional</td></tr><tr><td class="label">OBJETIVO</td><td colspan="3"><ul><li>Implementar Inserción y Shell ascendentes y descendentes sobre [12,-7,25,0,-15,33,19,-22,5,48,-3], siempre sobre copias.</li><li>Justifica estabilidad, espacio auxiliar y diferencias entre caso ordenado y aleatorio.</li></ul></td></tr><tr><td class="label">CONTEXTO</td><td colspan="3"><p>Adaptación de las guías de ordenamiento y comparativa suministradas. Primero se implementan Inserción y Shell con trazas; después se contrastan Inserción y Quick Sort sobre registros Persona con el mismo criterio.</p></td></tr><tr><td class="label">RECURSOS</td><td colspan="3"><p>PC con JDK 27 recomendado, editor o IDE y Git. Sin Maven, Gradle ni dependencias externas. Consulta docs/versiones.md para el entorno verificado.</p><p>Estimación docente de desarrollo, no horas oficiales: 8 horas. La fecha y modalidad de entrega se establecen en el aula.</p></td></tr><tr><td class="label">INSTRUCCIONES</td><td colspan="3"><ol><li>Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.</li><li>Implementar Inserción y Shell ascendentes y descendentes sobre [12,-7,25,0,-15,33,19,-22,5,48,-3], siempre sobre copias.</li><li>Contar comparaciones de claves, desplazamientos o intercambios y pasadas. Definir cada contador; no mezclar escrituras con intercambios.</li><li>Implementar Quick Sort y ordenar Persona por edad y luego nombre con Comparator.comparingInt(...).thenComparing(...), sin Arrays.sort dentro del algoritmo.</li><li>No codificar edad y nombre como edad*100000+sumaDeCaracteres: puede causar colisiones y no representa orden lexicográfico.</li><li>Comparar 1000,5000,10000 registros con semilla 2026 en orden aleatorio y ordenado más una nueva persona. Usar 3 calentamientos y 7 repeticiones. Las muestras de 50000 y 100000 son ampliación opcional con límite de tiempo documentado.</li><li>Mostrar trazas solo en arreglos pequeños. Desactivarlas durante medición. Validar vacíos, repetidos y menú.</li></ol></td></tr><tr><td class="label">ACTIVIDADES POR DESARROLLAR</td><td colspan="3"><h3>1. Orden y trazas</h3><p>Definir contrato de comparación y construir las clases de modelo y algoritmos. Mostrar índices y estado después de cada modificación para el arreglo inicial.</p><p><strong>Commit de fase:</strong> <code>feat(pl2.1): fase 1</code>, acompañado de una descripción concreta del cambio.</p><h3>2. Variantes</h3><p>Implementar ambos sentidos para Inserción y Shell y agregar Quick Sort. Comprobar preservación de elementos.</p><p><strong>Commit de fase:</strong> <code>feat(pl2.1): fase 2</code>, acompañado de una descripción concreta del cambio.</p><h3>3. Comparación</h3><p>Crear entradas idénticas y copias independientes. Registrar datos crudos, medianas, contadores y profundidad de Quick Sort.</p><p><strong>Commit de fase:</strong> <code>feat(pl2.1): fase 3</code>, acompañado de una descripción concreta del cambio.</p><h3>4. Informe</h3><p>Explicar el efecto del pivote, el orden previo y los empates. No inventar tiempos ni predecir un ganador universal.</p><p><strong>Commit de fase:</strong> <code>feat(pl2.1): fase 4</code>, acompañado de una descripción concreta del cambio.</p></td></tr><tr><td class="label">CASOS DE ACEPTACIÓN</td><td colspan="3"><table><thead><tr><th>Escenario</th><th>Criterio de aceptación</th></tr></thead><tbody><tr><td>[3,1,3,-2] ascendente</td><td>[-2,1,3,3]</td></tr><tr><td>[3,1,3,-2] descendente</td><td>[3,3,1,-2]</td></tr><tr><td>[(Ana,20),(Luis,18),(Bea,20)]</td><td>Luis,Ana,Bea</td></tr><tr><td>[]</td><td>sin errores; original intacto</td></tr></tbody></table></td></tr><tr><td class="label">ENTREGABLES</td><td colspan="3"><ul><li>Fuentes Java organizados por paquetes y README con compilación y ejecución.</li><li>Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.</li><li>Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.</li><li>Repositorio con commits funcionales por fase y hash real de la entrega.</li><li>Exposición breve con demostración de un caso normal y uno límite.</li></ul></td></tr><tr><td class="label">RÚBRICA</td><td colspan="3"><div class="table-scroll"><table class="rubric"><thead><tr><th>Criterio</th><th>Completo · 100 %</th><th>Parcial · 50 %</th><th>No logrado · 0 %</th><th>Máximo</th></tr></thead><tbody><tr><td>Corrección funcional</td><td>Cumple todos los casos obligatorios y conserva los invariantes.</td><td>Cumple los casos normales, pero falla un caso límite o una operación obligatoria.</td><td>No ejecuta el núcleo requerido o no produce resultados válidos.</td><td>4</td></tr><tr><td>Análisis y decisiones</td><td>Justifica estabilidad, espacio auxiliar y diferencias entre caso ordenado y aleatorio.</td><td>Justifica parte de las decisiones, pero omite un costo o una comparación requerida.</td><td>No fundamenta decisiones ni analiza costos.</td><td>2</td></tr><tr><td>Pruebas y evidencia</td><td>Registra entradas, salidas reales y casos de error reproducibles.</td><td>Entrega evidencia reproducible incompleta.</td><td>No aporta ejecuciones verificables.</td><td>2</td></tr><tr><td>Organización y Git</td><td>Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.</td><td>La organización o el historial está incompleto, pero permite ejecutar.</td><td>No se puede reproducir la entrega desde las instrucciones.</td><td>1</td></tr><tr><td>Defensa y conclusiones</td><td>Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.</td><td>Explica parcialmente el código o no completa la modificación.</td><td>No puede explicar el comportamiento del código entregado.</td><td>1</td></tr><tr class="total"><td colspan="4">TOTAL</td><td>10</td></tr></tbody></table></div><p>Asigna el puntaje completo, la mitad o cero en cada criterio según la evidencia. No se aplican penalizaciones adicionales no indicadas en esta rúbrica.</p></td></tr><tr><td class="label">RESULTADOS OBTENIDOS</td><td colspan="3"><p>Presenta una tabla propia con escenario, entrada, resultado esperado, resultado real y evidencia. Los datos deben proceder de tu ejecución. Identifica las limitaciones y cualquier caso que no hayas completado.</p></td></tr><tr><td class="label">DEFENSA</td><td colspan="3"><p>Cambia el criterio a edad descendente con nombre ascendente. Explica qué cambia en la comparación y qué permanece igual en el algoritmo.</p><p>Explica el código del commit entregado y realiza la modificación solicitada. Declara herramientas externas utilizadas y comprueba personalmente cada resultado.</p></td></tr><tr><td class="label">CONCLUSIONES</td><td colspan="3"><p>Redacta al menos tres conclusiones basadas en resultados reales. Relaciona cada conclusión con un caso ejecutado y una decisión del diseño.</p></td></tr><tr><td class="label">RECOMENDACIONES</td><td colspan="3"><p>Conserva datos de prueba reproducibles, valida casos de error y registra los cambios por fase. Revisa las instrucciones de cada contenido antes de integrar componentes.</p></td></tr></table></div><div class="signature"><p>Docente / Técnico Docente: Ing. Pablo Torres, Mgtr.</p><p>Firma: _______________________________</p></div><p class="reference-note">Guía adaptada de las referencias del docente para Estructura de Datos. Rúbrica: 10 puntos.</p></main><script src="../../assets/js/protection.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>PL2.1 · Ordenamiento con Comparator y Comparable</title>
+    <link
+        rel="stylesheet"
+        href="../../assets/css/styles.css"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #172637;
+            background: #f3f5f8;
+            line-height: 1.55;
+        }
+
+        .page {
+            max-width: 1150px;
+            margin: 24px auto;
+            padding: 24px;
+            background: white;
+        }
+
+        .article-nav {
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #003772;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .guide-table,
+        .inner-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .guide-table td,
+        .inner-table th,
+        .inner-table td {
+            border: 1px solid #aeb8c4;
+            padding: 12px;
+            vertical-align: top;
+        }
+
+        .guide-logo {
+            display: block;
+            width: 150px;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .guide-heading {
+            background: #003772;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            vertical-align: middle !important;
+        }
+
+        .label {
+            width: 175px;
+            background: #eaf0f7;
+            color: #003772;
+            font-weight: bold;
+        }
+
+        h3 {
+            color: #003772;
+            margin: 22px 0 10px;
+        }
+
+        h3:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin: 0 0 12px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        .inner-table th {
+            background: #003772;
+            color: white;
+            text-align: left;
+        }
+
+        .inner-table tbody tr:nth-child(even) {
+            background: #f5f7fa;
+        }
+
+        .total {
+            font-weight: bold;
+            background: #eaf0f7;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .code-panel {
+            margin: 16px 0;
+            border: 1px solid #b8c5d4;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .code-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 10px 14px;
+            background: #eaf0f7;
+        }
+
+        .copy-button {
+            border: 0;
+            border-radius: 4px;
+            padding: 9px 15px;
+            background: #003772;
+            color: white;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .copy-button:hover {
+            background: #0065b0;
+        }
+
+        .copy-button:focus-visible {
+            outline: 3px solid #fcc000;
+        }
+
+        pre {
+            margin: 0;
+            padding: 18px;
+            overflow-x: auto;
+            background: #142333;
+            color: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        .copy-status {
+            display: block;
+            padding: 8px 14px;
+            font-size: .9rem;
+        }
+
+        .signature {
+            margin-top: 24px;
+        }
+
+        .reference-note {
+            margin-top: 20px;
+            font-size: .9rem;
+        }
+
+        @media (max-width: 650px) {
+            .page {
+                margin: 0;
+                padding: 10px;
+            }
+
+            .label {
+                width: 120px;
+            }
+
+            .guide-table td {
+                padding: 9px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .page {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .article-nav,
+            .copy-button,
+            .copy-status {
+                display: none;
+            }
+
+            pre {
+                white-space: pre-wrap;
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main
+        class="page"
+        id="practice-content"
+    >
+        <nav class="article-nav">
+            <a
+                href="../../index.html"
+                target="_top"
+            >Índice del curso</a>
+        </nav>
+
+        <div class="table-scroll">
+            <table class="guide-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img
+                                class="guide-logo"
+                                src="../../assets/logos/ups.png"
+                                alt="Universidad Politécnica Salesiana"
+                            >
+                        </td>
+                        <td
+                            colspan="3"
+                            class="guide-heading"
+                        >
+                            GUÍA DE PRÁCTICA DE LABORATORIO / TALLERES /
+                            CENTROS DE SIMULACIÓN
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><strong>CARRERA:</strong> Computación</td>
+                        <td colspan="2">
+                            <strong>ASIGNATURA:</strong> Estructura de Datos
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>NRO. PRÁCTICA:</strong> PL2.1</td>
+                        <td colspan="3">
+                            <strong>TÍTULO:</strong>
+                            Ordenamiento de estudiantes con Comparator y Comparable
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">OBJETIVOS</td>
+                        <td colspan="3">
+                            <ul>
+                                <li>
+                                    Implementar el orden natural de una clase mediante
+                                    <code>Comparable&lt;Estudiante&gt;</code>.
+                                </li>
+                                <li>
+                                    Construir criterios externos con
+                                    <code>Comparator&lt;Estudiante&gt;</code>,
+                                    expresiones lambda y referencias a métodos.
+                                </li>
+                                <li>
+                                    Aplicar criterios compuestos, desempates y sentidos
+                                    ascendentes y descendentes.
+                                </li>
+                                <li>
+                                    Verificar estabilidad, conservación de registros
+                                    y preservación del orden original.
+                                </li>
+                                <li>
+                                    Documentar resultados reproducibles en un repositorio Git.
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">CONTEXTO</td>
+                        <td colspan="3">
+                            <p>
+                                La coordinación académica necesita consultar un mismo grupo
+                                de estudiantes mediante diferentes órdenes: código, nombre,
+                                nota, edad y carrera. Cada consulta debe ordenar una copia
+                                de la lista y conservar intacta la secuencia original.
+                            </p>
+                            <p>
+                                El código define el orden natural. Los demás órdenes se
+                                implementan como comparadores externos, sin modificar
+                                <code>compareTo()</code> para cada consulta.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">RECURSOS</td>
+                        <td colspan="3">
+                            <p>
+                                Computador con JDK, editor o IDE, Git y una cuenta para
+                                alojar el repositorio remoto. Registrar en el README la
+                                versión del JDK utilizada.
+                            </p>
+                            <p>
+                                Trabajo individual en Java, sin Maven, Gradle ni dependencias
+                                externas. Utilizar las bibliotecas estándar.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">INSTRUCCIONES</td>
+                        <td colspan="3">
+                            <ol>
+                                <li>
+                                    Crear la clase <code>Estudiante</code> con los atributos
+                                    <code>codigo</code>, <code>nombre</code>,
+                                    <code>edad</code>, <code>nota</code> y
+                                    <code>carrera</code>.
+                                </li>
+                                <li>
+                                    Usar <code>String</code> para los textos,
+                                    <code>int</code> para edad y <code>double</code>
+                                    para nota. Los textos son no nulos, los códigos únicos,
+                                    las edades positivas y las notas finitas entre 0 y 10.
+                                </li>
+                                <li>
+                                    Incorporar constructor, getters y
+                                    <code>toString()</code>. Mantener los atributos inmutables
+                                    para evitar cambios durante el ordenamiento.
+                                </li>
+                                <li>
+                                    Implementar
+                                    <code>Comparable&lt;Estudiante&gt;</code>
+                                    con código ascendente como orden natural.
+                                </li>
+                                <li>
+                                    Utilizar <code>List.sort()</code> o
+                                    <code>Collections.sort()</code>.
+                                    Cada consulta debe partir de una nueva
+                                    <code>ArrayList</code> con los datos originales.
+                                </li>
+                                <li>
+                                    Comparar los textos con el orden de
+                                    <code>String.compareTo()</code>, sensible a mayúsculas.
+                                    No aplicar normalización ni reglas regionales.
+                                </li>
+                                <li>
+                                    No comparar números mediante restas ni convertir
+                                    diferencias de notas a <code>int</code>.
+                                    Utilizar comparaciones seguras o los constructores
+                                    de comparadores correspondientes.
+                                </li>
+                                <li>
+                                    Mostrar el identificador de cada consulta, su criterio
+                                    y los registros completos en el orden obtenido.
+                                </li>
+                                <li>
+                                    Publicar el proyecto en un repositorio Git remoto.
+                                    El enlace debe permitir al docente acceder a la entrega.
+                                </li>
+                            </ol>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">DATOS DE TRABAJO</td>
+                        <td colspan="3">
+                            <p>
+                                Utilizar los siguientes 20 registros ficticios en el orden
+                                indicado. Pegar el bloque dentro del método encargado de
+                                construir los datos. El constructor debe recibir los
+                                atributos en el orden mostrado.
+                            </p>
+
+                            <div class="code-panel">
+                                <div class="code-toolbar">
+                                    <strong>Java · Lista inicial de estudiantes</strong>
+                                    <button
+                                        class="copy-button"
+                                        type="button"
+                                        id="copy-students"
+                                        aria-describedby="copy-status"
+                                    >
+                                        Copiar listado
+                                    </button>
+                                </div>
+
+                                <pre><code id="students-code">List&lt;Estudiante&gt; estudiantes = new ArrayList&lt;&gt;(List.of(
+    new Estudiante("E014", "Ana",    20, 8.5, "Computacion"),
+    new Estudiante("E003", "Luis",   19, 7.8, "Electronica"),
+    new Estudiante("E018", "Maria",  21, 9.2, "Computacion"),
+    new Estudiante("E007", "Pedro",  20, 8.5, "Mecatronica"),
+    new Estudiante("E001", "Sofia",  18, 9.5, "Computacion"),
+    new Estudiante("E012", "Diego",  22, 6.8, "Electronica"),
+    new Estudiante("E005", "Ana",    19, 8.5, "Computacion"),
+    new Estudiante("E020", "Carlos", 21, 7.8, "Mecatronica"),
+    new Estudiante("E009", "Lucia",  20, 9.2, "Electronica"),
+    new Estudiante("E016", "Mateo",  18, 7.0, "Computacion"),
+    new Estudiante("E002", "Elena",  22, 8.0, "Mecatronica"),
+    new Estudiante("E011", "Pablo",  21, 9.5, "Electronica"),
+    new Estudiante("E006", "Sara",   19, 6.8, "Computacion"),
+    new Estudiante("E019", "Juan",   20, 8.0, "Mecatronica"),
+    new Estudiante("E004", "Diana",  18, 9.2, "Electronica"),
+    new Estudiante("E015", "Bruno",  22, 7.0, "Computacion"),
+    new Estudiante("E008", "Carla",  21, 8.5, "Mecatronica"),
+    new Estudiante("E017", "Andres", 19, 9.5, "Electronica"),
+    new Estudiante("E010", "Ana",    20, 8.5, "Computacion"),
+    new Estudiante("E013", "Luis",   19, 7.8, "Electronica")
+));</code></pre>
+
+                                <span
+                                    class="copy-status"
+                                    id="copy-status"
+                                    role="status"
+                                    aria-live="polite"
+                                >
+                                    Requiere importar java.util.List y java.util.ArrayList.
+                                </span>
+                            </div>
+
+                            <p>
+                                Los nombres y notas repetidos son intencionales.
+                                Permiten comprobar desempates y estabilidad.
+                                Una copia de la lista comparte los objetos; por eso los
+                                atributos no deben modificarse durante las consultas.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">ACTIVIDADES POR DESARROLLAR</td>
+                        <td colspan="3">
+                            <h3>1. Modelo y orden natural</h3>
+                            <p>
+                                Implementar el modelo y ordenar una copia por código
+                                ascendente usando su orden natural, sin proporcionar un
+                                comparador externo. Explicar qué representa el signo del
+                                resultado de <code>compareTo()</code>.
+                            </p>
+
+                            <h3>2. Consultas con Comparator</h3>
+                            <p>
+                                Implementar las siguientes consultas. Cada criterio se
+                                aplica de izquierda a derecha; el siguiente solo interviene
+                                si existe empate en el anterior.
+                            </p>
+
+                            <div class="table-scroll">
+                                <table class="inner-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Orden requerido</th>
+                                            <th>Requisito técnico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>C1</td>
+                                            <td>Código ascendente.</td>
+                                            <td>Comparable y ordenamiento natural.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>C2</td>
+                                            <td>Nombre ascendente; código ascendente.</td>
+                                            <td>
+                                                Comparator con lambda de dos parámetros.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C3</td>
+                                            <td>Nota ascendente, sin desempate.</td>
+                                            <td>
+                                                comparingDouble y referencia a método.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C4</td>
+                                            <td>Nota descendente; nombre ascendente.</td>
+                                            <td>reversed y thenComparing.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>C5</td>
+                                            <td>Edad ascendente; nombre descendente.</td>
+                                            <td>
+                                                comparingInt y sentido independiente
+                                                para el criterio secundario.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C6</td>
+                                            <td>
+                                                Carrera ascendente; nota descendente;
+                                                nombre ascendente; código ascendente.
+                                            </td>
+                                            <td>Composición de cuatro criterios.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>C7</td>
+                                            <td>
+                                                Nota ajustada descendente; nombre ascendente;
+                                                código ascendente.
+                                            </td>
+                                            <td>
+                                                Lambda que calcule
+                                                <code>Math.min(10.0, nota + 0.5)</code>
+                                                para estudiantes de Computacion y conserve la
+                                                nota de las demás carreras.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p>
+                                En C7, calcular la clave sin modificar la nota del objeto.
+                                Mostrar tanto la nota original como la ajustada.
+                                No crear una clave artificial combinando números y
+                                sumas de caracteres.
+                            </p>
+
+                            <h3>3. Comparación de implementaciones</h3>
+                            <ul>
+                                <li>
+                                    Implementar C2 también con
+                                    <code>comparing()</code>,
+                                    <code>thenComparing()</code> y referencias a métodos.
+                                </li>
+                                <li>
+                                    Verificar que ambas versiones producen exactamente
+                                    la misma secuencia de códigos.
+                                </li>
+                                <li>
+                                    Explicar por qué invertir un comparador compuesto
+                                    completo también invierte sus criterios de desempate.
+                                    Relacionar la explicación con C4 y C5.
+                                </li>
+                                <li>
+                                    Explicar por qué comparar dos estudiantes por nota
+                                    puede devolver cero aunque tengan códigos distintos.
+                                </li>
+                            </ul>
+
+                            <h3>4. Pruebas y estabilidad</h3>
+                            <ul>
+                                <li>
+                                    Ejecutar las siete consultas sobre los 20 registros.
+                                </li>
+                                <li>
+                                    Comprobar que cada salida conserva los 20 códigos,
+                                    sin pérdidas ni duplicaciones.
+                                </li>
+                                <li>
+                                    Verificar el orden mediante comparaciones entre
+                                    elementos consecutivos.
+                                </li>
+                                <li>
+                                    Comprobar que la lista original mantiene su secuencia
+                                    de códigos después de ejecutar todas las consultas.
+                                </li>
+                                <li>
+                                    Probar lista vacía, un solo estudiante y empates
+                                    completos en los criterios usados.
+                                </li>
+                                <li>
+                                    Verificar la estabilidad de C3 mediante los códigos
+                                    de los estudiantes que tienen nota 8.5.
+                                </li>
+                            </ul>
+
+                            <h3>5. Documentación y repositorio</h3>
+                            <p>
+                                Organizar el código en modelo, comparadores,
+                                datos de prueba y ejecución. Registrar commits
+                                funcionales para esas etapas, con mensajes que
+                                describan el cambio real.
+                            </p>
+                            <p>
+                                Incluir instrucciones suficientes para compilar y ejecutar
+                                desde la terminal, además de la ejecución desde el IDE.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">CASOS DE ACEPTACIÓN</td>
+                        <td colspan="3">
+                            <div class="table-scroll">
+                                <table class="inner-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Escenario</th>
+                                            <th>Resultado exigido</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>C1 con los 20 registros.</td>
+                                            <td>
+                                                E001, E002, …, E020, en ese orden.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C2 con los 20 registros.</td>
+                                            <td>
+                                                Los primeros registros son E005, E010,
+                                                E014 y E017.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C3: estudiantes con nota 8.5.</td>
+                                            <td>
+                                                E014, E007, E005, E008, E010.
+                                                Se conserva su orden relativo original.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C4 con los 20 registros.</td>
+                                            <td>
+                                                Los primeros registros son E017, E011 y E001.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C5 con los 20 registros.</td>
+                                            <td>
+                                                Los primeros registros son E001, E016 y E004.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C6 con los 20 registros.</td>
+                                            <td>
+                                                Los primeros registros son E001, E018,
+                                                E005, E010 y E014.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>C7 con los 20 registros.</td>
+                                            <td>
+                                                E001 tiene nota ajustada 10.0 y ocupa
+                                                el primer lugar. E018 tiene 9.7 y ocupa el segundo.
+                                                Sus notas originales siguen siendo 9.5 y 9.2.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lista vacía y lista de un elemento.</td>
+                                            <td>
+                                                Se procesan sin errores y conservan su contenido.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                C4 sobre una lista formada por E014, E005 y E010,
+                                                en ese orden.
+                                            </td>
+                                            <td>
+                                                Se conserva E014, E005, E010:
+                                                coinciden tanto en nota como en nombre.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Original después de todas las consultas.</td>
+                                            <td>
+                                                Mantiene los 20 códigos en la secuencia
+                                                proporcionada inicialmente.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p>
+                                Los prefijos indicados no sustituyen la validación de
+                                la salida completa. Agregar dos casos propios y explicar
+                                qué comportamiento comprueba cada uno.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">ENTREGABLES</td>
+                        <td colspan="3">
+                            <ul>
+                                <li>
+                                    Enlace al repositorio Git remoto con las fuentes Java.
+                                </li>
+                                <li>
+                                    README con autor, objetivo, estructura del proyecto,
+                                    versión del JDK y comandos de compilación y ejecución.
+                                </li>
+                                <li>
+                                    Tabla en el README que relacione C1–C7 con sus criterios
+                                    y el método que implementa cada consulta.
+                                </li>
+                                <li>
+                                    Carpeta <code>evidencias/</code> con salidas reales
+                                    y una tabla de pruebas: escenario, resultado esperado,
+                                    resultado obtenido y estado.
+                                </li>
+                                <li>
+                                    Historial de commits que refleje el desarrollo y
+                                    hash del commit final indicado en la entrega del aula.
+                                </li>
+                                <li>
+                                    Al menos tres conclusiones en el README,
+                                    <strong>escritas personalmente por el estudiante,
+                                        sin generación ni reescritura mediante IA</strong>.
+                                    Deben basarse en el código y los resultados obtenidos.
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">RÚBRICA</td>
+                        <td colspan="3">
+                            <div class="table-scroll">
+                                <table class="inner-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Criterio</th>
+                                            <th>Completo · 100 %</th>
+                                            <th>Parcial · 50 %</th>
+                                            <th>No logrado · 0 %</th>
+                                            <th>Máximo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Modelo y Comparable</td>
+                                            <td>
+                                                Modelo completo, atributos inmutables y orden
+                                                natural por código correctamente implementado.
+                                            </td>
+                                            <td>
+                                                Modelo utilizable, pero incompleto o con errores
+                                                en parte del orden natural.
+                                            </td>
+                                            <td>
+                                                No implementa el modelo requerido
+                                                o el orden natural no funciona.
+                                            </td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comparator y consultas</td>
+                                            <td>
+                                                C2–C7 correctas, incluida la equivalencia de C2,
+                                                los desempates, los sentidos y la clave calculada.
+                                            </td>
+                                            <td>
+                                                Implementa al menos tres consultas correctamente,
+                                                pero omite o resuelve mal parte de los requisitos.
+                                            </td>
+                                            <td>
+                                                Implementa correctamente menos de tres consultas.
+                                            </td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pruebas y evidencias</td>
+                                            <td>
+                                                Casos obligatorios y propios reproducibles;
+                                                comprueba estabilidad, conservación de registros
+                                                y original intacto.
+                                            </td>
+                                            <td>
+                                                Presenta ejecuciones reales, pero faltan casos
+                                                o comprobaciones requeridas.
+                                            </td>
+                                            <td>
+                                                No presenta evidencia reproducible.
+                                            </td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Organización, Git y ejecución</td>
+                                            <td>
+                                                Repositorio accesible, código organizado,
+                                                commits de desarrollo y comandos funcionales.
+                                            </td>
+                                            <td>
+                                                Repositorio accesible y ejecutable,
+                                                pero organización, historial o comandos incompletos.
+                                            </td>
+                                            <td>
+                                                No entrega repositorio accesible
+                                                o no permite reproducir la ejecución.
+                                            </td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Análisis y conclusiones del README</td>
+                                            <td>
+                                                Explica orden natural, comparadores, inversión
+                                                y empates; incluye tres conclusiones propias,
+                                                sin IA, vinculadas a resultados concretos.
+                                            </td>
+                                            <td>
+                                                Presenta análisis y conclusiones propios,
+                                                pero incompletos o poco vinculados a sus resultados.
+                                            </td>
+                                            <td>
+                                                Omite análisis o conclusiones,
+                                                o incumple la autoría requerida.
+                                            </td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr class="total">
+                                            <td colspan="4">TOTAL</td>
+                                            <td>10</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p>
+                                Cada criterio recibe el puntaje completo, la mitad
+                                o cero según la evidencia de la entrega.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">RESULTADOS OBTENIDOS</td>
+                        <td colspan="3">
+                            <p>
+                                Registrar las secuencias completas de códigos de C1–C7
+                                y las salidas con todos los atributos.
+                                Identificar las consultas que coinciden en algunos
+                                registros y explicar qué criterio determina su posición.
+                            </p>
+                            <p>
+                                Incluir la comprobación de equivalencia de las dos
+                                implementaciones de C2 y la evidencia de que C7
+                                conserva las notas originales.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">CONCLUSIONES</td>
+                        <td colspan="3">
+                            <p>
+                                Redactar las conclusiones directamente en el README.
+                                Relacionarlas con decisiones y resultados de la práctica:
+                                cuándo utilizar Comparable o Comparator, cómo afectan los
+                                desempates al orden y qué evidencia demuestra estabilidad.
+                            </p>
+                            <p>
+                                Cada conclusión debe identificar al menos una consulta
+                                o prueba concreta. Evitar definiciones copiadas
+                                y afirmaciones que no se hayan comprobado.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">RECOMENDACIONES</td>
+                        <td colspan="3">
+                            <ul>
+                                <li>
+                                    Crear una copia nueva antes de cada consulta.
+                                    La estabilidad se comprueba respecto al orden de entrada
+                                    de esa consulta.
+                                </li>
+                                <li>
+                                    Revisar dónde se aplica <code>reversed()</code>
+                                    antes de encadenar criterios.
+                                </li>
+                                <li>
+                                    Comprobar el proyecto desde una copia limpia
+                                    del repositorio siguiendo únicamente el README.
+                                </li>
+                                <li>
+                                    Verificar que las evidencias corresponden
+                                    al commit final entregado.
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="signature">
+            <p>Docente / Técnico Docente: Ing. Pablo Torres, Mgtr.</p>
+            <p>Firma: _______________________________</p>
+        </div>
+
+        <p class="reference-note">
+            Estructura de Datos · PL2.1 · Rúbrica: 10 puntos.
+        </p>
+    </main>
+
+    <script>
+        const copyButton = document.getElementById("copy-students");
+        const codeBlock = document.getElementById("students-code");
+        const copyStatus = document.getElementById("copy-status");
+
+        function copyWithFallback(text) {
+            const field = document.createElement("textarea");
+            field.value = text;
+            field.setAttribute("readonly", "");
+            field.style.position = "fixed";
+            field.style.left = "-9999px";
+            document.body.appendChild(field);
+            field.select();
+            field.setSelectionRange(0, field.value.length);
+
+            try {
+                return document.execCommand("copy");
+            } finally {
+                field.remove();
+                copyButton.focus();
+            }
+        }
+
+        copyButton.addEventListener("click", async () => {
+            const text = codeBlock.textContent;
+            let copied = false;
+
+            if (window.isSecureContext && navigator.clipboard) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    copied = true;
+                } catch {
+                    copied = false;
+                }
+            }
+
+            if (!copied) {
+                try {
+                    copied = copyWithFallback(text);
+                } catch {
+                    copied = false;
+                }
+            }
+
+            if (copied) {
+                copyStatus.textContent =
+                    "Listado copiado. Puedes pegarlo en tu archivo Java.";
+                return;
+            }
+
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(codeBlock);
+
+            if (selection) {
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+
+            copyStatus.textContent =
+                "El navegador bloqueó la copia. El listado está seleccionado: " +
+                "usa Ctrl+C o Cmd+C para copiarlo.";
+        });
+    </script>
+</body>
+
+</html>
