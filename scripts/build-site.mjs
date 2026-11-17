@@ -26,6 +26,11 @@ for (const t of data.topics) {
   await write(t.path + '/index.html', head(t.id + ' · ' + t.title, relative(t.path, 'assets/css/styles.css')) + `<body><a class="skip" href="#contenido">Ir al material</a><main class="page" id="contenido">${nav}${wrapTables(body)}${nav}</main></body></html>`);
 }
 for (const lab of data.labs) {
+
+  // PL2.1 se edita directamente en su HTML.
+  if (lab.id === 'PL2.1') {
+    continue;
+  }
   const dir = lab.directory;
   const list = items => '<ul>' + items.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>';
   const row = (label, content) => `<tr><td class="label">${label}</td><td colspan="3">${content}</td></tr>`;
