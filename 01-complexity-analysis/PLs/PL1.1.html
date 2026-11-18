@@ -1,1 +1,973 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PL1.1 · Conteo y contraste experimental · Estructura de Datos</title><link rel="stylesheet" href="../../assets/css/styles.css"></head><body><a class="skip" href="#practice-content">Ir a la práctica</a><main class="page" id="practice-content" data-protected="true"><nav class="article-nav"><a href="../../index.html" target="_top">Índice del curso</a><a href="PL1.1.pptx" download>Presentación de la práctica</a></nav><div class="table-scroll"><table class="guide-table"><tr><td><img class="guide-logo" src="../../assets/logos/ups.png" alt="Universidad Politécnica Salesiana"></td><td colspan="3" class="guide-heading">GUÍA DE PRÁCTICA DE LABORATORIO / TALLERES / CENTROS DE SIMULACIÓN</td></tr><tr><td colspan="2"><strong>CARRERA:</strong> Computación</td><td colspan="2"><strong>ASIGNATURA:</strong> Estructura de Datos</td></tr><tr><td><strong>NRO. PRÁCTICA:</strong> PL1.1</td><td colspan="3"><strong>TÍTULO:</strong> Conteo y contraste experimental</td></tr><tr><td class="label">OBJETIVO</td><td colspan="3"><ul><li>Implementar detección por pares i&lt;j y por inserción seguida de comparación de vecinos.</li><li>Deduce cotas a partir de los bucles y distingue el costo de preparación del costo del algoritmo.</li></ul></td></tr><tr><td class="label">CONTEXTO</td><td colspan="3"><p>Un sistema debe detectar códigos repetidos en lotes de datos. Se compararán un algoritmo por pares y otro que ordena una copia mediante inserción antes de revisar vecinos. El objetivo es relacionar conteos, corrección y tiempos observados.</p></td></tr><tr><td class="label">RECURSOS</td><td colspan="3"><p>PC con JDK 27 recomendado, editor o IDE y Git. Sin Maven, Gradle ni dependencias externas. Consulta docs/versiones.md para el entorno verificado.</p><p>Estimación docente de desarrollo, no horas oficiales: 4 horas. La fecha y modalidad de entrega se establecen en el aula.</p></td></tr><tr><td class="label">INSTRUCCIONES</td><td colspan="3"><ol><li>Trabajo individual en Java, sin Maven, Gradle ni dependencias externas. Entregar una implementación propia y los comandos de ejecución.</li><li>Implementar detección por pares i&lt;j y por inserción seguida de comparación de vecinos.</li><li>Separar generación, copia, validación e impresión del intervalo de medición. Medir con System.nanoTime().</li><li>Usar n=100,500,1000,2000; semilla fija 2026; entradas sin repetidos y con repetición al principio o al final.</li><li>Realizar 3 calentamientos y 7 repeticiones por escenario. Registrar cada medición y la mediana. No afirmar que la medición demuestra una cota.</li><li>Rechazar tamaños negativos y opciones de menú inválidas. No modificar el lote original.</li></ol></td></tr><tr><td class="label">ACTIVIDADES POR DESARROLLAR</td><td colspan="3"><h3>1. Contrato y oráculo</h3><p>Definir comportamiento para vacío, un elemento, repetidos y ausencia. Crear casos pequeños con respuesta conocida.</p><p><strong>Commit de fase:</strong> <code>feat(pl1.1): fase 1</code>, acompañado de una descripción concreta del cambio.</p><h3>2. Implementación y conteo</h3><p>Implementar ambos métodos y contar solo comparaciones de claves. Explicar mejor y peor caso.</p><p><strong>Commit de fase:</strong> <code>feat(pl1.1): fase 2</code>, acompañado de una descripción concreta del cambio.</p><h3>3. Experimento</h3><p>Ejecutar la matriz de tamaños y escenarios sobre copias idénticas. Registrar entorno, semilla y datos crudos.</p><p><strong>Commit de fase:</strong> <code>feat(pl1.1): fase 3</code>, acompañado de una descripción concreta del cambio.</p><h3>4. Interpretación</h3><p>Contrastar conteos con crecimiento esperado, explicar dispersión y señalar límites de las conclusiones.</p><p><strong>Commit de fase:</strong> <code>feat(pl1.1): fase 4</code>, acompañado de una descripción concreta del cambio.</p></td></tr><tr><td class="label">CASOS DE ACEPTACIÓN</td><td colspan="3"><table><thead><tr><th>Escenario</th><th>Criterio de aceptación</th></tr></thead><tbody><tr><td>[7,2,7]</td><td>true en ambos métodos</td></tr><tr><td>[1,2,3]</td><td>false en ambos métodos</td></tr><tr><td>[]</td><td>false; cero comparaciones de claves</td></tr><tr><td>n negativo</td><td>rechazo antes de reservar memoria</td></tr></tbody></table></td></tr><tr><td class="label">ENTREGABLES</td><td colspan="3"><ul><li>Fuentes Java organizados por paquetes y README con compilación y ejecución.</li><li>Carpeta evidencias con entradas, salidas reales y tabla de casos de aceptación.</li><li>Informe con decisiones, análisis temporal y espacial, resultados y conclusiones.</li><li>Repositorio con commits funcionales por fase y hash real de la entrega.</li><li>Exposición breve con demostración de un caso normal y uno límite.</li></ul></td></tr><tr><td class="label">RÚBRICA</td><td colspan="3"><div class="table-scroll"><table class="rubric"><thead><tr><th>Criterio</th><th>Completo · 100 %</th><th>Parcial · 50 %</th><th>No logrado · 0 %</th><th>Máximo</th></tr></thead><tbody><tr><td>Corrección funcional</td><td>Cumple todos los casos obligatorios y conserva los invariantes.</td><td>Cumple los casos normales, pero falla un caso límite o una operación obligatoria.</td><td>No ejecuta el núcleo requerido o no produce resultados válidos.</td><td>4</td></tr><tr><td>Análisis y decisiones</td><td>Deduce cotas a partir de los bucles y distingue el costo de preparación del costo del algoritmo.</td><td>Justifica parte de las decisiones, pero omite un costo o una comparación requerida.</td><td>No fundamenta decisiones ni analiza costos.</td><td>2</td></tr><tr><td>Pruebas y evidencia</td><td>Registra entradas, salidas reales y casos de error reproducibles.</td><td>Entrega evidencia reproducible incompleta.</td><td>No aporta ejecuciones verificables.</td><td>2</td></tr><tr><td>Organización y Git</td><td>Separa modelo, algoritmos y ejecución; documenta comandos y commits reales por fase.</td><td>La organización o el historial está incompleto, pero permite ejecutar.</td><td>No se puede reproducir la entrega desde las instrucciones.</td><td>1</td></tr><tr><td>Defensa y conclusiones</td><td>Explica su implementación, realiza el cambio solicitado y fundamenta conclusiones con resultados.</td><td>Explica parcialmente el código o no completa la modificación.</td><td>No puede explicar el comportamiento del código entregado.</td><td>1</td></tr><tr class="total"><td colspan="4">TOTAL</td><td>10</td></tr></tbody></table></div><p>Asigna el puntaje completo, la mitad o cero en cada criterio según la evidencia. No se aplican penalizaciones adicionales no indicadas en esta rúbrica.</p></td></tr><tr><td class="label">RESULTADOS OBTENIDOS</td><td colspan="3"><p>Presenta una tabla propia con escenario, entrada, resultado esperado, resultado real y evidencia. Los datos deben proceder de tu ejecución. Identifica las limitaciones y cualquier caso que no hayas completado.</p></td></tr><tr><td class="label">DEFENSA</td><td colspan="3"><p>Explica por qué la copia queda fuera del intervalo medido y predice el cambio al duplicar una entrada sin repetidos.</p><p>Explica el código del commit entregado y realiza la modificación solicitada. Declara herramientas externas utilizadas y comprueba personalmente cada resultado.</p></td></tr><tr><td class="label">CONCLUSIONES</td><td colspan="3"><p>Redacta al menos tres conclusiones basadas en resultados reales. Relaciona cada conclusión con un caso ejecutado y una decisión del diseño.</p></td></tr><tr><td class="label">RECOMENDACIONES</td><td colspan="3"><p>Conserva datos de prueba reproducibles, valida casos de error y registra los cambios por fase. Revisa las instrucciones de cada contenido antes de integrar componentes.</p></td></tr></table></div><div class="signature"><p>Docente / Técnico Docente: Ing. Pablo Torres, Mgtr.</p><p>Firma: _______________________________</p></div><p class="reference-note">Guía adaptada de las referencias del docente para Estructura de Datos. Rúbrica: 10 puntos.</p></main><script src="../../assets/js/protection.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <meta
+        name="description"
+        content="PL1.1: comparación de métodos de ordenamiento en Java mediante benchmarking propio. Dos entregables y dos rúbricas independientes."
+    >
+    <title>PL1.1 · Comparativa de métodos de ordenamiento · Estructura de Datos</title>
+    <link
+        rel="stylesheet"
+        href="../../assets/css/styles.css"
+    >
+    <link
+        rel="stylesheet"
+        href="assets/pl.css"
+    >
+</head>
+
+<body>
+    <a
+        class="skip"
+        href="#practice-content"
+    >Ir a la práctica</a>
+    <main
+        class="page"
+        id="practice-content"
+        data-protected="true"
+    >
+        <nav
+            class="article-nav"
+            aria-label="Navegación de prácticas"
+        >
+            <a
+                href="../../index.html"
+                target="_top"
+            >Índice del curso</a>
+            <a href="#casos-aceptacion">Casos de aceptación</a>
+            <a href="#entregables">Entregables</a>
+            <a href="#rubrica-pl">Rúbrica de la práctica</a>
+            <a href="#rubrica-investigacion">Rúbrica de investigación</a>
+        </nav>
+        <div class="table-scroll">
+            <table class="guide-table">
+                <colgroup>
+                    <col style="width:20%">
+                    <col style="width:12%">
+                    <col style="width:19%">
+                    <col style="width:24%">
+                    <col style="width:25%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td class="guide-logo-cell"><img
+                                class="guide-logo"
+                                src="../../assets/logos/ups.png"
+                                alt="Universidad Politécnica Salesiana"
+                            ></td>
+                        <td
+                            colspan="4"
+                            class="guide-heading"
+                        >GUÍA DE PRÁCTICA DE LABORATORIO / TALLERES / CENTROS DE SIMULACIÓN — PARA DOCENTES</td>
+                    </tr>
+                    <tr class="guide-blank">
+                        <td
+                            colspan="5"
+                            aria-hidden="true"
+                        >&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>CARRERA:</strong> Computación</td>
+                        <td colspan="3"><strong>ASIGNATURA:</strong> Estructura de Datos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NRO. PRÁCTICA:</strong></td>
+                        <td>PL1.1</td>
+                        <td colspan="3"><strong>TÍTULO PRÁCTICA:</strong> Comparativa de métodos de ordenamiento y
+                            benchmarking</td>
+                    </tr>
+                    <tr>
+                        <td
+                            colspan="5"
+                            class="section-content"
+                        ><strong class="full-section-title">OBJETIVO</strong>
+                            <ul>
+                                <li>Construir un generador de números enteros aleatorios y una clase de benchmarking
+                                    capaz de medir operaciones recibidas mediante una interfaz funcional.</li>
+                                <li>Comparar un método básico de ordenamiento, un método investigado y dos variantes de
+                                    ordenamiento de la biblioteca estándar de Java.</li>
+                                <li>Almacenar objetos con el nombre del método, sample y duración en una lista de
+                                    resultados e imprimirla completa al finalizar las mediciones. </li>
+                                <li>Analizar resultados reales, relacionando tiempo observado, tamaño de entrada,
+                                    representación de datos y complejidad algorítmica.</li>
+                                <li>Investigar y explicar la implementación concreta de Merge Sort o Quick Sort
+                                    incorporada al proyecto.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="section-label">CONTEXTO</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <p>Se requiere una aplicación de consola en Java que genere muestras numéricas y compare
+                                distintas formas de ordenarlas. Todas las variantes deben producir el mismo orden
+                                ascendente y conservar los valores con sus repeticiones. La medición se realizará
+                                mediante una clase propia que reciba la operación a ejecutar, sin depender de un
+                                algoritmo específico.</p>
+                            <p>En clase se desarrollará un ejemplo del flujo completo: generar datos, preparar una
+                                copia, enviar el ordenamiento mediante una lambda, medir la duración, comprobar el
+                                resultado y registrar la medición. La práctica amplía ese flujo con un algoritmo
+                                investigado, variantes de biblioteca y un informe reproducible.</p>
+                            <p>La actividad tiene <strong>dos entregables evaluados de forma independiente</strong>: el
+                                proyecto comparativo con su README y la investigación del algoritmo con su
+                                implementación identificada en el mismo repositorio. Cada entregable se califica sobre
+                                10 puntos.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="section-label">RECURSOS</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <ul>
+                                <li>JDK y editor o IDE. Registrar la versión de Java, sistema operativo, procesador y
+                                    memoria del equipo utilizado para las mediciones.</li>
+                                <li>Git y repositorio remoto accesible para el docente. Trabajo individual; fechas de
+                                    entrega establecidas en el AVAC.</li>
+                                <li>Biblioteca estándar de Java, interfaces funcionales, expresiones lambda, arreglos y
+                                    archivos Markdown. No se requieren dependencias externas.</li>
+                                <li>Material de clase y fuentes técnicas identificables para estudiar Merge Sort o Quick
+                                    Sort.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="section-label">INSTRUCCIONES</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <h3>1. Generación de muestras</h3>
+                            <ol>
+                                <li>Implementar un método que reciba <strong>n</strong> y genere exactamente <strong>n
+                                        números enteros aleatorios entre 0 y n, ambos inclusive</strong>. Se permiten
+                                    valores repetidos; no se exige que aparezcan todos los valores del intervalo.</li>
+                                <li>Para n = 0 devolver un arreglo vacío. Para n negativo rechazar la solicitud con un
+                                    error explícito. Documentar el rango de tamaños soportado y evitar el desbordamiento
+                                    al calcular el límite superior del generador.</li>
+
+                                <li>Generar una sola muestra base por tamaño. Todas las variantes deben
+                                    recibir copias independientes con exactamente los mismos valores y el mismo orden
+                                    inicial.</li>
+                            </ol>
+                            <h3>2. Variantes obligatorias</h3>
+                            <div class="table-scroll">
+                                <table class="rubric">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Variante</th>
+                                            <th>Datos y criterio</th>
+                                            <th>Condición</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>V1</td>
+                                            <td>Método básico</td>
+                                            <td>Arreglo int[]; orden ascendente.</td>
+                                            <td>Escoger e implementar uno: Burbuja, Selección o Inserción. Identificar
+                                                la variante utilizada.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>V2</td>
+                                            <td>Método investigado</td>
+                                            <td>Arreglo int[]; orden ascendente.</td>
+                                            <td>Escoger e implementar uno: Merge Sort o Quick Sort. Explicar esa
+                                                implementación en INVESTIGACION.md.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>V3</td>
+                                            <td>Arrays.sort</td>
+                                            <td>Arreglo int[]; orden ascendente.</td>
+                                            <td>Usar el método de la biblioteca como referencia de rendimiento.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>V4</td>
+                                            <td>Arrays.sort con Comparator</td>
+                                            <td>Arreglo Integer[]; orden ascendente numérico.</td>
+                                            <td>Definir un Comparator&lt;Integer&gt; mediante una lambda o un
+                                                constructor de comparadores. Usar una comparación segura, sin restar
+                                                valores.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>Comparator define el criterio de comparación; no constituye un algoritmo de
+                                    ordenamiento adicional.</strong> V4 utiliza objetos Integer y una sobrecarga
+                                diferente de Arrays.sort. Sus resultados corresponden a esa combinación de
+                                representación y mecanismo; no permiten atribuir toda diferencia de tiempo al
+                                comparador.</p>
+                            <p>V1 y V2 deben realizar el ordenamiento mediante su propia lógica, sin delegarlo a
+                                Arrays.sort, Collections.sort, List.sort ni streams ordenados. La biblioteca sí se
+                                permite en V3, V4 y la verificación, fuera de la medición de V1 y V2.</p>
+                            <h3>3. Clase de benchmarking reutilizable</h3>
+                            <ol>
+                                <li>Recibir la operación ejecutable, su nombre y el tamaño real de la muestra. Devolver
+                                    un objeto con los resultados requeridos.</li>
+                                <li>Utilizar una interfaz funcional para enviar la operación mediante una lambda. Se
+                                    admite Runnable para operaciones sin retorno o Callable&lt;Void&gt; si se conserva
+                                    el diseño trabajado en clase; documentar el contrato elegido.</li>
+                                <li>Medir con System.nanoTime() inmediatamente antes y después de ejecutar la operación.
+                                    Conservar la diferencia en nanosegundos como long y obtener milisegundos mediante
+                                    división entre 1 000 000.0.</li>
+                                <li>Devolver un objeto de resultados, por ejemplo <code>Resultado</code> o
+                                    <code>Results</code>, con nombre del método, <code>sample</code> y duración en
+                                    nanosegundos. El tiempo en milisegundos puede calcularse al consultar o presentar el
+                                    resultado. <code>sample</code> representa la cantidad de elementos ordenados.
+                                </li>
+                                <li>Mantener la clase independiente de los ordenamientos: no debe contener un switch ni
+                                    condiciones por nombre para seleccionar algoritmos. La selección y preparación se
+                                    realizan en el controlador de experimentos.</li>
+                                <li>Si la operación falla, conservar el motivo y la excepción original. Registrar el
+                                    fallo fuera del intervalo medido; no convertirlo en una ejecución exitosa con
+                                    duración cero. Corregir la causa antes de completar los 12 resultados válidos de la
+                                    entrega.</li>
+                            </ol>
+                            <h3>4. Preparación y límites de la medición</h3>
+                            <p>El intervalo medido incluye <strong>la llamada que ordena la muestra y el trabajo interno
+                                    necesario para completarla</strong>. Si la implementación de Merge Sort reserva su
+                                arreglo auxiliar dentro del método, esa reserva forma parte de su tiempo. Identificar
+                                esa decisión en el informe.</p>
+                            <ul>
+                                <li>Antes de iniciar el cronómetro: generar la muestra original, preparar la
+                                    representación Integer[] para V4, crear un clon nuevo de la entrada de cada
+                                    variante, construir el comparador y crear la operación que se enviará al medidor.
+                                </li>
+                                <li>Después de detenerlo: construir el objeto de resultados, validar el orden y la
+                                    conservación de elementos y agregar el resultado válido a la lista administrada por
+                                    el controlador. Imprimir la lista completa únicamente al finalizar todas las
+                                    mediciones.</li>
+                                <li>No copiar ni generar los datos dentro de la lambda medida. No imprimir el arreglo,
+                                    guardar archivos ni ejecutar validaciones dentro de la operación cronometrada.</li>
+                                <li>Cada ordenamiento debe recibir un clon nuevo de su arreglo base original. No
+                                    reutilizar el arreglo ya ordenado por una ejecución anterior.</li>
+                                <li>Las copias de entrada y la conversión de representación quedan excluidas del tiempo
+                                    informado. Esta decisión debe declararse; el resultado no representa el costo total
+                                    de preparar y procesar una solicitud.</li>
+                            </ul>
+
+
+                            <h3>5. Tamaños de muestra y almacenamiento de resultados</h3>
+
+                            <p>
+                                Utilizar los tamaños obligatorios
+                                <strong>10 000, 50 000 y 100 000 elementos</strong>.
+                                Para cada tamaño, generar una única muestra de números
+                                aleatorios entre cero y dicho tamaño, ambos inclusive.
+                            </p>
+
+                            <ol>
+                                <li>
+                                    Conservar el arreglo original sin modificar.
+                                    Las cuatro variantes deben trabajar con los mismos
+                                    valores y el mismo orden inicial.
+                                </li>
+                                <li>
+                                    Antes de cada ordenamiento, crear un
+                                    <strong>clon nuevo del arreglo original</strong>.
+                                    No reutilizar un arreglo que ya haya sido ordenado
+                                    por otra ejecución.
+                                </li>
+                                <li>
+                                    Para la variante con <code>Comparator</code>, preparar
+                                    un arreglo <code>Integer[]</code> con los mismos valores
+                                    y en el mismo orden que la muestra original.
+                                    Crear una copia independiente antes de ordenarlo.
+                                </li>
+                                <li>
+                                    Realizar la generación, conversión y clonación
+                                    <strong>fuera del intervalo de medición</strong>.
+                                    La operación enviada al benchmarking debe ejecutar
+                                    únicamente el ordenamiento.
+                                </li>
+                                <li>
+                                    Ejecutar cada variante una vez por tamaño.
+                                    La clase de benchmarking debe devolver un objeto
+                                    <code>Resultado</code> o <code>Results</code> con
+                                    el nombre del método, el <code>sample</code>
+                                    y la duración obtenida.
+                                </li>
+                                <li>
+                                    Agregar cada objeto devuelto a una
+                                    <strong>lista de resultados</strong>, administrada
+                                    por la clase que coordina las pruebas.
+                                    La lista debe conservar las mediciones de todos
+                                    los métodos y tamaños.
+                                </li>
+                                <li>
+                                    Verificar después de cada medición que la salida
+                                    esté ordenada y conserve todos los elementos.
+                                    Esta comprobación debe realizarse fuera del cronómetro.
+                                </li>
+                                <li>
+                                    Al finalizar todas las pruebas, recorrer e imprimir
+                                    <strong>la lista completa de resultados</strong>.
+                                    Cada registro debe mostrar el método,
+                                    el tamaño de muestra y el tiempo en milisegundos.
+                                </li>
+                            </ol>
+
+                            <p>
+                                La ejecución completa debe producir
+                                <strong>12 resultados: cuatro variantes por tres tamaños</strong>.
+                                El campo <code>sample</code> representa la cantidad
+                                de elementos ordenados.
+                            </p>
+
+                            <div class="table-scroll">
+                                <table class="rubric">
+                                    <thead>
+                                        <tr>
+                                            <th>Tamaño de muestra</th>
+                                            <th>Variantes que se ejecutan</th>
+                                            <th>Resultados registrados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>10 000</td>
+                                            <td>V1, V2, V3 y V4</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>50 000</td>
+                                            <td>V1, V2, V3 y V4</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>100 000</td>
+                                            <td>V1, V2, V3 y V4</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr class="total">
+                                            <td colspan="2"><strong>TOTAL</strong></td>
+                                            <td><strong>12 resultados</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p>
+                                Incorporar en el <code>README.md</code>
+                                <strong>una o varias capturas legibles de la lista completa
+                                    impresa en consola</strong>.
+                                Incluir también una tabla con esos mismos 12 resultados:
+                                método, sample y tiempo en milisegundos.
+                                Los valores de la tabla deben coincidir con las capturas.
+                            </p>
+
+                            <p>
+                                Si una ejecución falla, identificar y corregir su causa.
+                                No registrar cero como sustituto de una medición fallida
+                                ni presentar tiempos inventados.
+                            </p>
+
+                            <p>
+                                Los tiempos corresponden a ejecuciones concretas en el
+                                equipo utilizado. Una sola medición por método y tamaño
+                                no permite afirmar que un método será siempre más rápido.
+                            </p>
+                            <h3>6. Organización del proyecto</h3>
+                            <div class="table-scroll">
+                                <table class="rubric">
+                                    <thead>
+                                        <tr>
+                                            <th>Responsabilidad</th>
+                                            <th>Contenido esperado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Generador</td>
+                                            <td>Tamaño, intervalo y construcción de una muestra aleatoria por tamaño.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Algoritmos</td>
+                                            <td>Implementación del método básico y del investigado.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Benchmarking</td>
+                                            <td>Ejecución de la operación recibida y medición de duración.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Modelo de resultados</td>
+                                            <td>Nombre del método, sample y duración en nanosegundos, con conversión a
+                                                milisegundos para su presentación.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Control de experimentos</td>
+                                            <td>Coordinación de los tres tamaños y cuatro variantes, clones
+                                                independientes, validación y almacenamiento de los objetos en una
+                                                List&lt;Resultado&gt; o List&lt;Results&gt;.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aplicación y reporte</td>
+                                            <td>Punto de entrada e impresión de la lista completa al finalizar las
+                                                mediciones, con método, sample y tiempo en milisegundos.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p>Distribuir estas responsabilidades en clases y paquetes. No es obligatorio utilizar
+                                exactamente los nombres propuestos. El README debe mostrar la estructura real y explicar
+                                cómo circulan los datos entre las clases.</p>
+                            <h3>7. Investigación del algoritmo elegido</h3>
+                            <p>El archivo <strong>INVESTIGACION.md</strong> debe explicar el Merge Sort o Quick Sort que
+                                realmente ejecuta V2. Se permite consultar bibliografía, documentación e
+                                implementaciones publicadas; identificar las fuentes, el código adaptado y las
+                                modificaciones realizadas. El documento debe demostrar comprensión de esa versión
+                                concreta, no limitarse a una definición general.</p>
+                            <ol>
+                                <li>Identificar algoritmo, variante, clases, métodos y rutas del código fuente del
+                                    repositorio.</li>
+                                <li>Explicar el proceso paso a paso, los parámetros, el caso base, el progreso de la
+                                    recursión y la propiedad que se conserva.</li>
+                                <li>Para Merge Sort: explicar división, mezcla, arreglo auxiliar y tratamiento de
+                                    empates. Para Quick Sort: explicar selección del pivote, partición, límites de las
+                                    llamadas y tratamiento de repetidos.</li>
+                                <li>Realizar una traza manual sobre [7, 2, 7, 0, 4, 2], incluyendo subdivisiones o
+                                    particiones, resultados intermedios y salida final.</li>
+                                <li>Analizar tiempo en mejor, promedio y peor caso, explicitando los supuestos del
+                                    promedio; analizar memoria auxiliar y pila recursiva. Justificar estabilidad o
+                                    inestabilidad para la implementación entregada.</li>
+                                <li>Identificar un caso desfavorable y relacionarlo con una prueba real de esa
+                                    implementación. Si falla por profundidad recursiva o índices, registrar y explicar
+                                    el fallo y la corrección aplicada.</li>
+                                <li>Relacionar el análisis con al menos dos observaciones de la tabla de benchmarking.
+                                    Citar al menos dos fuentes técnicas identificables, con enlaces o datos
+                                    bibliográficos y fecha de consulta.</li>
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            colspan="5"
+                            class="section-content"
+                        ><strong class="full-section-title">ACTIVIDADES POR DESARROLLAR</strong>
+                            <h3>Fase 1. Flujo de medición</h3>
+                            <p>Construir el generador, el modelo de resultados y la clase de benchmarking. Integrar el
+                                método básico elegido y verificar el flujo presentado en clase con muestras pequeñas.
+                            </p>
+                            <h3>Fase 2. Algoritmo investigado y variantes de biblioteca</h3>
+                            <p>Estudiar e implementar Merge Sort o Quick Sort. Incorporar V3 y V4, comprobar el criterio
+                                ascendente y separar preparación, ejecución y validación. Iniciar INVESTIGACION.md con
+                                las fuentes consultadas y las decisiones de implementación.</p>
+                            <h3>Fase 3. Experimentos reproducibles</h3>
+                            <p>Ejecutar los casos de aceptación por separado. Medir una vez cada variante para 10 000,
+                                50 000 y 100 000 elementos, siempre sobre clones nuevos. Acumular los 12 resultados en
+                                la lista, imprimirla completa y trasladar los mismos datos al README mediante capturas
+                                legibles y una tabla.</p>
+                            <h3>Fase 4. Informes y entrega</h3>
+                            <p>Completar README.md e INVESTIGACION.md, revisar sus enlaces al código y publicar el
+                                proyecto en el repositorio remoto. Registrar commits descriptivos por fase y comprobar
+                                la compilación y ejecución siguiendo únicamente las instrucciones documentadas.</p>
+                        </td>
+                    </tr>
+                    <tr id="casos-aceptacion">
+                        <td
+                            colspan="5"
+                            class="section-content"
+                        ><strong class="full-section-title">CASOS DE ACEPTACIÓN</strong>
+                            <div class="table-scroll">
+                                <table class="rubric">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Operación / entrada</th>
+                                            <th>Resultado esperado</th>
+                                            <th>Aspecto validado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CA01</td>
+                                            <td>Generar n = 10 000, 50 000 y 100 000.</td>
+                                            <td>Para cada n, exactamente n enteros, todos entre 0 y n inclusive.</td>
+                                            <td>Tamaño e intervalo.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA02</td>
+                                            <td>Generar n = 0 y n negativo.</td>
+                                            <td>Arreglo vacío para cero; rechazo explícito para el negativo.</td>
+                                            <td>Contrato del generador.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA03</td>
+                                            <td>Preparar las entradas de V1–V4 a partir de la misma muestra original.
+                                            </td>
+                                            <td>Mismos valores y orden inicial en las cuatro variantes; arreglos
+                                                independientes del original y entre sí.</td>
+                                            <td>Clonación de las entradas.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA04</td>
+                                            <td>Ordenar [7, 2, 7, 0, 4, 2] con V1–V4.</td>
+                                            <td>[0, 2, 2, 4, 7, 7] en todas las variantes.</td>
+                                            <td>Orden y repeticiones.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA05</td>
+                                            <td>Ordenar [], [5] y [3, 3, 3].</td>
+                                            <td>[], [5] y [3, 3, 3], sin errores.</td>
+                                            <td>Casos límite.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA06</td>
+                                            <td>Ordenar [0, 1, 2, 3] y [3, 2, 1, 0].</td>
+                                            <td>[0, 1, 2, 3] en ambos casos.</td>
+                                            <td>Orden previo.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA07</td>
+                                            <td>Ejecutar todas las variantes desde la misma base.</td>
+                                            <td>La base permanece intacta; las salidas coinciden por valor con una copia
+                                                de referencia ordenada fuera del cronómetro.</td>
+                                            <td>Independencia y conservación.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA08</td>
+                                            <td>Medir una operación mediante lambda.</td>
+                                            <td>Objeto con nombre del método, sample real y duración coherente en ns y
+                                                ms, incorporado a la lista después de validar la salida.</td>
+                                            <td>Benchmarking y unidades.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA09</td>
+                                            <td>Enviar una operación que lanza una excepción.</td>
+                                            <td>Fallo identificable con causa original; no se registra como tiempo
+                                                exitoso.</td>
+                                            <td>Tratamiento de errores.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA10</td>
+                                            <td>Completar las mediciones e imprimir la lista de resultados.</td>
+                                            <td>12 objetos de resultados: cuatro variantes por tres tamaños. La
+                                                impresión final, las capturas y la tabla del README coinciden en método,
+                                                sample y tiempo.</td>
+                                            <td>Cobertura experimental.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA11</td>
+                                            <td>Revisar el método investigado y su traza.</td>
+                                            <td>El código, la traza y el documento describen la misma variante; la
+                                                salida de la traza es [0, 2, 2, 4, 7, 7].</td>
+                                            <td>Correspondencia de investigación.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p>Registrar entrada, resultado esperado, resultado real, estado y referencia a la
+                                evidencia. Para las salidas grandes verificar automáticamente orden y conservación; no
+                                imprimir miles de elementos durante las mediciones. Las pruebas de corrección, los casos
+                                límite y la prueba del caso desfavorable de la investigación se ejecutan por separado y
+                                no agregan registros a la lista de los 12 tiempos.</p>
+                        </td>
+                    </tr>
+                    <tr id="entregables">
+                        <td class="section-label">ENTREGABLES</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <p>Presentar <strong>dos entregables diferenciados</strong> en el AVAC, vinculados al mismo
+                                repositorio remoto. Indicar el hash del commit evaluado. El repositorio debe ser
+                                accesible para el docente.</p>
+                            <h3>Entregable 1. Práctica de laboratorio — proyecto comparativo</h3>
+                            <ul>
+                                <li><strong>Código fuente Java:</strong> generador, clase de benchmarking, modelo de
+                                    resultados, algoritmo básico, algoritmo investigado, variantes de biblioteca y
+                                    ejecución de experimentos.</li>
+                                <li><strong>README.md:</strong> autor, objetivo, métodos seleccionados, entorno,
+                                    comandos reales de compilación y ejecución, organización de paquetes y
+                                    responsabilidades de las clases.</li>
+                                <li><strong>Explicación del benchmarking en el README:</strong> interfaz funcional,
+                                    envío mediante lambdas, inicio y fin del cronómetro, unidades, significado de
+                                    sample, tratamiento de errores, operaciones excluidas, almacenamiento de los objetos
+                                    en la lista e impresión final.</li>
+                                <li><strong>Procedimiento y resultados en el README:</strong> tamaños, métodos, orden de
+                                    ejecución, generación de una muestra por tamaño y clones fuera del cronómetro.
+                                    Incluir una o varias capturas legibles de la lista completa impresa en consola y una
+                                    tabla con los mismos 12 resultados: método, sample y tiempo en milisegundos.</li>
+                                <li><strong>Evidencias:</strong> guardar las imágenes de consola en el repositorio e
+                                    insertarlas en el README mediante enlaces relativos. Documentar los casos de
+                                    aceptación y sus salidas reales en <code>evidencias/pruebas.md</code>.</li>
+                                <li><strong>Al menos tres conclusiones propias en el README</strong>, escritas sin
+                                    generación ni reescritura mediante IA y apoyadas en valores concretos de las tablas.
+                                </li>
+                            </ul>
+                            <h3>Entregable 2. Investigación — algoritmo implementado</h3>
+                            <ul>
+                                <li><strong>INVESTIGACION.md</strong> en la raíz del mismo repositorio, con los siete
+                                    apartados definidos en la sección de investigación.</li>
+                                <li><strong>Código del Merge Sort o Quick Sort investigado</strong>, integrado y
+                                    ejecutable como V2. Enlazar sus archivos y métodos desde el documento; no entregar
+                                    una segunda implementación desconectada del proyecto.</li>
+                                <li><strong>Traza, análisis y evidencias:</strong> explicar las decisiones reales de esa
+                                    versión, su corrección, costos, estabilidad y caso desfavorable.</li>
+                                <li><strong>Referencias y adaptación:</strong> identificar al menos dos fuentes y
+                                    distinguir las ideas o fragmentos consultados de las modificaciones realizadas.
+                                    Redactar la explicación con palabras propias.</li>
+                            </ul>
+                            <p>La primera rúbrica evalúa la integración, medición y comparación del proyecto. La segunda
+                                evalúa la investigación y la comprensión técnica del algoritmo implementado. Se
+                                reutiliza el mismo código, pero las evidencias y las calificaciones son distintas.</p>
+                        </td>
+                    </tr>
+                    <tr id="rubrica-pl">
+                        <td
+                            colspan="5"
+                            class="section-content"
+                        ><strong class="full-section-title">RÚBRICA 1 · PRÁCTICA DE LABORATORIO</strong>
+                            <div class="table-scroll">
+                                <table class="rubric">
+                                    <thead>
+                                        <tr>
+                                            <th>Criterio</th>
+                                            <th>Completo · 100 %</th>
+                                            <th>Parcial · 50 %</th>
+                                            <th>No logrado · 0 %</th>
+                                            <th>Máximo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Generación y preparación de datos</td>
+                                            <td>Genera una muestra aleatoria por tamaño, respeta el intervalo y entrega
+                                                a cada variante un clon nuevo con los mismos valores y orden inicial,
+                                                preparado fuera del cronómetro.</td>
+                                            <td>Genera muestras utilizables, pero incumple parcialmente los tamaños, el
+                                                intervalo o la independencia de los clones.</td>
+                                            <td>No genera muestras válidas o utiliza entradas diferentes o ya ordenadas
+                                                para comparar métodos.</td>
+                                            <td><strong>2.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Benchmarking y modelo de resultados</td>
+                                            <td>Recibe una operación funcional, mide solo el ordenamiento, devuelve un
+                                                modelo con nombre, sample y duración, convierte correctamente ns a ms y
+                                                conserva la causa de los errores.</td>
+                                            <td>Mide operaciones, pero omite metadatos, unidades, delimitación o
+                                                tratamiento de errores.</td>
+                                            <td>No mide la operación recibida o las duraciones registradas no
+                                                representan su ejecución.</td>
+                                            <td><strong>2.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Integración y corrección de variantes</td>
+                                            <td>V1–V4 operativas y verificadas; V1 y V2 tienen lógica propia; conserva
+                                                datos y reconoce la representación de V4.</td>
+                                            <td>Integra y valida parte de las variantes, pero alguna falta o falla.</td>
+                                            <td>No consigue una comparación funcional o no verifica la corrección de las
+                                                salidas.</td>
+                                            <td><strong>2.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lista y presentación de resultados</td>
+                                            <td>Acumula los 12 objetos en una lista, la imprime completa al finalizar y
+                                                presenta capturas legibles y una tabla coincidente en el README.</td>
+                                            <td>Presenta tiempos reales, pero la lista, su impresión final, las capturas
+                                                o la tabla están incompletas.</td>
+                                            <td>No almacena los resultados en una lista o no presenta mediciones
+                                                verificables.
+                                            </td>
+                                            <td><strong>2.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>README, organización y Git</td>
+                                            <td>Explica estructura, clases y benchmarking; comandos funcionales,
+                                                repositorio accesible y commits descriptivos.</td>
+                                            <td>Proyecto accesible y ejecutable, pero documentación, organización o
+                                                historial incompletos.</td>
+                                            <td>Repositorio inaccesible o entrega no reproducible desde sus
+                                                instrucciones.</td>
+                                            <td><strong>1.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Conclusiones de la práctica</td>
+                                            <td>Al menos tres conclusiones propias sin IA, vinculadas a datos concretos
+                                                y limitaciones del experimento.</td>
+                                            <td>Conclusiones propias, pero menos de tres o con respaldo parcial en los
+                                                resultados.</td>
+                                            <td>No presenta conclusiones propias o incumple la autoría requerida.</td>
+                                            <td><strong>1.0</strong></td>
+                                        </tr>
+                                        <tr class="total">
+                                            <td><strong>TOTAL</strong></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="points"><strong>10.0</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>Calificación del entregable 1: /10.</strong> Cada criterio recibe su máximo, la
+                                mitad o cero según los descriptores y las evidencias.</p>
+                        </td>
+                    </tr>
+                    <tr id="rubrica-investigacion">
+                        <td
+                            colspan="5"
+                            class="section-content"
+                        ><strong class="full-section-title">RÚBRICA 2 · INVESTIGACIÓN</strong>
+                            <div class="table-scroll">
+                                <table class="rubric">
+                                    <thead>
+                                        <tr>
+                                            <th>Criterio</th>
+                                            <th>Completo · 100 %</th>
+                                            <th>Parcial · 50 %</th>
+                                            <th>No logrado · 0 %</th>
+                                            <th>Máximo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Explicación de la implementación</td>
+                                            <td>Describe la variante real, parámetros, métodos, recursión y decisiones
+                                                de mezcla o partición, con enlaces precisos al código integrado.</td>
+                                            <td>Explica el algoritmo, pero omite decisiones relevantes o algunas no
+                                                corresponden al código.</td>
+                                            <td>Presenta solo una definición genérica o no identifica una implementación
+                                                integrada.</td>
+                                            <td><strong>3.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Traza y corrección</td>
+                                            <td>Traza completa y consistente; explica caso base, progreso y propiedad
+                                                conservada hasta la salida correcta.</td>
+                                            <td>Traza o justificación parcialmente correctas, con pasos o propiedades
+                                                sin explicar.</td>
+                                            <td>No presenta traza verificable ni justifica la corrección.</td>
+                                            <td><strong>2.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Complejidad, espacio y estabilidad</td>
+                                            <td>Justifica mejor, promedio y peor caso con sus supuestos, memoria
+                                                auxiliar, pila y estabilidad de la variante entregada.</td>
+                                            <td>Análisis parcialmente correcto, pero omite supuestos, memoria, pila o
+                                                estabilidad.</td>
+                                            <td>Afirma costos sin justificación o los atribuye a una variante diferente.
+                                            </td>
+                                            <td><strong>2.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Caso desfavorable y relación experimental</td>
+                                            <td>Analiza un caso desfavorable ejecutado y relaciona al menos dos
+                                                resultados reales con decisiones y limitaciones del algoritmo.</td>
+                                            <td>Presenta evidencia, pero explica parcialmente el caso desfavorable o su
+                                                relación con los tiempos.</td>
+                                            <td>No aporta un caso ejecutado ni relaciona la investigación con el
+                                                proyecto.</td>
+                                            <td><strong>2.0</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fuentes y elaboración del documento</td>
+                                            <td>Dos o más fuentes identificables, adaptación declarada y explicación
+                                                propia organizada en INVESTIGACION.md.</td>
+                                            <td>Fuentes o atribuciones incompletas, o documento parcialmente organizado.
+                                            </td>
+                                            <td>Sin fuentes identificables o texto copiado sin atribución.</td>
+                                            <td><strong>1.0</strong></td>
+                                        </tr>
+                                        <tr class="total">
+                                            <td><strong>TOTAL</strong></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="points"><strong>10.0</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>Calificación del entregable 2: /10.</strong> Cada criterio recibe su máximo, la
+                                mitad o cero según los descriptores y las evidencias. Las dos notas se registran por
+                                separado; no se suman como una única calificación sobre 20.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="section-label">RESULTADOS OBTENIDOS</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <h3>1. Lista impresa en consola</h3>
+                            <p>Al finalizar las mediciones, recorrer la lista de objetos Resultado o Results e imprimir
+                                sus 12 registros. Cada registro debe mostrar el nombre del método, el sample y el tiempo
+                                en milisegundos. La impresión se realiza después de medir todos los ordenamientos.</p>
+                            <h3>2. Capturas y tabla en README.md</h3>
+                            <p>Incluir una o varias capturas legibles que cubran la salida completa de la lista.
+                                Presentar esos mismos datos en la siguiente tabla, utilizando los nombres concretos de
+                                los algoritmos elegidos. Mantener en la tabla la misma precisión decimal mostrada en
+                                consola.</p>
+                            <div class="table-scroll">
+                                <table class="rubric">
+                                    <thead>
+                                        <tr>
+                                            <th>Método</th>
+                                            <th>Sample</th>
+                                            <th>Tiempo en milisegundos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Método básico elegido</td>
+                                            <td>10 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Método investigado elegido</td>
+                                            <td>10 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Arrays.sort · int[]</td>
+                                            <td>10 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Arrays.sort + Comparator · Integer[]</td>
+                                            <td>10 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Método básico elegido</td>
+                                            <td>50 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Método investigado elegido</td>
+                                            <td>50 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Arrays.sort · int[]</td>
+                                            <td>50 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Arrays.sort + Comparator · Integer[]</td>
+                                            <td>50 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Método básico elegido</td>
+                                            <td>100 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Método investigado elegido</td>
+                                            <td>100 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Arrays.sort · int[]</td>
+                                            <td>100 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Arrays.sort + Comparator · Integer[]</td>
+                                            <td>100 000</td>
+                                            <td>—</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p>Los guiones son campos pendientes de completar, no tiempos iguales a cero. Cada valor
+                                debe proceder de la ejecución real y coincidir con las capturas.</p>
+                            <h3>3. Análisis requerido</h3>
+                            <ol>
+                                <li>¿Cómo cambia el tiempo de cada método al aumentar el tamaño de la muestra? Citar
+                                    valores concretos.</li>
+                                <li>¿Qué método obtuvo el menor tiempo para cada tamaño en las ejecuciones realizadas?
+                                </li>
+                                <li>¿Por qué cada ordenamiento debe recibir un clon nuevo de la muestra original?</li>
+                                <li>¿Qué diferencias deben considerarse al comparar int[] con Integer[] y Comparator,
+                                    aun excluyendo la conversión del cronómetro?</li>
+                                <li>¿Qué operaciones quedaron incluidas en el tiempo y cuáles fuera? ¿Qué limitaciones
+                                    tiene comparar una sola ejecución por método y tamaño?</li>
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="section-label">CONCLUSIONES</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <p>Incluir al menos <strong>tres conclusiones en README.md</strong>. Cada una debe citar un
+                                método, tamaño o resultado real y explicar su relación con una decisión de
+                                implementación o una limitación de la medición. Redactarlas personalmente, sin
+                                generación ni reescritura mediante IA. No afirmar que un método es siempre más rápido a
+                                partir de este conjunto limitado de pruebas.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="section-label">RECOMENDACIONES</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <p>Verificar primero la corrección con arreglos pequeños. Ejecutar las mediciones sin
+                                depurador, sin impresiones dentro del tramo medido y evitando cargas externas
+                                innecesarias. Mantener iguales las condiciones del equipo y registrar cualquier
+                                interrupción. Conservar las capturas de la lista completa, comprobar su coincidencia con
+                                la tabla del README y verificar que los documentos describen el commit entregado.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="section-label">REFERENCIAS DE APOYO</td>
+                        <td
+                            colspan="4"
+                            class="section-content"
+                        >
+                            <ul>
+                                <li><a
+                                        href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/System.html#nanoTime()"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >Java: System.nanoTime()</a>. Consultar también la documentación correspondiente al
+                                    JDK utilizado.</li>
+                                <li><a
+                                        href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >Java: Arrays y sus sobrecargas de ordenamiento</a>. Distinguir requisitos de la API
+                                    y detalles de implementación.</li>
+                                <li><a
+                                        href="https://pablot18.github.io/icc-est-practicas/unidad4/PL4.1-comparativa.html"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >Guía docente anterior: comparación situacional de algoritmos de ordenamiento</a>.
+                                    Antecedente de la actividad; para esta entrega rigen los requisitos de PL1.1.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="signature">
+            <p><strong>Docente / Técnico Docente:</strong> Ing. Pablo Torres, Mgtr.</p>
+            <p>Firma: _______________________________</p>
+        </div>
+        <div class="reference-note">
+            <span>Formato aprobado con Res. C.S. N° 076-04-2016-04-20</span>
+            <span>Estructura de Datos · PL1.1 · Práctica: 10 puntos · Investigación: 10 puntos</span>
+        </div>
+    </main>
+    <script src="../../assets/js/protection.js"></script>
+</body>
+
+</html>
