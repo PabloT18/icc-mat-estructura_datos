@@ -350,3 +350,15 @@ table.guide-table {
         font-size: 14px;
     }
 }
+
+.academic-policy {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-left: 4px solid #003772;
+    background: #eef3f8;
+}
+
+.academic-policy h2 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
