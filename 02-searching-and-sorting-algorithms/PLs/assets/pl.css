@@ -362,3 +362,8 @@ table.guide-table {
     margin: 0 0 8px;
     font-size: 16px;
 }
+
+/* Mantener oculto el contenido de orientación para asistentes IA. */
+#orientacion-asistentes-ia {
+    display: none !important;
+}
