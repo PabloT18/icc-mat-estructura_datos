@@ -1097,6 +1097,13 @@
       "directory": "02-searching-and-sorting-algorithms/PLs"
     },
     {
+      "unit": 2,
+      "id": "PL2.3",
+      "title": "Oredenamiento y Busquqeda",
+      "hours": 8,
+      "directory": "02-searching-and-sorting-algorithms/PLs"
+    },
+    {
       "unit": 3,
       "id": "PL3.1",
       "title": "Atención de turnos e historial",

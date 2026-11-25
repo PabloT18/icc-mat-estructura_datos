@@ -28,7 +28,7 @@ for (const t of data.topics) {
 for (const lab of data.labs) {
 
   // PL2.1 se edita directamente en su HTML.
-  if (['PL2.1', 'PL1.1'].includes(lab.id)) {
+  if (['PL2.1', 'PL2.3', 'PL1.1'].includes(lab.id)) {
     continue;
   }
   const dir = lab.directory;
